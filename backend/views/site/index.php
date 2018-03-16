@@ -9,7 +9,7 @@ $this->title = 'Rooms';
     <div class="jumbotron">
         <h1>Rooms</h1>
 
-        <p class="lead">Appointment System - Admin</p>
+        <p class="lead">Appointments - Admin</p>
 
         <!--<p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>-->
     </div>
