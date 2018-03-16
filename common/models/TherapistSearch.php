@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Client;
+use common\models\Therapist;
 
 /**
- * ClientSearch represents the model behind the search form of `frontend\models\Client`.
+ * TherapistSearch represents the model behind the search form of `common\models\Therapist`.
  */
-class ClientSearch extends Client
+class TherapistSearch extends Therapist
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class ClientSearch extends Client
      */
     public function search($params)
     {
-        $query = Client::find();
+        $query = Therapist::find();
 
         // add conditions that should always apply here
 

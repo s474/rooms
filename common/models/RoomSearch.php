@@ -1,14 +1,14 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Room;
+use common\models\Room;
 
 /**
- * RoomSearch represents the model behind the search form of `frontend\models\Room`.
+ * RoomSearch represents the model behind the search form of `common\models\Room`.
  */
 class RoomSearch extends Room
 {

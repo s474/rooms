@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Location */
+/* @var $model common\models\Location */
 
 $this->title = 'Update Location: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Locations', 'url' => ['index']];

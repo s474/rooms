@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Therapy;
+use common\models\Location;
 
 /**
- * TherapySearch represents the model behind the search form of `frontend\models\Therapy`.
+ * LocationSearch represents the model behind the search form of `common\models\Location`.
  */
-class TherapySearch extends Therapy
+class LocationSearch extends Location
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class TherapySearch extends Therapy
     {
         return [
             [['id'], 'integer'],
-            [['name', 'needs_special_room'], 'safe'],
+            [['name', 'address_line_1', 'postcode'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class TherapySearch extends Therapy
      */
     public function search($params)
     {
-        $query = Therapy::find();
+        $query = Location::find();
 
         // add conditions that should always apply here
 
@@ -63,7 +63,8 @@ class TherapySearch extends Therapy
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'needs_special_room', $this->needs_special_room]);
+            ->andFilterWhere(['like', 'address_line_1', $this->address_line_1])
+            ->andFilterWhere(['like', 'postcode', $this->postcode]);
 
         return $dataProvider;
     }

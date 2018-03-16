@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\Session */
+/* @var $model common\models\Session */
 
 $this->title = 'Update Session: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Sessions', 'url' => ['index']];

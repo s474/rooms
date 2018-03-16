@@ -3,8 +3,8 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\TherapistDoesTherapy;
-use frontend\models\TherapistDoesTherapySearch;
+use common\models\TherapistDoesTherapy;
+use common\models\TherapistDoesTherapySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

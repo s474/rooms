@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Location;
+use common\models\Session;
 
 /**
- * LocationSearch represents the model behind the search form of `frontend\models\Location`.
+ * SessionSearch represents the model behind the search form of `common\models\Session`.
  */
-class LocationSearch extends Location
+class SessionSearch extends Session
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class LocationSearch extends Location
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name', 'address_line_1', 'postcode'], 'safe'],
+            [['id', 'room_id', 'therapist_id', 'client_id', 'therapy_id', 'timestamp'], 'integer'],
+            [['minutes_duration'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class LocationSearch extends Location
      */
     public function search($params)
     {
-        $query = Location::find();
+        $query = Session::find();
 
         // add conditions that should always apply here
 
@@ -60,11 +60,14 @@ class LocationSearch extends Location
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'room_id' => $this->room_id,
+            'therapist_id' => $this->therapist_id,
+            'client_id' => $this->client_id,
+            'therapy_id' => $this->therapy_id,
+            'timestamp' => $this->timestamp,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'address_line_1', $this->address_line_1])
-            ->andFilterWhere(['like', 'postcode', $this->postcode]);
+        $query->andFilterWhere(['like', 'minutes_duration', $this->minutes_duration]);
 
         return $dataProvider;
     }

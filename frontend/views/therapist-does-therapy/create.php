@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model frontend\models\TherapistDoesTherapy */
+/* @var $model common\models\TherapistDoesTherapy */
 
 $this->title = 'Create Therapist Does Therapy';
 $this->params['breadcrumbs'][] = ['label' => 'Therapist Does Therapies', 'url' => ['index']];

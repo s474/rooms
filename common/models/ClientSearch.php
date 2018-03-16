@@ -1,16 +1,16 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Session;
+use common\models\Client;
 
 /**
- * SessionSearch represents the model behind the search form of `frontend\models\Session`.
+ * ClientSearch represents the model behind the search form of `common\models\Client`.
  */
-class SessionSearch extends Session
+class ClientSearch extends Client
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SessionSearch extends Session
     public function rules()
     {
         return [
-            [['id', 'room_id', 'therapist_id', 'client_id', 'therapy_id', 'timestamp'], 'integer'],
-            [['minutes_duration'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SessionSearch extends Session
      */
     public function search($params)
     {
-        $query = Session::find();
+        $query = Client::find();
 
         // add conditions that should always apply here
 
@@ -60,14 +60,9 @@ class SessionSearch extends Session
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'room_id' => $this->room_id,
-            'therapist_id' => $this->therapist_id,
-            'client_id' => $this->client_id,
-            'therapy_id' => $this->therapy_id,
-            'timestamp' => $this->timestamp,
         ]);
 
-        $query->andFilterWhere(['like', 'minutes_duration', $this->minutes_duration]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
