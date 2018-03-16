@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Client */
+/* @var $model frontend\models\Client */
 
 $this->title = 'Create Client';
 $this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];

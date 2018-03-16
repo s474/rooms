@@ -1,10 +1,10 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 use Yii;
-use app\models\RoomSupportsTherapy;
-use app\models\RoomSupportsTherapySearch;
+use frontend\models\RoomSupportsTherapy;
+use frontend\models\RoomSupportsTherapySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

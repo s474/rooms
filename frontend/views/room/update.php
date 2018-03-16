@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Room */
+/* @var $model frontend\models\Room */
 
 $this->title = 'Update Room: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Rooms', 'url' => ['index']];

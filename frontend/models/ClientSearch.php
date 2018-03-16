@@ -5,12 +5,12 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Room;
+use frontend\models\Client;
 
 /**
- * RoomSearch represents the model behind the search form of `frontend\models\Room`.
+ * ClientSearch represents the model behind the search form of `frontend\models\Client`.
  */
-class RoomSearch extends Room
+class ClientSearch extends Client
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class RoomSearch extends Room
     public function rules()
     {
         return [
-            [['id', 'location_id', 'name'], 'integer'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class RoomSearch extends Room
      */
     public function search($params)
     {
-        $query = Room::find();
+        $query = Client::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +60,9 @@ class RoomSearch extends Room
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'location_id' => $this->location_id,
-            'name' => $this->name,
         ]);
+
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

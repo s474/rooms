@@ -1,14 +1,14 @@
 <?php
 
-namespace app\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\TherapistDoesTherapy;
+use frontend\models\TherapistDoesTherapy;
 
 /**
- * TherapistDoesTherapySearch represents the model behind the search form of `app\models\TherapistDoesTherapy`.
+ * TherapistDoesTherapySearch represents the model behind the search form of `frontend\models\TherapistDoesTherapy`.
  */
 class TherapistDoesTherapySearch extends TherapistDoesTherapy
 {

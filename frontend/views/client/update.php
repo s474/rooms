@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Client */
+/* @var $model frontend\models\Client */
 
 $this->title = 'Update Client: {nameAttribute}';
 $this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
