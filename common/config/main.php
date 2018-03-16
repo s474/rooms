@@ -1,5 +1,6 @@
 <?php
 return [
+    'name' => 'Rooms',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -9,5 +10,5 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-    ],
+    ],    
 ];
