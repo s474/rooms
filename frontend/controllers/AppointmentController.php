@@ -3,16 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use common\models\Session;
-use common\models\SessionSearch;
+use common\models\Appointment;
+use common\models\AppointmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SessionController implements the CRUD actions for Session model.
+ * AppointmentController implements the CRUD actions for Appointment model.
  */
-class SessionController extends Controller
+class AppointmentController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class SessionController extends Controller
     }
 
     /**
-     * Lists all Session models.
+     * Lists all Appointment models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SessionSearch();
+        $searchModel = new AppointmentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class SessionController extends Controller
     }
 
     /**
-     * Displays a single Session model.
+     * Displays a single Appointment model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class SessionController extends Controller
     }
 
     /**
-     * Creates a new Session model.
+     * Creates a new Appointment model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Session();
+        $model = new Appointment();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class SessionController extends Controller
     }
 
     /**
-     * Updates an existing Session model.
+     * Updates an existing Appointment model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class SessionController extends Controller
     }
 
     /**
-     * Deletes an existing Session model.
+     * Deletes an existing Appointment model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class SessionController extends Controller
     }
 
     /**
-     * Finds the Session model based on its primary key value.
+     * Finds the Appointment model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Session the loaded model
+     * @return Appointment the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Session::findOne($id)) !== null) {
+        if (($model = Appointment::findOne($id)) !== null) {
             return $model;
         }
 

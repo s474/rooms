@@ -13,7 +13,7 @@ use Yii;
  *
  * @property Location $location
  * @property RoomSupportsTherapy[] $roomSupportsTherapies
- * @property Session[] $sessions
+ * @property Appointment[] $appointments
  */
 class Room extends \yii\db\ActiveRecord
 {
@@ -68,8 +68,8 @@ class Room extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSessions()
+    public function getAppointments()
     {
-        return $this->hasMany(Session::className(), ['room_id' => 'id']);
+        return $this->hasMany(Appointment::className(), ['room_id' => 'id']);
     }
 }

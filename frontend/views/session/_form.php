@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Session */
+/* @var $model common\models\Appointment */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="session-form">
+<div class="appointment-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Session */
+/* @var $model common\models\Appointment */
 
-$this->title = 'Update Session: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Sessions', 'url' => ['index']];
+$this->title = 'Update Appointment: {nameAttribute}';
+$this->params['breadcrumbs'][] = ['label' => 'Appointments', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="session-update">
+<div class="appointment-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

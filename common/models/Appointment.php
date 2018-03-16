@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "session".
+ * This is the model class for table "appointment".
  *
  * @property int $id
  * @property int $room_id
@@ -20,14 +20,14 @@ use Yii;
  * @property Therapist $therapist
  * @property Client $client
  */
-class Session extends \yii\db\ActiveRecord
+class Appointment extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'session';
+        return 'appointment';
     }
 
     /**

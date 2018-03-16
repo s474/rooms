@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Session;
+use common\models\Appointment;
 
 /**
- * SessionSearch represents the model behind the search form of `common\models\Session`.
+ * AppointmentSearch represents the model behind the search form of `common\models\Appointment`.
  */
-class SessionSearch extends Session
+class AppointmentSearch extends Appointment
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class SessionSearch extends Session
      */
     public function search($params)
     {
-        $query = Session::find();
+        $query = Appointment::find();
 
         // add conditions that should always apply here
 

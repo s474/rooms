@@ -12,7 +12,7 @@ use Yii;
  * @property int $needs_special_room
  *
  * @property RoomSupportsTherapy[] $roomSupportsTherapies
- * @property Session[] $sessions
+ * @property Appointment[] $appointments
  * @property TherapistDoesTherapy[] $therapistDoesTherapies
  */
 class Therapy extends \yii\db\ActiveRecord
@@ -60,9 +60,9 @@ class Therapy extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSessions()
+    public function getAppointments()
     {
-        return $this->hasMany(Session::className(), ['therapy_id' => 'id']);
+        return $this->hasMany(Appointment::className(), ['therapy_id' => 'id']);
     }
 
     /**
