@@ -32,7 +32,8 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             [['location_id', 'name'], 'required'],
-            [['location_id', 'name'], 'integer'],
+            [['location_id'], 'integer'],
+            [['name'], 'string', 'max' => 128],            
             [['location_id'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['location_id' => 'id']],
         ];
     }
@@ -44,7 +45,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'location_id' => 'Location ID',
+            'location_id' => 'Location',
             'name' => 'Name',
         ];
     }

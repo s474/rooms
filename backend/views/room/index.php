@@ -23,9 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProviderLocation,
         'filterModel' => $searchModelLocation,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'address_line_1',            
             'postcode',            
@@ -45,9 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'location_id',
             'name',
 
