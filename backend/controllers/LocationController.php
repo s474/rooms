@@ -3,8 +3,6 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Room;
-use common\models\RoomSearch;
 use common\models\Location;
 use common\models\LocationSearch;
 use yii\web\Controller;
@@ -12,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RoomController implements the CRUD actions for Room model.
+ * LocationController implements the CRUD actions for Location model.
  */
-class RoomController extends Controller
+class LocationController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,27 +30,22 @@ class RoomController extends Controller
     }
 
     /**
-     * Lists all Room models.
+     * Lists all Location models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModelLocation = new LocationSearch();
-        $dataProviderLocation = $searchModelLocation->search(Yii::$app->request->queryParams);               
-        
-        $searchModel = new RoomSearch();
+        $searchModel = new LocationSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'searchModelLocation' => $searchModelLocation,
-            'dataProviderLocation' => $dataProviderLocation,            
         ]);
     }
 
     /**
-     * Displays a single Room model.
+     * Displays a single Location model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,13 +58,13 @@ class RoomController extends Controller
     }
 
     /**
-     * Creates a new Room model.
+     * Creates a new Location model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Room();
+        $model = new Location();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -83,7 +76,7 @@ class RoomController extends Controller
     }
 
     /**
-     * Updates an existing Room model.
+     * Updates an existing Location model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -103,7 +96,7 @@ class RoomController extends Controller
     }
 
     /**
-     * Deletes an existing Room model.
+     * Deletes an existing Location model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +110,15 @@ class RoomController extends Controller
     }
 
     /**
-     * Finds the Room model based on its primary key value.
+     * Finds the Location model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Room the loaded model
+     * @return Location the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Room::findOne($id)) !== null) {
+        if (($model = Location::findOne($id)) !== null) {
             return $model;
         }
 

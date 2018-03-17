@@ -20,7 +20,7 @@ $this->title = 'Rooms';
             <div class="col-lg-4">
                 <h2>Appointments</h2>
 
-                <p>View and create appointments</p>
+                <p>Make an appointment</p>
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Appointments</a></p>
             </div>
