@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -11,9 +12,12 @@ use yii\widgets\ActiveForm;
 <div class="room-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'location_id')->textInput() ?>
-
+   
+    <?= $form->field($model, 'location_id')->dropDownList(
+            ArrayHelper::map(common\models\Location::find()->all(),'id','name'),['prompt'=>'Select Location']
+        );
+    ?>
+    
     <?= $form->field($model, 'name')->textInput() ?>
 
     <div class="form-group">
