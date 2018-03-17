@@ -18,7 +18,8 @@ class RoomSearch extends Room
     public function rules()
     {
         return [
-            [['id', 'location_id', 'name'], 'integer'],
+            [['id', 'location_id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -60,9 +61,10 @@ class RoomSearch extends Room
         $query->andFilterWhere([
             'id' => $this->id,
             'location_id' => $this->location_id,
-            'name' => $this->name,
         ]);
 
+        $query->andFilterWhere(['like', 'name', $this->name]);
+        
         return $dataProvider;
     }
 }

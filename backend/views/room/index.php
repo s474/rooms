@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -46,9 +47,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-
             //'id',
-            'location.name',
+
+            [                
+                'attribute'=>'location_id',
+                'value'=>'location.name',
+                'filter'=>ArrayHelper::map(
+                    common\models\Location::find()->asArray()->all(), 'id', 'name'                        
+                ),
+            ],            
             'name',
 
             ['class' => 'yii\grid\ActionColumn'],
