@@ -14,7 +14,8 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
    
     <?= $form->field($model, 'location_id')->dropDownList(
-            ArrayHelper::map(common\models\Location::find()->all(),'id','name'),['prompt'=>'Select Location']
+            ArrayHelper::map(common\models\Location::find()->all(),'id','name'),
+            ['prompt'=>'Select Location']
         );
     ?>
     

@@ -7,8 +7,8 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Room */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => $model->location->name];
 $this->params['breadcrumbs'][] = ['label' => 'Rooms', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->location->name];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="room-view">
