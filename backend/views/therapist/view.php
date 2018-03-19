@@ -7,8 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Therapist */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Therapists', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="therapist-view">
 

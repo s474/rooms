@@ -7,8 +7,6 @@ use yii\helpers\Html;
 /* @var $model common\models\Therapist */
 
 $this->title = 'Create Therapist';
-$this->params['breadcrumbs'][] = ['label' => 'Therapists', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="therapist-create">
 

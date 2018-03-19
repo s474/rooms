@@ -7,8 +7,6 @@ use yii\helpers\Html;
 /* @var $model common\models\Client */
 
 $this->title = 'Create Client';
-$this->params['breadcrumbs'][] = ['label' => 'Clients', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="client-create">
 

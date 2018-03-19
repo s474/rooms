@@ -7,8 +7,6 @@ use yii\helpers\Html;
 /* @var $model common\models\Appointment */
 
 $this->title = 'Create Appointment';
-$this->params['breadcrumbs'][] = ['label' => 'Appointments', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="appointment-create">
 

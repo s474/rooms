@@ -5,10 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Appointment */
 
-$this->title = 'Update Appointment: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Appointments', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Update Appointment';
 ?>
 <div class="appointment-update">
 

@@ -7,8 +7,6 @@ use yii\helpers\Html;
 /* @var $model common\models\Location */
 
 $this->title = 'Create Location';
-$this->params['breadcrumbs'][] = ['label' => 'Locations', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="location-create">
 

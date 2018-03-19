@@ -8,7 +8,6 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Locations';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="location-index">
 
