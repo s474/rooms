@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Therapist;
-use common\models\TherapistSearch;
-use common\models\TherapistDoesTherapySearch;
+use common\models\RoomSupportsTherapy;
+use common\models\RoomSupportsTherapySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TherapistController implements the CRUD actions for Therapist model.
+ * RoomSupportsTherapyController implements the CRUD actions for RoomSupportsTherapy model.
  */
-class TherapistController extends Controller
+class RoomSupportsTherapyController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,12 +30,12 @@ class TherapistController extends Controller
     }
 
     /**
-     * Lists all Therapist models.
+     * Lists all RoomSupportsTherapy models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TherapistSearch();
+        $searchModel = new RoomSupportsTherapySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class TherapistController extends Controller
     }
 
     /**
-     * Displays a single Therapist model.
+     * Displays a single RoomSupportsTherapy model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,16 +58,16 @@ class TherapistController extends Controller
     }
 
     /**
-     * Creates a new Therapist model.
+     * Creates a new RoomSupportsTherapy model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Therapist();
+        $model = new RoomSupportsTherapy();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -77,7 +76,7 @@ class TherapistController extends Controller
     }
 
     /**
-     * Updates an existing Therapist model.
+     * Updates an existing RoomSupportsTherapy model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,25 +84,19 @@ class TherapistController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);            
-        
+        $model = $this->findModel($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        $searchModelTherapies = new TherapistDoesTherapySearch();
-        $searchModelTherapies->therapist_id = $model->id;
-        $dataProviderTherapies = $searchModelTherapies->search(Yii::$app->request->queryParams);    
-        
         return $this->render('update', [
             'model' => $model,
-            'searchModelTherapies' => $searchModelTherapies,
-            'dataProviderTherapies' => $dataProviderTherapies,
         ]);
     }
 
     /**
-     * Deletes an existing Therapist model.
+     * Deletes an existing RoomSupportsTherapy model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +110,15 @@ class TherapistController extends Controller
     }
 
     /**
-     * Finds the Therapist model based on its primary key value.
+     * Finds the RoomSupportsTherapy model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Therapist the loaded model
+     * @return RoomSupportsTherapy the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Therapist::findOne($id)) !== null) {
+        if (($model = RoomSupportsTherapy::findOne($id)) !== null) {
             return $model;
         }
 
