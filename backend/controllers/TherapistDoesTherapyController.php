@@ -62,12 +62,13 @@ class TherapistDoesTherapyController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($therapist_id)
     {
         $model = new TherapistDoesTherapy();
-
+        $model->therapist_id = $therapist_id;                
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['therapist/update', 'id' => $model->therapist_id]);
         }
 
         return $this->render('create', [
@@ -104,9 +105,12 @@ class TherapistDoesTherapyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $therapist_id = $model->therapist_id;
+        $model->delete();
 
-        return $this->redirect(['index']);
+        //return $this->redirect(['index']);
+        return $this->redirect(['therapist/update', 'id' => $therapist_id]);
     }
 
     /**

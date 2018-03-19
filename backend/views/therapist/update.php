@@ -21,7 +21,7 @@ $this->title = 'Update Therapist: ' . $model->name;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Add', ['location/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add', ['therapist-does-therapy/create', 'therapist_id' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
