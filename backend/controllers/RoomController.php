@@ -7,6 +7,7 @@ use common\models\Room;
 use common\models\RoomSearch;
 use common\models\Location;
 use common\models\LocationSearch;
+use common\models\RoomSupportsTherapySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -97,8 +98,14 @@ class RoomController extends Controller
             return $this->redirect(['index']);
         }
 
+        $searchModelTherapies = new RoomSupportsTherapySearch();
+        $searchModelTherapies->room_id = $model->id;
+        $dataProviderTherapies = $searchModelTherapies->search(Yii::$app->request->queryParams);        
+        
         return $this->render('update', [
             'model' => $model,
+            'searchModelTherapies' => $searchModelTherapies,
+            'dataProviderTherapies' => $dataProviderTherapies,            
         ]);
     }
 

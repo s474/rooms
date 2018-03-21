@@ -62,12 +62,13 @@ class RoomSupportsTherapyController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($room_id)
     {
         $model = new RoomSupportsTherapy();
-
+        $model->room_id = $room_id; 
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['room/update', 'id' => $model->room_id]);
         }
 
         return $this->render('create', [
@@ -104,11 +105,13 @@ class RoomSupportsTherapyController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $room_id = $model->room_id;
+        $model->delete();
 
-        return $this->redirect(['index']);
-    }
-
+        return $this->redirect(['room/update', 'id' => $room_id]);
+    }    
+    
     /**
      * Finds the RoomSupportsTherapy model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

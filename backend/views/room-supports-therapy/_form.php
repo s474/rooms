@@ -5,16 +5,15 @@ use yii\widgets\ActiveForm;
 use common\models\Therapy;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\TherapistDoesTherapy */
+/* @var $model common\models\RoomSupportsTherapy */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="therapist-does-therapy-form">
+<div class="room-supports-therapy-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'therapist_id')->hiddenInput()->label(false); ?>
-
+    
+    <?= $form->field($model, 'room_id')->hiddenInput()->label(false); ?>
     
 <?php
 
@@ -25,7 +24,7 @@ use common\models\Therapy;
 ?>
     
     <?= $form->field($model, 'therapy_id')->dropdownList($items,['prompt'=>'Select Therapy']); ?>   
-    
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

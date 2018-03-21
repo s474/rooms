@@ -109,7 +109,6 @@ class TherapistDoesTherapyController extends Controller
         $therapist_id = $model->therapist_id;
         $model->delete();
 
-        //return $this->redirect(['index']);
         return $this->redirect(['therapist/update', 'id' => $therapist_id]);
     }
 

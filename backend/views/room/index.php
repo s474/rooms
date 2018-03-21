@@ -25,13 +25,23 @@ $this->title = 'Rooms';
         'filterModel' => $searchModel,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-            'name',            
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['room/update', 'id' => $data->id]);
+                },
+            ],           
             [                
                 'attribute'=>'location_id',
+                'format' => 'raw',                
                 'value'=>'location.name',
                 'filter'=>ArrayHelper::map(
                     common\models\Location::find()->asArray()->all(), 'id', 'name'                        
                 ),
+                'value' => function ($data) {
+                    return Html::a($data->location->name, ['location/update', 'id' => $data->location_id]);
+                },                
             ],            
             ['class' => 'yii\grid\ActionColumn'],                       
         ],
@@ -49,7 +59,13 @@ $this->title = 'Rooms';
         'filterModel' => $searchModelLocation,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-            'name',
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['location/update', 'id' => $data->id]);
+                },
+            ],
             'address_line_1',            
             'postcode',                        
             [
