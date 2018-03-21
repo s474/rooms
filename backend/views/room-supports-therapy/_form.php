@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use common\models\Therapy;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\RoomSupportsTherapy */
@@ -15,15 +14,7 @@ use common\models\Therapy;
     
     <?= $form->field($model, 'room_id')->hiddenInput()->label(false); ?>
     
-<?php
-
-    $items = Therapy::find()
-        ->select(['name'])
-        ->indexBy('id')
-        ->column();
-?>
-    
-    <?= $form->field($model, 'therapy_id')->dropdownList($items,['prompt'=>'Select Therapy']); ?>   
+    <?= $form->field($model, 'therapy_id')->dropdownList($ddTherapies,['prompt'=>'Select Therapy']); ?>   
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

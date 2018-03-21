@@ -22,11 +22,12 @@ $this->title = 'Therapies';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'needs_special_room',
+            //['class' => 'yii\grid\SerialColumn'],
+            'name',            
+            [                
+                'attribute'=>'needs_special_room',
+                'format' => 'boolean',                              
+            ],             
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

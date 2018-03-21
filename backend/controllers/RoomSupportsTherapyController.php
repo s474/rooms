@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\RoomSupportsTherapy;
 use common\models\RoomSupportsTherapySearch;
+use common\models\Therapy;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -65,14 +66,21 @@ class RoomSupportsTherapyController extends Controller
     public function actionCreate($room_id)
     {
         $model = new RoomSupportsTherapy();
-        $model->room_id = $room_id; 
+        $model->room_id = $room_id;
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['room/update', 'id' => $model->room_id]);
         }
-
+               
+        $ddTherapies = Therapy::find()
+            ->select(['name'])
+            ->where(['needs_special_room' => '1'])
+            ->indexBy('id')
+            ->column();
+        
         return $this->render('create', [
             'model' => $model,
+            'ddTherapies' => $ddTherapies,
         ]);
     }
 

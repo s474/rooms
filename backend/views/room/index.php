@@ -35,8 +35,8 @@ $this->title = 'Rooms';
             [                
                 'attribute'=>'location_id',
                 'format' => 'raw',                
-                'value'=>'location.name',
-                'filter'=>ArrayHelper::map(
+                'value' => 'location.name',
+                'filter' => ArrayHelper::map(
                     common\models\Location::find()->asArray()->all(), 'id', 'name'                        
                 ),
                 'value' => function ($data) {

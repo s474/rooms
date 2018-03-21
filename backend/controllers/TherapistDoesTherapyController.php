@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\Therapy;
 use common\models\TherapistDoesTherapy;
 use common\models\TherapistDoesTherapySearch;
 use yii\web\Controller;
@@ -71,8 +72,14 @@ class TherapistDoesTherapyController extends Controller
             return $this->redirect(['therapist/update', 'id' => $model->therapist_id]);
         }
 
+        $ddTherapies = Therapy::find()
+            ->select(['name'])
+            ->indexBy('id')
+            ->column();        
+        
         return $this->render('create', [
             'model' => $model,
+            'ddTherapies' => $ddTherapies,
         ]);
     }
 

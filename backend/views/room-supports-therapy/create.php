@@ -14,6 +14,7 @@ $this->title = 'Create Room Supports Therapy';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'ddTherapies' => $ddTherapies,
     ]) ?>
 
 </div>

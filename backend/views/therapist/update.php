@@ -17,7 +17,7 @@ $this->title = 'Update Therapist: ' . $model->name;
         'model' => $model,
     ]) ?>
     
-    <h1><?= Therapies ?></h1>
+    <h1>Therapies</h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -29,7 +29,11 @@ $this->title = 'Update Therapist: ' . $model->name;
         'filterModel' => $searchModelTherapies,
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-            'therapy.name',               
+            'therapy.name',     
+            [                
+                'attribute'=>'therapy.needs_special_room',
+                'format' => 'boolean',                              
+            ],             
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{delete}',
