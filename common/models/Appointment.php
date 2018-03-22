@@ -53,10 +53,10 @@ class Appointment extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'room_id' => 'Room ID',
-            'therapist_id' => 'Therapist ID',
-            'client_id' => 'Client ID',
-            'therapy_id' => 'Therapy ID',
+            'room_id' => 'Room',
+            'therapist_id' => 'Therapist',
+            'client_id' => 'Client',
+            'therapy_id' => 'Therapy',
             'timestamp' => 'Timestamp',
             'minutes_duration' => 'Minutes Duration',
         ];

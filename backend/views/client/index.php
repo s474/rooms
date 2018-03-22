@@ -22,11 +22,9 @@ $this->title = 'Clients';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
+            //['class' => 'yii\grid\SerialColumn'],
             'name',
-
+            
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
