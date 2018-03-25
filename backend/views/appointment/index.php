@@ -22,9 +22,6 @@ $this->title = 'Appointments';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'room_id',
             'therapist_id',
             'client_id',
