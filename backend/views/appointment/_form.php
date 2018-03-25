@@ -7,6 +7,7 @@ use common\models\Room;
 use common\models\Therapist;
 use common\models\Therapy;
 use common\models\Client;
+use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Appointment */
@@ -25,9 +26,17 @@ use common\models\Client;
     
     <?= $form->field($model, 'client_id')->dropdownList(ArrayHelper::map(Client::find()->all(), 'id', 'name'),['prompt'=>'Select Client']); ?>   
     
-    <?= $form->field($model, 'timestamp')->textInput() ?>
+    <?= $form->field($model, 'timestamp')->widget(
+            DateTimePicker::classname(), [
+                'convertFormat' => true,
+                'options' => ['placeholder' => 'Enter event time ...'],
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'format' => 'U'
+                ],                
+            ]); ?>
     
-    <?= $form->field($model, 'minutes_duration')->textInput() ?>
+    <?= $form->field($model, 'minutes_duration')->dropdownList(['15'=>'15','30'=>'30','45'=>'45','60'=>'60'],['prompt'=>'Select Duration']); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -38,7 +38,7 @@ class Appointment extends \yii\db\ActiveRecord
         return [
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'timestamp', 'minutes_duration'], 'required'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'timestamp'], 'integer'],
-            [['minutes_duration'], 'string', 'max' => 1],
+            [['minutes_duration'], 'string', 'max' => 3],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
