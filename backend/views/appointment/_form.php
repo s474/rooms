@@ -26,15 +26,13 @@ use kartik\datetime\DateTimePicker;
     
     <?= $form->field($model, 'client_id')->dropdownList(ArrayHelper::map(Client::find()->all(), 'id', 'name'),['prompt'=>'Select Client']); ?>   
     
-    <?= $form->field($model, 'timestamp')->widget(
+    <?= $form->field($model, 'appt_date')->widget(
             DateTimePicker::classname(), [
-                'convertFormat' => true,
                 'options' => ['placeholder' => 'Enter event time ...'],
                 'pluginOptions' => [
                     'autoclose' => true,
-                    'format' => 'U'
                 ],                
-            ]); ?>
+            ]); ?>    
     
     <?= $form->field($model, 'minutes_duration')->dropdownList(['15'=>'15','30'=>'30','45'=>'45','60'=>'60'],['prompt'=>'Select Duration']); ?>
 

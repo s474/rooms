@@ -31,7 +31,7 @@ $this->title = $model->id;
             'therapist_id',
             'client_id',
             'therapy_id',
-            'timestamp:datetime',
+            'appt_date:datetime',
             'minutes_duration',
         ],
     ]) ?>

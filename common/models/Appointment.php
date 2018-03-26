@@ -36,8 +36,8 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'timestamp', 'minutes_duration'], 'required'],
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'timestamp'], 'integer'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'appt_date'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_id'], 'integer'],
             [['minutes_duration'], 'string', 'max' => 3],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],

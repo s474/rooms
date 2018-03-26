@@ -22,12 +22,12 @@ $this->title = 'Appointments';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'room_id',
-            'therapist_id',
-            'client_id',
-            'therapy_id',
-            //'timestamp:datetime',
-            //'minutes_duration',
+            'room.name',
+            'therapist.name',
+            'client.name',
+            'therapy.name',
+            'appt_date:datetime',
+            'minutes_duration',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -47,6 +47,8 @@ $this->title = 'Rooms';
         ],
     ]); ?>    
 
+    <br />
+    
     <h1><?= Locations ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
