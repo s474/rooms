@@ -26,9 +26,9 @@ $this->title = $model->name;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'name',
-            'needs_special_room',
+            'needs_special_room:boolean',
         ],
     ]) ?>
 

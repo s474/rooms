@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Appointment */
 
-$this->title = $model->id;
+$this->title = 'Appointment Details';
 ?>
 <div class="appointment-view">
 
@@ -26,11 +26,11 @@ $this->title = $model->id;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'room_id',
-            'therapist_id',
-            'client_id',
-            'therapy_id',
+            //'id',
+            'room.name',
+            'therapist.name',
+            'client.name',
+            'therapy.name',
             'appt_date:datetime',
             'minutes_duration',
         ],
