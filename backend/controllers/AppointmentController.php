@@ -27,7 +27,7 @@ class AppointmentController extends Controller
                 ],
             ],
         ];
-    }
+    }        
 
     /**
      * Lists all Appointment models.
@@ -108,6 +108,27 @@ class AppointmentController extends Controller
 
         return $this->redirect(['index']);
     }
+    
+    
+    
+    public function actionJsoncalendar($start=NULL,$end=NULL,$_=NULL){
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $appointments = Appointment::find()->all();
+        $events = array();
+        
+        foreach ($appointments AS $appointment) {
+            $Event = new \yii2fullcalendar\models\Event();
+            $Event->id = $appointment->id;
+            $Event->title = $appointment->client->name;
+            $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($appointment->appt_date));
+            //$Event->end = date('Y-m-d\TH:i:s\Z',strtotime($appointment->date_end.' '.$appointment->time_end));
+            $events[] = $Event;
+        }
+
+        return $events;
+    }    
+    
 
     /**
      * Finds the Appointment model based on its primary key value.

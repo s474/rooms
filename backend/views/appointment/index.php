@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\AppointmentSearch */
@@ -59,8 +60,11 @@ $events[] = $Event;
 
 ?>
 
-<?= \yii2fullcalendar\yii2fullcalendar::widget(array(
-    'events'=> $events,
-));
-
+<?= \yii2fullcalendar\yii2fullcalendar::widget([
+      'options' => [
+        'lang' => 'fr',
+        //... more options to be defined here!
+      ],
+      'events' => Url::to(['appointment/jsoncalendar'])
+    ]);
 ?>
