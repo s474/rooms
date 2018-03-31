@@ -14,10 +14,6 @@ $this->title = 'Therapies';
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Therapy', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -32,4 +28,8 @@ $this->title = 'Therapies';
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    
+    <p>
+        <?= Html::a('Create Therapy', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>    
 </div>

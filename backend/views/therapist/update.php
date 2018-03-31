@@ -20,10 +20,6 @@ $this->title = 'Update Therapist: ' . $model->name;
     <h1>Therapies</h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Add', ['therapist-does-therapy/create', 'therapist_id' => $model->id], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProviderTherapies,
         'filterModel' => $searchModelTherapies,
@@ -57,4 +53,9 @@ $this->title = 'Update Therapist: ' . $model->name;
             ],                                    
         ],
     ]); ?>
+    
+    <p>
+        <?= Html::a('Add', ['therapist-does-therapy/create', 'therapist_id' => $model->id], ['class' => 'btn btn-success']) ?>
+    </p>
+    
 </div>

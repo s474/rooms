@@ -11,6 +11,16 @@ $this->title = $model->name;
 <div class="location-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'name',
+            'address_line_1',
+            'postcode',
+        ],
+    ]) ?>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -22,15 +32,5 @@ $this->title = $model->name;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-            'address_line_1',
-            'postcode',
-        ],
-    ]) ?>
-
+    
 </div>

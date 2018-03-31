@@ -16,10 +16,6 @@ $this->title = 'Rooms';
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Room', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -47,14 +43,14 @@ $this->title = 'Rooms';
         ],
     ]); ?>    
 
+    <p>
+        <?= Html::a('Create Room', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    
     <br />
     
     <h1><?= Locations ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Location', ['location/create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProviderLocation,
@@ -112,5 +108,8 @@ $this->title = 'Rooms';
         ],
     ]); ?>    
     
-
+    <p>
+        <?= Html::a('Create Location', ['location/create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    
 </div>
