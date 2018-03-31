@@ -24,14 +24,16 @@ $('#external-events .fc-event').each(function() {
         revert: true,      // will cause the event to go back to its
         revertDuration: 0  //  original position after the drag
     });
-});
+});             
 EOF;
+
 $this->registerJs($DragJS);
 
 $this->title = 'Appointments';
 
 $JSCode = <<<EOF
 function(start, end) {
+    console.log('JSCode');
     var title = prompt('Event Title:');
     var eventData;
     if (title) {
@@ -40,9 +42,9 @@ function(start, end) {
             start: start,
             end: end
         };
-        $('#w0').fullCalendar('renderEvent', eventData, true);
+        $('#w1').fullCalendar('renderEvent', eventData, true);
     }
-    $('#w0').fullCalendar('unselect');
+    $('#w1').fullCalendar('unselect');
 }
 EOF;
 $JSDropEvent = <<<EOF
@@ -63,7 +65,11 @@ function(calEvent, jsEvent, view) {
     $(this).css('border-color', 'red');
 }
 EOF;
-    
+$JSDragStart = <<<EOF
+function(event, jsEvent, ui, view) {
+    console.log(event);
+}
+EOF;
 ?>
 
 
@@ -97,21 +103,22 @@ EOF;
 
 <?= \yii2fullcalendar\yii2fullcalendar::widget([
         'clientOptions' => [
-            'selectable' => true,
-            'selectHelper' => true,
+            //'selectable' => true,
+            //'selectHelper' => true,
             'droppable' => true,
             'editable' => true,
             'drop' => new JsExpression($JSDropEvent),
             'select' => new JsExpression($JSCode),
             'eventClick' => new JsExpression($JSEventClick),
-            'defaultDate' => date('Y-m-d')
-        ],
-        //'ajaxEvents' => Url::toRoute(['/site/jsoncalendar']),
+            'eventDragStart' => new JSExpression($JSDragStart),
+            'defaultDate' => date('Y-m-d'),
+            //'weekends' => false
+        ],        
         'options' => [
-            'lang' => 'fr',
+            //'lang' => 'fr',
             //... more options to be defined here!
         ],
-        'ajaxEvents' => Url::to(['appointment/jsoncalendar'])
+        'events' => Url::to(['appointment/jsoncalendar'])
     ]);
 ?>
 

@@ -7,16 +7,23 @@ $this->title = 'Rooms';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Rooms</h1>
+        <!--<h1>Rooms</h1>-->
 
-        <p class="lead">Appointments</p>
+        <!--<p class="lead">Appointments</p>-->
 
         <!--<p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>-->
+        
+        <h2>Appointments</h2>
+
+        <p>Make an appointment</p>
+
+        <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Book now</a></p>        
     </div>
 
     <div class="body-content">
 
         <div class="row">
+            <!--
             <div class="col-lg-4">
                 <h2>Appointments</h2>
 
@@ -24,6 +31,8 @@ $this->title = 'Rooms';
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Appointments</a></p>
             </div>
+            -->
+            <!--
             <div class="col-lg-4">
                 <h2>Update Details</h2>
 
@@ -31,6 +40,7 @@ $this->title = 'Rooms';
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Update</a></p>
             </div>
+            -->
             <!--
             <div class="col-lg-4">
                 <h2>Heading</h2>
