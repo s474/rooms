@@ -82,6 +82,7 @@ EOF;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            'room.location.name',
             'room.name',
             'therapist.name',
             'client.name',

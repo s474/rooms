@@ -59,6 +59,7 @@ class Appointment extends \yii\db\ActiveRecord
             'therapy_id' => 'Therapy',
             'timestamp' => 'Timestamp',
             'minutes_duration' => 'Minutes Duration',
+            'appt_date' => 'Date',
         ];
     }
 

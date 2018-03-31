@@ -46,7 +46,7 @@ class Room extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'location_id' => 'Location',
-            'name' => 'Name',
+            'name' => 'Room',
         ];
     }
 

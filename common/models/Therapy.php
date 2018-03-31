@@ -44,7 +44,7 @@ class Therapy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Therapy',
             'needs_special_room' => 'Needs Special Room',
         ];
     }
