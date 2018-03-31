@@ -118,10 +118,11 @@ EOF;
             //'lang' => 'fr',
             //... more options to be defined here!
         ],
-        'events' => Url::to(['appointment/jsoncalendar'])
+        'events' => Url::to(['appointment/json-calendar'])
     ]);
 ?>
 
+<!--
 <div id="external-events">
     <h4>Draggable Events</h4>
     <div class="fc-event ui-draggable ui-draggable-handle">My Event 1</div>
@@ -134,3 +135,4 @@ EOF;
         <label for="drop-remove">remove after drop</label>
     </p>
 </div>
+-->

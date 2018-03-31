@@ -87,7 +87,7 @@ class AppointmentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -111,7 +111,7 @@ class AppointmentController extends Controller
     
     
     
-    public function actionJsoncalendar($start=NULL,$end=NULL,$_=NULL){
+    public function actionJsonCalendar($start=NULL,$end=NULL,$_=NULL){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $appointments = Appointment::find()->all();
@@ -120,9 +120,12 @@ class AppointmentController extends Controller
         foreach ($appointments AS $appointment) {
             $Event = new \yii2fullcalendar\models\Event();
             $Event->id = $appointment->id;
-            $Event->title = $appointment->client->name;
+            $Event->title = $appointment->therapist->name . ', ' . $appointment->minutes_duration . '′';
             $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($appointment->appt_date));
-            //$Event->end = date('Y-m-d\TH:i:s\Z',strtotime($appointment->date_end.' '.$appointment->time_end));
+            $calcdate = new \DateTime($appointment->appt_date);
+            $calcdate->add(new \DateInterval('PT' . $appointment->minutes_duration . 'M'));
+            $calcdate = $calcdate->format('Y-m-d H:i:s');
+            $Event->end = date('Y-m-d\TH:i:s\Z',strtotime($calcdate));
             $events[] = $Event;
         }
 
