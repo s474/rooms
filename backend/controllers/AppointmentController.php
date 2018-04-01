@@ -120,12 +120,9 @@ class AppointmentController extends Controller
         foreach ($appointments AS $appointment) {
             $Event = new \yii2fullcalendar\models\Event();
             $Event->id = $appointment->id;
-            $Event->title = $appointment->therapist->name . ', ' . $appointment->minutes_duration . '′';
-            $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($appointment->appt_date));
-            $calcdate = new \DateTime($appointment->appt_date);
-            $calcdate->add(new \DateInterval('PT' . $appointment->minutes_duration . 'M'));
-            $calcdate = $calcdate->format('Y-m-d H:i:s');
-            $Event->end = date('Y-m-d\TH:i:s\Z',strtotime($calcdate));
+            $Event->title = $appointment->therapist->name . ', ' . $appointment->minutes_duration . '′ !!';
+            $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($appointment->start));
+            $Event->end = date('Y-m-d\TH:i:s\Z',strtotime($appointment->end));            
             $events[] = $Event;
         }
 

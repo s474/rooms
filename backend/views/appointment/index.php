@@ -87,7 +87,7 @@ EOF;
             'therapist.name',
             'client.name',
             'therapy.name',
-            'appt_date:datetime',
+            'start:datetime',
             'minutes_duration',
 
             ['class' => 'yii\grid\ActionColumn'],

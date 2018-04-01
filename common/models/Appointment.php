@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\AttributeBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "appointment".
@@ -36,14 +38,40 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'appt_date'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'start', 'end'], 'required'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_id'], 'integer'],
             [['minutes_duration'], 'string', 'max' => 3],
+            ['start', 'validateApptDate', 'skipOnError' => false, 'params'=>['ploppies' => ['smol','medy','llerg']]],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
-            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],
+            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],                        
         ];
+    }
+    
+    public function validateApptDate($attribute, $params, $validator)
+    {
+        // Check not overlapping another appointment
+        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
+            //$this->addError($attribute, 'oooh!');
+        }
+        
+        // Check opening hours
+        
+    }
+
+    public function validateRoomTherapy($attribute, $params, $validator)
+    {
+        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
+            $this->addError($attribute, var_export($this->$attribute));
+        }
+    }
+
+    public function validateTherapistTherapy($attribute, $params, $validator)
+    {
+        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
+            $this->addError($attribute, var_export($this->$attribute));
+        }
     }
 
     /**
@@ -59,7 +87,7 @@ class Appointment extends \yii\db\ActiveRecord
             'therapy_id' => 'Therapy',
             'timestamp' => 'Timestamp',
             'minutes_duration' => 'Minutes Duration',
-            'appt_date' => 'Date',
+            'start' => 'Date',
         ];
     }
 
@@ -94,4 +122,25 @@ class Appointment extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
     }
+    
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'end',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'end',
+                ],
+                'value' => function ($event) {
+                    //!!! Only need to do this if minutes_duration or start change
+                    $calcdate = new \DateTime($event->sender->start);
+                    $calcdate->add(new \DateInterval('PT' . $event->sender->minutes_duration . 'M'));
+                    $calcdate = $calcdate->format('Y-m-d H:i:s');                    
+                    return $calcdate;
+                },
+            ],
+        ];
+    }    
+    
 }

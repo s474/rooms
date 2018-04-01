@@ -20,7 +20,7 @@ $this->title = 'Appointment Details';
             'therapist.name',
             'client.name',
             'therapy.name',
-            'appt_date:datetime',
+            'start:datetime',
             'minutes_duration',
         ],
     ]) ?>

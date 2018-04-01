@@ -26,7 +26,7 @@ use kartik\datetime\DateTimePicker;
     
     <?= $form->field($model, 'client_id')->dropdownList(ArrayHelper::map(Client::find()->all(), 'id', 'name'),['prompt'=>'Select Client']); ?>   
     
-    <?= $form->field($model, 'appt_date')->widget(
+    <?= $form->field($model, 'start')->widget(
             DateTimePicker::classname(), [
                 'options' => ['placeholder' => 'Enter event time ...'],
                 'pluginOptions' => [
