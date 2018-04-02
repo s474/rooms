@@ -69,7 +69,7 @@ class AppointmentController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
-
+        
         return $this->render('create', [
             'model' => $model,
         ]);

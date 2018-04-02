@@ -38,10 +38,10 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'start', 'end'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'start'], 'required'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_id'], 'integer'],
             [['minutes_duration'], 'string', 'max' => 3],
-            ['start', 'validateApptDate', 'skipOnError' => false, 'params'=>['ploppies' => ['smol','medy','llerg']]],
+            //['start', 'validateApptDate', 'skipOnError' => false, 'params'=>['ploppies' => ['smol','medy','llerg']]],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
@@ -123,6 +123,7 @@ class Appointment extends \yii\db\ActiveRecord
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
     }
     
+    
     public function behaviors()
     {
         return [
@@ -134,7 +135,7 @@ class Appointment extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'end',
                 ],
                 'value' => function ($event) {
-                    var_dump($event);
+                    //var_dump($event);
                     //!!! Only need to do this if minutes_duration or start change
                     $end = new \DateTime($event->sender->start);
                     $end->add(new \DateInterval('PT' . $event->sender->minutes_duration . 'M'));
