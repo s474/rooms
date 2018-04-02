@@ -41,8 +41,7 @@ class Appointment extends \yii\db\ActiveRecord
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'start'], 'required'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'integer'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'filter', 'filter' => 'intval'],
-            //[['minutes_duration'], 'string', 'max' => 3],
-            //['start', 'validateApptDate', 'skipOnError' => false, 'params'=>['ploppies' => ['smol','medy','llerg']]],
+            [['start'], 'validateApptDate'],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
@@ -50,14 +49,50 @@ class Appointment extends \yii\db\ActiveRecord
         ];
     }
     
-    /*
     public function validateApptDate($attribute, $params, $validator)
     {
         // Check not overlapping another appointment
-        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
-            //$this->addError($attribute, 'oooh!');
-        }
+        $end = $this->calcEnd();
         
+        
+        $appts = Appointment::find()
+            ->where(['between', 'start', $this->start, $end])
+            ->where(['between', 'end', $this->start, $end])
+            //->andWhere(['<', 'start', $end])
+            ->andWhere(['!=', 'id', $this->id])                
+            ->all();        
+        
+
+       
+        /*
+        $appts = Appointment::find()
+            ->where(
+                ['between', 'start', $this->start, $end],
+                ['between', 'end', $this->start, $end]])
+            ->orWhere(
+                ['between', 'start', $this->start, $end],
+                ['and',['>', 'end', $this->start, $end]])      
+            ->all();
+        */
+        
+        $out = '';
+        
+        foreach ($appts as $appt) {
+            $out .= '<br />ID:' . $appt->id; 
+        }
+      
+        if ($out != '')
+            $this->addError($attribute, $out);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
         // Check opening hours
         
     }
@@ -75,8 +110,7 @@ class Appointment extends \yii\db\ActiveRecord
             $this->addError($attribute, var_export($this->$attribute));
         }
     }
-    */
-    
+
     /**
      * @inheritdoc
      */
@@ -136,20 +170,20 @@ class Appointment extends \yii\db\ActiveRecord
     
     public function afterSave($insert, $changedAttributes)
     {
-        if(!$insert) {
-            if (isset($changedAttributes['minutes_duration']) || isset($changedAttributes['start'])) {                                
-                $end = new \DateTime($this->start);
-                $end->add(new \DateInterval('PT' . $this->minutes_duration . 'M'));
-                $this->end = $end->format('Y-m-d H:i:s'); 
-                $this->save();
-            }
+        if($insert || (isset($changedAttributes['minutes_duration']) || isset($changedAttributes['start']))) {                            
+            $this->end = $this->calcEnd(); 
+            $this->save();            
         }
         
         parent::afterSave($insert, $changedAttributes);
     }    
     
-    
-    
+    public function calcEnd()
+    {
+        $end = new \DateTime($this->start);
+        $end->add(new \DateInterval('PT' . $this->minutes_duration . 'M'));
+        return $end->format('Y-m-d H:i:s'); 
+    }
     
     /*
      * 

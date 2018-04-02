@@ -34,7 +34,7 @@ use kartik\datetime\DateTimePicker;
                 ],                
             ]); ?>    
     
-    <?= $form->field($model, 'minutes_duration')->dropdownList(['15'=>'15','30'=>'30','45'=>'45','60'=>'60'],['prompt'=>'Select Duration']); ?>
+    <?= $form->field($model, 'minutes_duration')->dropdownList(['15'=>'15','30'=>'30','45'=>'45','60'=>'60','600'=>'600'],['prompt'=>'Select Duration']); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
