@@ -51,30 +51,25 @@ class Appointment extends \yii\db\ActiveRecord
     
     public function validateApptDate($attribute, $params, $validator)
     {
-        // Check not overlapping another appointment
         $end = $this->calcEnd();
-        
-        
+                                        
+        /* Check not overlapping another appointment                        
+         *         
+         *     |        |
+         *   --------------
+         *     |  ----  | 
+         *   -----      |      
+         *     |      ----- 
+         *           
+         */                                      
         $appts = Appointment::find()
-            ->where(['between', 'start', $this->start, $end])
-            ->where(['between', 'end', $this->start, $end])
-            //->andWhere(['<', 'start', $end])
+            ->where(['and',['<=', 'start', $this->start],['>=', 'end', $end]])
+            ->orWhere(['and',['between', 'start', $this->start, $end],['between', 'end', $this->start, $end]])
+            ->orWhere(['and',['<=', 'start', $this->start],['between', 'end', $this->start, $end]])
+            ->orWhere(['and',['between', 'start', $this->start, $end],['>=', 'end', $end]])
             ->andWhere(['!=', 'id', $this->id])                
             ->all();        
-        
-
-       
-        /*
-        $appts = Appointment::find()
-            ->where(
-                ['between', 'start', $this->start, $end],
-                ['between', 'end', $this->start, $end]])
-            ->orWhere(
-                ['between', 'start', $this->start, $end],
-                ['and',['>', 'end', $this->start, $end]])      
-            ->all();
-        */
-        
+               
         $out = '';
         
         foreach ($appts as $appt) {
@@ -83,16 +78,7 @@ class Appointment extends \yii\db\ActiveRecord
       
         if ($out != '')
             $this->addError($attribute, $out);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
+                                                                        
         // Check opening hours
         
     }
