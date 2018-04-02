@@ -128,16 +128,18 @@ class Appointment extends \yii\db\ActiveRecord
         return [
             [
                 'class' => AttributeBehavior::className(),
+                //'skipUpdateOnClean' => true,
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => 'end',
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'end',
                 ],
                 'value' => function ($event) {
+                    var_dump($event);
                     //!!! Only need to do this if minutes_duration or start change
-                    $calcdate = new \DateTime($event->sender->start);
-                    $calcdate->add(new \DateInterval('PT' . $event->sender->minutes_duration . 'M'));
-                    $calcdate = $calcdate->format('Y-m-d H:i:s');                    
-                    return $calcdate;
+                    $end = new \DateTime($event->sender->start);
+                    $end->add(new \DateInterval('PT' . $event->sender->minutes_duration . 'M'));
+                    $end = $end->format('Y-m-d H:i:s');                    
+                    return $end;
                 },
             ],
         ];
