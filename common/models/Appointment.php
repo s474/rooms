@@ -3,8 +3,8 @@
 namespace common\models;
 
 use Yii;
-use yii\behaviors\AttributeBehavior;
-use yii\db\ActiveRecord;
+//use yii\behaviors\AttributeBehavior;
+//use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "appointment".
@@ -39,8 +39,9 @@ class Appointment extends \yii\db\ActiveRecord
     {
         return [
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'start'], 'required'],
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id'], 'integer'],
-            [['minutes_duration'], 'string', 'max' => 3],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'integer'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'filter', 'filter' => 'intval'],
+            //[['minutes_duration'], 'string', 'max' => 3],
             //['start', 'validateApptDate', 'skipOnError' => false, 'params'=>['ploppies' => ['smol','medy','llerg']]],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
@@ -49,6 +50,7 @@ class Appointment extends \yii\db\ActiveRecord
         ];
     }
     
+    /*
     public function validateApptDate($attribute, $params, $validator)
     {
         // Check not overlapping another appointment
@@ -73,7 +75,8 @@ class Appointment extends \yii\db\ActiveRecord
             $this->addError($attribute, var_export($this->$attribute));
         }
     }
-
+    */
+    
     /**
      * @inheritdoc
      */
@@ -123,7 +126,36 @@ class Appointment extends \yii\db\ActiveRecord
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
     }
     
+    /*
+    public function beforeSave()
+    {
+        echo '<br /><br />before this->getDirtyAttributes:';
+        var_dump($this->getDirtyAttributes());               
+    }  
+    */
     
+    public function afterSave($insert, $changedAttributes)
+    {
+        if(!$insert) {
+            if (isset($changedAttributes['minutes_duration']) || isset($changedAttributes['start'])) {                                
+                $end = new \DateTime($this->start);
+                $end->add(new \DateInterval('PT' . $this->minutes_duration . 'M'));
+                $this->end = $end->format('Y-m-d H:i:s'); 
+                $this->save();
+            }
+        }
+        
+        parent::afterSave($insert, $changedAttributes);
+    }    
+    
+    
+    
+    
+    /*
+     * 
+     * Setting end date with behaviour rather than afterSave
+     * 
+     * 
     public function behaviors()
     {
         return [
@@ -135,15 +167,13 @@ class Appointment extends \yii\db\ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'end',
                 ],
                 'value' => function ($event) {
-                    //var_dump($event);
-                    //!!! Only need to do this if minutes_duration or start change
-                    $end = new \DateTime($event->sender->start);
-                    $end->add(new \DateInterval('PT' . $event->sender->minutes_duration . 'M'));
+                    $end = new \DateTime($this->owner->start);
+                    $end->add(new \DateInterval('PT' . $this->owner->minutes_duration . 'M'));
                     $end = $end->format('Y-m-d H:i:s');                    
                     return $end;
                 },
             ],
         ];
     }    
-    
+    */
 }
