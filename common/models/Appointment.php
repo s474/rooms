@@ -56,26 +56,30 @@ class Appointment extends \yii\db\ActiveRecord
         /* Check not overlapping another appointment                        
          *         
          *     |        |
-         *   --------------
-         *     |  ----  | 
-         *   -----      |      
-         *     |      ----- 
+         *   --------------     1
+         *     |  ----  |       2
+         *   -----      |       3
+         *     |      -----     4
          *           
-         */                                      
+         */                         
         $appts = Appointment::find()
-            ->where(['and',['<=', 'start', $this->start],['>=', 'end', $end]])
-            ->orWhere(['and',['between', 'start', $this->start, $end],['between', 'end', $this->start, $end]])
-            ->orWhere(['and',['<=', 'start', $this->start],['between', 'end', $this->start, $end]])
-            ->orWhere(['and',['between', 'start', $this->start, $end],['>=', 'end', $end]])
-            ->andWhere(['!=', 'id', $this->id])                
-            ->all();        
-               
+            ->where(['and', ['<=', 'start', $this->start], ['>=', 'end', $end]]) // 1
+            ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'end', $end]]) // 2
+            ->orWhere(['and', ['<', 'start', $this->start], ['>', 'end', $this->start], ['<', 'end', $end]]) // 3
+            ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'start', $end], ['>', 'end', $end]]); // 4 
+        
+        if (!$this->isNewRecord)
+            $appts->andWhere(['!=', 'id', $this->id]);
+        
+        $appts = $appts->all();        
+        
         $out = '';
         
         foreach ($appts as $appt) {
-            $out .= '<br />ID:' . $appt->id; 
+           $out = ',,[this:id'.$this->id.'],  start: ' . $this->start . ', end: ' . $end;
+           $out .= ', [b]ID:' . $appt->id; 
         }
-      
+        
         if ($out != '')
             $this->addError($attribute, $out);
                                                                         
