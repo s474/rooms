@@ -36,7 +36,7 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
+        ],        
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -45,6 +45,12 @@ return [
             ],
         ],
         */
+        'formatter' => [
+            'datetimeFormat' => 'php:D jS M g:i A',
+            //'decimalSeparator' => ',',
+            //'thousandSeparator' => ' ',
+            //'currencyCode' => 'EUR',
+       ],        
     ],
     'params' => $params,
 ];

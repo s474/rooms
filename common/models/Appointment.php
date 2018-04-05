@@ -67,7 +67,7 @@ class Appointment extends \yii\db\ActiveRecord
             ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'end', $end]]) // 2
             ->orWhere(['and', ['<', 'start', $this->start], ['>', 'end', $this->start], ['<', 'end', $end]]) // 3
             ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'start', $end], ['>', 'end', $end]]); // 4 
-        
+                            
         if (!$this->isNewRecord)
             $appts->andWhere(['!=', 'id', $this->id]);
         

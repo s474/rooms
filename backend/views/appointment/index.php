@@ -82,12 +82,20 @@ EOF;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'room.location.name',
-            'room.name',
+            //'start:datetime',
+            [
+                'attribute' => 'start',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    //return Html::a(Yii::$app->formatter->asDatetime($data->start), ['appointment/update', 'id' => $data->id]);
+                    return Html::a(date('D jS M g:i A',strtotime($data->start)), ['appointment/update', 'id' => $data->id]);
+                },
+            ],            
             'therapist.name',
             'client.name',
             'therapy.name',
-            'start:datetime',
+            'room.name',   
+            'room.location.name',            
             'minutes_duration',
 
             ['class' => 'yii\grid\ActionColumn'],
