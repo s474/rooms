@@ -76,7 +76,7 @@ class Appointment extends \yii\db\ActiveRecord
         $out = '';
         
         foreach ($appts as $appt) {
-           $out = ',,[this:id'.$this->id.'],  start: ' . $this->start . ', end: ' . $end;
+           $out .= ',,[this:id'.$this->id.'],  start: ' . $this->start . ', end: ' . $end;
            $out .= ', [b]ID:' . $appt->id; 
         }
         
