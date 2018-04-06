@@ -50,8 +50,8 @@ class Appointment extends \yii\db\ActiveRecord
     }
     
     public function validateApptDate($attribute, $params, $validator)
-    {
-        $end = $this->calcEnd();
+    {        
+        $end = $this->calcEnd();               
                                         
         /* Check not overlapping another appointment                        
          *         
@@ -67,9 +67,12 @@ class Appointment extends \yii\db\ActiveRecord
             ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'end', $end]]) // 2
             ->orWhere(['and', ['<', 'start', $this->start], ['>', 'end', $this->start], ['<', 'end', $end]]) // 3
             ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'start', $end], ['>', 'end', $end]]); // 4 
-                            
+                                                
+        // And if room, therapist or client are the same
+        $appts->andWhere(['or', ['=','room_id',$this->room_id], ['=', 'therapist_id', $this->therapist_id], ['=', 'client_id', $this->client_id]]);
+                
         if (!$this->isNewRecord)
-            $appts->andWhere(['!=', 'id', $this->id]);
+            $appts->andWhere(['!=', 'id', $this->id]);                
         
         $appts = $appts->all();        
         
