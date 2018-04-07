@@ -42,6 +42,8 @@ class Appointment extends \yii\db\ActiveRecord
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'integer'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'filter', 'filter' => 'intval'],
             [['start'], 'validateApptDate'],
+            [['therapy_id'], 'validateRoomTherapy'],
+            [['therapy_id'], 'validateTherapistTherapy'],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
@@ -53,7 +55,7 @@ class Appointment extends \yii\db\ActiveRecord
     {        
         $end = $this->calcEnd();               
                                         
-        /* Check not overlapping another appointment                        
+        /* Check not overlapping another Appointment                        
          *         
          *     |        |
          *   --------------     1
@@ -68,7 +70,7 @@ class Appointment extends \yii\db\ActiveRecord
             ->orWhere(['and', ['<', 'start', $this->start], ['>', 'end', $this->start], ['<', 'end', $end]]) // 3
             ->orWhere(['and', ['>=', 'start', $this->start], ['<', 'start', $end], ['>', 'end', $end]]); // 4 
                                                 
-        // And if room, therapist or client are the same
+        // And if Room, Therapist or Client are the same
         $appts->andWhere(['or', ['=','room_id',$this->room_id], ['=', 'therapist_id', $this->therapist_id], ['=', 'client_id', $this->client_id]]);
                 
         if (!$this->isNewRecord)
@@ -92,16 +94,22 @@ class Appointment extends \yii\db\ActiveRecord
 
     public function validateRoomTherapy($attribute, $params, $validator)
     {
-        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
-            $this->addError($attribute, var_export($this->$attribute));
-        }
+        if ($this->therapy->needs_special_room) {
+            $roomSupportsTherapy = RoomSupportsTherapy::find()->where(['room_id' => $this->room_id, 'therapy_id' => $this->therapy_id])->one();
+            if (!isset($roomSupportsTherapy))                
+                $this->addError($attribute, 'Room is not equipped for this therapy');
+        }        
     }
 
     public function validateTherapistTherapy($attribute, $params, $validator)
     {
+        /*
         if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
             $this->addError($attribute, var_export($this->$attribute));
         }
+         * 
+         * 
+         */
     }
 
     /**
