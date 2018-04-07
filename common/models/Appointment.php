@@ -97,7 +97,7 @@ class Appointment extends \yii\db\ActiveRecord
         if ($this->therapy->needs_special_room) {
             $roomSupportsTherapy = RoomSupportsTherapy::find()->where(['room_id' => $this->room_id, 'therapy_id' => $this->therapy_id])->one();
             if (!isset($roomSupportsTherapy))                
-                $this->addError($attribute, 'Room is not equipped for this therapy');
+                $this->addError($attribute, 'Room is not equipped for this therapy.');
         }        
     }
 
@@ -105,7 +105,7 @@ class Appointment extends \yii\db\ActiveRecord
     {
         $therapistDoesTherapy = TherapistDoesTherapy::find()->where(['therapist_id' => $this->therapist_id, 'therapy_id' => $this->therapy_id])->one();
         if (!isset($therapistDoesTherapy))                
-            $this->addError($attribute, 'Therapist does not offer this therapy');
+            $this->addError($attribute, 'Therapist does not offer this therapy.');
     }
 
     /**

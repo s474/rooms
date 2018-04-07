@@ -32,6 +32,7 @@ class TherapistDoesTherapy extends \yii\db\ActiveRecord
         return [
             [['therapist_id', 'therapy_id'], 'required'],
             [['therapist_id', 'therapy_id'], 'integer'],
+            [['therapy_id'], 'unique', 'targetAttribute' => ['therapist_id', 'therapy_id'], 'message' => 'Therapist already offers this therapy.'],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
         ];
@@ -44,8 +45,8 @@ class TherapistDoesTherapy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'therapist_id' => 'Therapist ID',
-            'therapy_id' => 'Therapy ID',
+            'therapist_id' => 'Therapist',
+            'therapy_id' => 'Therapy',
         ];
     }
 

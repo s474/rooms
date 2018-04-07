@@ -31,7 +31,8 @@ class RoomSupportsTherapy extends \yii\db\ActiveRecord
     {
         return [
             [['room_id', 'therapy_id'], 'required'],
-            [['room_id', 'therapy_id'], 'integer'],
+            [['room_id', 'therapy_id'], 'integer'],            
+            [['therapy_id'], 'unique', 'targetAttribute' => ['room_id', 'therapy_id'], 'message' => 'Room already supports this therapy.'],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
         ];
@@ -44,8 +45,8 @@ class RoomSupportsTherapy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'room_id' => 'Room ID',
-            'therapy_id' => 'Therapy ID',
+            'room_id' => 'Room',
+            'therapy_id' => 'Therapy',
         ];
     }
 
