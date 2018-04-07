@@ -103,13 +103,9 @@ class Appointment extends \yii\db\ActiveRecord
 
     public function validateTherapistTherapy($attribute, $params, $validator)
     {
-        /*
-        if (!in_array($this->$attribute, ['USA', 'Indonesia'])) {
-            $this->addError($attribute, var_export($this->$attribute));
-        }
-         * 
-         * 
-         */
+        $therapistDoesTherapy = TherapistDoesTherapy::find()->where(['therapist_id' => $this->therapist_id, 'therapy_id' => $this->therapy_id])->one();
+        if (!isset($therapistDoesTherapy))                
+            $this->addError($attribute, 'Therapist does not offer this therapy');
     }
 
     /**
