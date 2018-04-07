@@ -31,7 +31,8 @@ class Therapy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            ['name', 'unique'],
+            [['name'], 'required'],            
             [['name'], 'string', 'max' => 255],
             [['needs_special_room'], 'string', 'max' => 1],
         ];

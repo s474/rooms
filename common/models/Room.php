@@ -33,7 +33,8 @@ class Room extends \yii\db\ActiveRecord
         return [
             [['location_id', 'name'], 'required'],
             [['location_id'], 'integer'],
-            [['name'], 'string', 'max' => 128],            
+            [['name'], 'string', 'max' => 128],
+            [['name'], 'unique', 'targetAttribute' => ['name', 'location_id'], 'message' => 'Name must be unique for location.'],
             [['location_id'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['location_id' => 'id']],
         ];
     }

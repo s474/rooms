@@ -14,8 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'needs_special_room')->textInput() ?>
-
+    <?= $form->field($model, 'needs_special_room')->DropDownList(['0' => 'No', '1' => 'Yes']) ?>
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
