@@ -27,6 +27,16 @@ $this->title = 'Therapists';
                     return Html::a($data->name, ['therapist/update', 'id' => $data->id]);
                 },
             ],
+            [
+                'label' => 'Therapies',
+                'value' => function ($data) {
+                    $therapies = array();
+                    foreach ($data->therapistDoesTherapies as $therapy) {
+                        $therapies[] = $therapy->therapy->name;
+                    } 
+                    return implode(', ',$therapies);
+                },
+            ],                        
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -27,7 +27,17 @@ $this->title = 'Rooms';
                 'value' => function ($data) {
                     return Html::a($data->name, ['room/update', 'id' => $data->id]);
                 },
-            ],           
+            ],
+            [
+                'label' => 'Therapies',
+                'value' => function ($data) {
+                    $therapies = array();
+                    foreach ($data->roomSupportsTherapies as $therapy) {
+                        $therapies[] = $therapy->therapy->name;
+                    } 
+                    return implode(', ',$therapies);
+                },
+            ],                        
             [                
                 'attribute'=>'location_id',
                 'format' => 'raw',                
