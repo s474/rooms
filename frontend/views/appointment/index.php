@@ -10,14 +10,14 @@ SchedulerAsset::register($this);
 /* @var $searchModel common\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$calenderJsonUrl = Url::to(['appointment/json-calendar']);
+$calenderJsonUrl = Url::to(['appointment/json-calendar2']);
 
 $schedulerJS = <<<EOF
   $(function() { // document ready
 
     $('#calendar').fullCalendar({
       defaultView: 'agendaDay',
-      //defaultDate: '2018-04-07',
+      businessHours: true,  
       editable: true,
       selectable: true,
       eventLimit: true, // allow "more" link when too many events

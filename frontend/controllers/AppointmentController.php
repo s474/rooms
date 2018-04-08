@@ -126,7 +126,26 @@ class AppointmentController extends Controller
         }
 
         return $events;
-    }        
+    }
+    
+    public function actionJsonCalendar2($start=NULL, $end=NULL,$_=NULL){
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $appointments = Appointment::find()->all();
+        $events = array();
+        
+        foreach ($appointments AS $appointment) {            
+            $event = array();
+            $event['id'] = $appointment->id;
+            $event['resourceId'] = $appointment->room_id;            
+            $event['title'] = $appointment->therapist->name . ' QQQQQQQQQQQQQ, ' . $appointment->minutes_duration . '′';
+            $event['start'] = date('Y-m-d\TH:i:s\Z',strtotime($appointment->start));
+            $event['end'] = date('Y-m-d\TH:i:s\Z',strtotime($appointment->end));            
+            $events[] = $event;
+        }
+
+        return $events;
+    }    
 
     /**
      * Finds the Appointment model based on its primary key value.
