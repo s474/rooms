@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 use common\assets\SchedulerAsset;
 SchedulerAsset::register($this);
@@ -9,13 +10,14 @@ SchedulerAsset::register($this);
 /* @var $searchModel common\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+$calenderJsonUrl = Url::to(['appointment/json-calendar']);
 
 $schedulerJS = <<<EOF
   $(function() { // document ready
 
     $('#calendar').fullCalendar({
       defaultView: 'agendaDay',
-      defaultDate: '2018-04-07',
+      //defaultDate: '2018-04-07',
       editable: true,
       selectable: true,
       eventLimit: true, // allow "more" link when too many events
@@ -42,18 +44,21 @@ $schedulerJS = <<<EOF
       //allDaySlot: false,
 
       resources: [
-        { id: 'a', title: 'Room A' },
-        { id: 'b', title: 'Room B', eventColor: 'green' },
-        { id: 'c', title: 'Room C', eventColor: 'orange' },
-        { id: 'd', title: 'Room D', eventColor: 'red' }
+        { id: '1', title: 'Room A' },
+        { id: '2', title: 'Room B', eventColor: 'green' },
+        { id: '3', title: 'Room C', eventColor: 'orange' },
+        { id: '4', title: 'Room D', eventColor: 'red' }
       ],
-      events: [
-        { id: '1', resourceId: 'a', start: '2018-04-06', end: '2018-04-08', title: 'event 1' },
-        { id: '2', resourceId: 'a', start: '2018-04-07T09:00:00', end: '2018-04-07T14:00:00', title: 'event 2' },
-        { id: '3', resourceId: 'b', start: '2018-04-07T12:00:00', end: '2018-04-08T06:00:00', title: 'event 3' },
-        { id: '4', resourceId: 'c', start: '2018-04-07T07:30:00', end: '2018-04-07T09:30:00', title: 'event 4' },
-        { id: '5', resourceId: 'd', start: '2018-04-07T10:00:00', end: '2018-04-07T15:00:00', title: 'event 5' }
-      ],
+        
+      //events: [
+      //  { id: '1', resourceId: 'a', start: '2018-04-06', end: '2018-04-08', title: 'event 1' },
+      //  { id: '2', resourceId: 'a', start: '2018-04-07T09:00:00', end: '2018-04-07T14:00:00', title: 'event 2' },
+      //  { id: '3', resourceId: 'b', start: '2018-04-07T12:00:00', end: '2018-04-08T06:00:00', title: 'event 3' },
+      //  { id: '4', resourceId: 'c', start: '2018-04-07T07:30:00', end: '2018-04-07T09:30:00', title: 'event 4' },
+      //  { id: '5', resourceId: 'd', start: '2018-04-07T10:00:00', end: '2018-04-07T15:00:00', title: 'event 5' }
+      //],
+        
+      events: '$calenderJsonUrl',  
 
       select: function(start, end, jsEvent, view, resource) {
         console.log(

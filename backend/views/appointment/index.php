@@ -110,6 +110,11 @@ EOF;
 <br />
 <br />
 
+URL:<?= Url::to(['appointment/json-calendar']) ?>
+
+<br />
+<br />
+
 <?= \yii2fullcalendar\yii2fullcalendar::widget([
         'clientOptions' => [
             //'selectable' => true,
