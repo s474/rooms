@@ -109,7 +109,7 @@ class AppointmentController extends Controller
         return $this->redirect(['index']);
     }
     
-    public function actionJsonCalendar($start=NULL,$end=NULL,$_=NULL){
+    public function actionJsonCalendar($start = NULL, $end = NULL, $_ = NULL){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $appointments = Appointment::find()->all();
@@ -128,7 +128,7 @@ class AppointmentController extends Controller
         return $events;
     }
     
-    public function actionJsonCalendar2($start=NULL, $end=NULL,$_=NULL){
+    public function actionJsonCalendar2($start = NULL, $end = NULL, $_ = NULL){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $appointments = Appointment::find()->all();

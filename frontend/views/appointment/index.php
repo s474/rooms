@@ -21,11 +21,13 @@ $schedulerJS = <<<EOF
       editable: true,
       selectable: true,
       eventLimit: true, // allow "more" link when too many events
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',       
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'agendaDay,agendaTwoDay,agendaWeek,month'
       },
+        
       views: {
         agendaTwoDay: {
           type: 'agenda',
@@ -49,15 +51,7 @@ $schedulerJS = <<<EOF
         { id: '3', title: 'Room C', eventColor: 'orange' },
         { id: '4', title: 'Room D', eventColor: 'red' }
       ],
-        
-      //events: [
-      //  { id: '1', resourceId: 'a', start: '2018-04-06', end: '2018-04-08', title: 'event 1' },
-      //  { id: '2', resourceId: 'a', start: '2018-04-07T09:00:00', end: '2018-04-07T14:00:00', title: 'event 2' },
-      //  { id: '3', resourceId: 'b', start: '2018-04-07T12:00:00', end: '2018-04-08T06:00:00', title: 'event 3' },
-      //  { id: '4', resourceId: 'c', start: '2018-04-07T07:30:00', end: '2018-04-07T09:30:00', title: 'event 4' },
-      //  { id: '5', resourceId: 'd', start: '2018-04-07T10:00:00', end: '2018-04-07T15:00:00', title: 'event 5' }
-      //],
-        
+                
       events: '$calenderJsonUrl',  
 
       select: function(start, end, jsEvent, view, resource) {
@@ -68,6 +62,7 @@ $schedulerJS = <<<EOF
           resource ? resource.id : '(no resource)'
         );
       },
+        
       dayClick: function(date, jsEvent, view, resource) {
         console.log(
           'dayClick',
