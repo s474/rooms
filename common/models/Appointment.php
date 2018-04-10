@@ -13,11 +13,10 @@ use Yii;
  * @property int $room_id
  * @property int $therapist_id
  * @property int $client_id
- * @property int $therapy_id
+ * @property int $therapy_price_id
  * @property int $timestamp
- * @property int $minutes_duration
  *
- * @property Therapy $therapy
+ * @property TherapyPrice $therapyPrice
  * @property Room $room
  * @property Therapist $therapist
  * @property Client $client
@@ -38,13 +37,13 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration', 'start'], 'required'],
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'integer'],
-            [['room_id', 'therapist_id', 'client_id', 'therapy_id', 'minutes_duration'], 'filter', 'filter' => 'intval'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'integer'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'filter', 'filter' => 'intval'],
             [['start'], 'validateApptDate'],
-            [['therapy_id'], 'validateRoomTherapy'],
-            [['therapy_id'], 'validateTherapistTherapy'],
-            [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
+            [['therapy_price_id'], 'validateRoomTherapy'],
+            [['therapy_price_id'], 'validateTherapistTherapy'],
+            [['therapy_price_id'], 'exist', 'skipOnError' => true, 'targetClass' => TherapyPrice::className(), 'targetAttribute' => ['therapy_price_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
             [['therapist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapist::className(), 'targetAttribute' => ['therapist_id' => 'id']],
             [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['client_id' => 'id']],                        
@@ -97,8 +96,8 @@ class Appointment extends \yii\db\ActiveRecord
 
     public function validateRoomTherapy($attribute, $params, $validator)
     {
-        if ($this->therapy->needs_special_room) {
-            $roomSupportsTherapy = RoomSupportsTherapy::find()->where(['room_id' => $this->room_id, 'therapy_id' => $this->therapy_id])->one();
+        if ($this->therapyPrice->therapy->needs_special_room) {
+            $roomSupportsTherapy = RoomSupportsTherapy::find()->where(['room_id' => $this->room_id, 'therapy_id' => $this->therapyPrice->therapy_id])->one();
             if (!isset($roomSupportsTherapy))                
                 $this->addError($attribute, 'Room is not equipped for this therapy.');
         }        
@@ -106,7 +105,7 @@ class Appointment extends \yii\db\ActiveRecord
 
     public function validateTherapistTherapy($attribute, $params, $validator)
     {
-        $therapistDoesTherapy = TherapistDoesTherapy::find()->where(['therapist_id' => $this->therapist_id, 'therapy_id' => $this->therapy_id])->one();
+        $therapistDoesTherapy = TherapistDoesTherapy::find()->where(['therapist_id' => $this->therapist_id, 'therapy_id' => $this->therapyPrice->therapy_id])->one();
         if (!isset($therapistDoesTherapy))                
             $this->addError($attribute, 'Therapist does not offer this therapy.');
     }
@@ -121,9 +120,8 @@ class Appointment extends \yii\db\ActiveRecord
             'room_id' => 'Room',
             'therapist_id' => 'Therapist',
             'client_id' => 'Client',
-            'therapy_id' => 'Therapy',
+            'therapy_price_id' => 'Therapy',
             'timestamp' => 'Timestamp',
-            'minutes_duration' => 'Minutes Duration',
             'start' => 'Date',
         ];
     }
@@ -131,9 +129,9 @@ class Appointment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTherapy()
+    public function getTherapyPrice()
     {
-        return $this->hasOne(Therapy::className(), ['id' => 'therapy_id']);
+        return $this->hasOne(TherapyPrice::className(), ['id' => 'therapy_price_id']);
     }
 
     /**
@@ -170,7 +168,7 @@ class Appointment extends \yii\db\ActiveRecord
     
     public function afterSave($insert, $changedAttributes)
     {
-        if($insert || (isset($changedAttributes['minutes_duration']) || isset($changedAttributes['start']))) {                            
+        if($insert || (isset($changedAttributes['therapy_price_id']) || isset($changedAttributes['start']))) {                            
             $this->end = $this->calcEnd(); 
             $this->save();            
         }
@@ -181,7 +179,7 @@ class Appointment extends \yii\db\ActiveRecord
     public function calcEnd()
     {
         $end = new \DateTime($this->start);
-        $end->add(new \DateInterval('PT' . $this->minutes_duration . 'M'));
+        $end->add(new \DateInterval('PT' . $this->therapyPrice->minutes_duration . 'M'));
         return $end->format('Y-m-d H:i:s'); 
     }
     

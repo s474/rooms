@@ -4,27 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Appointment */
+/* @var $model common\models\TherapyPrice */
 
-$this->title = 'Appointment Details';
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Therapy Prices', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="appointment-view">
+<div class="therapy-price-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            //'id',
-            'room.name',
-            'therapist.name',
-            'client.name',
-            'therapyPrice.therapy.name',
-            'therapyPrice.description',
-            'start:datetime',
-            'therapyPrice.minutes_duration',
-        ],
-    ]) ?>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -35,6 +23,17 @@ $this->title = 'Appointment Details';
                 'method' => 'post',
             ],
         ]) ?>
-    </p>    
-    
+    </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'therapy_id',
+            'minutes_duration',
+            'description',
+            'price',
+        ],
+    ]) ?>
+
 </div>

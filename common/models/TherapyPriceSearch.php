@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Appointment;
+use common\models\TherapyPrice;
 
 /**
- * AppointmentSearch represents the model behind the search form of `common\models\Appointment`.
+ * TherapyPriceSearch represents the model behind the search form of `common\models\TherapyPrice`.
  */
-class AppointmentSearch extends Appointment
+class TherapyPriceSearch extends TherapyPrice
 {
     /**
      * @inheritdoc
@@ -18,8 +18,9 @@ class AppointmentSearch extends Appointment
     public function rules()
     {
         return [
-            [['id', 'room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'timestamp'], 'integer'],
-            [['minutes_duration'], 'safe'],
+            [['id', 'therapy_id', 'minutes_duration'], 'integer'],
+            [['description'], 'safe'],
+            [['price'], 'number'],
         ];
     }
 
@@ -41,13 +42,12 @@ class AppointmentSearch extends Appointment
      */
     public function search($params)
     {
-        $query = Appointment::find();
+        $query = TherapyPrice::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['start'=>SORT_DESC]]
         ]);
 
         $this->load($params);
@@ -61,14 +61,12 @@ class AppointmentSearch extends Appointment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'room_id' => $this->room_id,
-            'therapist_id' => $this->therapist_id,
-            'client_id' => $this->client_id,
-            'therapy_price_id' => $this->therapy_price_id,
-            'timestamp' => $this->timestamp,
+            'therapy_id' => $this->therapy_id,
+            'minutes_duration' => $this->minutes_duration,
+            'price' => $this->price,
         ]);
 
-        //$query->andFilterWhere(['like', 'minutes_duration', $this->minutes_duration]);
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

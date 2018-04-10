@@ -95,10 +95,11 @@ $this->title = 'Appointments';
             ],            
             'therapist.name',
             'client.name',
-            'therapy.name',
+            'therapyPrice.therapy.name',
+            'therapyPrice.description',                        
             'room.name',   
             'room.location.name',            
-            'minutes_duration',
+            'therapyPrice.minutes_duration',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Appointment;
-use common\models\AppointmentSearch;
+use common\models\TherapyPrice;
+use common\models\TherapyPriceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AppointmentController implements the CRUD actions for Appointment model.
+ * TherapyPriceController implements the CRUD actions for TherapyPrice model.
  */
-class AppointmentController extends Controller
+class TherapyPriceController extends Controller
 {
     /**
      * @inheritdoc
@@ -27,18 +27,17 @@ class AppointmentController extends Controller
                 ],
             ],
         ];
-    }        
+    }
 
     /**
-     * Lists all Appointment models.
+     * Lists all TherapyPrice models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AppointmentSearch();
+        $searchModel = new TherapyPriceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination->pageSize = 8;
-        
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -46,7 +45,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Displays a single Appointment model.
+     * Displays a single TherapyPrice model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,25 +58,25 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Creates a new Appointment model.
+     * Creates a new TherapyPrice model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Appointment();
+        $model = new TherapyPrice();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
-        
+
         return $this->render('create', [
             'model' => $model,
         ]);
     }
 
     /**
-     * Updates an existing Appointment model.
+     * Updates an existing TherapyPrice model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -88,7 +87,7 @@ class AppointmentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -97,7 +96,7 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Deletes an existing Appointment model.
+     * Deletes an existing TherapyPrice model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,37 +107,18 @@ class AppointmentController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    } 
-    
-    public function actionFullcaldendarEvents($start = NULL, $end = NULL, $_ = NULL)
-    {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $appointments = Appointment::find()->all();
-        $events = array();
-        
-        foreach ($appointments AS $appointment) {            
-            $event = array();
-            $event['id'] = $appointment->id;
-            $event['resourceId'] = $appointment->room_id;            
-            $event['title'] = $appointment->therapist->name . ', ' . $appointment->therapyPrice->minutes_duration . '′';
-            $event['start'] = date('Y-m-d\TH:i:s\Z',strtotime($appointment->start));
-            $event['end'] = date('Y-m-d\TH:i:s\Z',strtotime($appointment->end));            
-            $events[] = $event;
-        }
+    }
 
-        return $events;
-    }    
-    
     /**
-     * Finds the Appointment model based on its primary key value.
+     * Finds the TherapyPrice model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Appointment the loaded model
+     * @return TherapyPrice the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Appointment::findOne($id)) !== null) {
+        if (($model = TherapyPrice::findOne($id)) !== null) {
             return $model;
         }
 

@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\Room;
 use common\models\Therapist;
-use common\models\Therapy;
+use common\models\TherapyPrice;
 use common\models\Client;
 use kartik\datetime\DateTimePicker;
 
@@ -22,7 +22,7 @@ use kartik\datetime\DateTimePicker;
     
     <?= $form->field($model, 'therapist_id')->dropdownList(ArrayHelper::map(Therapist::find()->all(), 'id', 'name'),['prompt'=>'Select Therapist']); ?>
 
-    <?= $form->field($model, 'therapy_id')->dropdownList(ArrayHelper::map(Therapy::find()->all(), 'id', 'name'),['prompt'=>'Select Therapy']); ?>
+    <?= $form->field($model, 'therapy_price_id')->dropdownList(ArrayHelper::map(TherapyPrice::find()->all(), 'id', 'therapy.name'),['prompt'=>'Select Therapy']); ?>
     
     <?= $form->field($model, 'client_id')->dropdownList(ArrayHelper::map(Client::find()->all(), 'id', 'name'),['prompt'=>'Select Client']); ?>   
     
@@ -32,9 +32,7 @@ use kartik\datetime\DateTimePicker;
                 'pluginOptions' => [
                     'autoclose' => true,
                 ],                
-            ]); ?>    
-    
-    <?= $form->field($model, 'minutes_duration')->dropdownList(['15'=>'15','30'=>'30','45'=>'45','60'=>'60','600'=>'600'],['prompt'=>'Select Duration']); ?>
+            ]); ?>       
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
