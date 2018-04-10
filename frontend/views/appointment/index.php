@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
+
 use common\assets\SchedulerAsset;
 SchedulerAsset::register($this);
 
@@ -10,7 +11,7 @@ SchedulerAsset::register($this);
 /* @var $searchModel common\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$calenderJsonUrl = Url::to(['appointment/json-calendar2']);
+$calenderJsonUrl = Url::to(['appointment/json-calendar']);
 
 $schedulerJS = <<<EOF
   $(function() { // document ready

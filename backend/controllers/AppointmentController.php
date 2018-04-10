@@ -108,29 +108,27 @@ class AppointmentController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
+    } 
     
-    
-    
-    public function actionJsonCalendar($start=NULL,$end=NULL,$_=NULL){
+    public function actionJsonCalendar($start = NULL, $end = NULL, $_ = NULL){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $appointments = Appointment::find()->all();
         $events = array();
         
-        foreach ($appointments AS $appointment) {
-            $Event = new \yii2fullcalendar\models\Event();
-            $Event->id = $appointment->id;
-            $Event->title = $appointment->therapist->name . ', ' . $appointment->minutes_duration . '′';
-            $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($appointment->start));
-            $Event->end = date('Y-m-d\TH:i:s\Z',strtotime($appointment->end));            
-            $events[] = $Event;
+        foreach ($appointments AS $appointment) {            
+            $event = array();
+            $event['id'] = $appointment->id;
+            $event['resourceId'] = $appointment->room_id;            
+            $event['title'] = $appointment->therapist->name . ', ' . $appointment->minutes_duration . '′';
+            $event['start'] = date('Y-m-d\TH:i:s\Z',strtotime($appointment->start));
+            $event['end'] = date('Y-m-d\TH:i:s\Z',strtotime($appointment->end));            
+            $events[] = $event;
         }
 
         return $events;
     }    
     
-
     /**
      * Finds the Appointment model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
