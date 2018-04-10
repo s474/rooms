@@ -11,7 +11,8 @@ SchedulerAsset::register($this);
 /* @var $searchModel common\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$calenderJsonUrl = Url::to(['appointment/json-calendar']);
+$resourcesJsonUrl = Url::to(['room/fullcaldendar-resources']);
+$eventsJsonUrl = Url::to(['appointment/fullcaldendar-events']);
 
 $schedulerJS = <<<EOF
   $(function() { // document ready
@@ -22,13 +23,12 @@ $schedulerJS = <<<EOF
       editable: true,
       selectable: true,
       eventLimit: true, // allow "more" link when too many events
-      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',       
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',           
       header: {
         left: 'prev,next today',
         center: 'title',
         right: 'agendaDay,agendaTwoDay,agendaWeek,month'
-      },
-        
+      },            
       views: {
         agendaTwoDay: {
           type: 'agenda',
@@ -42,18 +42,12 @@ $schedulerJS = <<<EOF
           //groupByDateAndResource: true
         }
       },
-
+        
       //// uncomment this line to hide the all-day slot
-      //allDaySlot: false,
-
-      resources: [
-        { id: '1', title: 'Room A' },
-        { id: '2', title: 'Room B', eventColor: 'green' },
-        { id: '3', title: 'Room C', eventColor: 'orange' },
-        { id: '4', title: 'Room D', eventColor: 'red' }
-      ],
-                
-      events: '$calenderJsonUrl',  
+      //allDaySlot: false,                
+             
+      resources: '$resourcesJsonUrl',        
+      events: '$eventsJsonUrl',  
 
       select: function(start, end, jsEvent, view, resource) {
         console.log(
@@ -71,6 +65,7 @@ $schedulerJS = <<<EOF
           resource ? resource.id : '(no resource)'
         );
       }
+        
     });
   
   });            

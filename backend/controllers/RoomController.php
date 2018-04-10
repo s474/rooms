@@ -123,6 +123,23 @@ class RoomController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionFullcaldendarResources()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $rooms = Room::find()->all();
+        $resources = array();
+        
+        foreach ($rooms AS $room) {            
+            $resource = array();
+            $resource['id'] = $room->id;         
+            $resource['title'] = $room->name;
+            $resource['eventColor'] = '#' . 'ff0000';
+            $resources[] = $resource;
+        }
+
+        return $resources;
+    }    
+    
     /**
      * Finds the Room model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
