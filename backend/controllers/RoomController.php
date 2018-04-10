@@ -133,7 +133,7 @@ class RoomController extends Controller
             $resource = array();
             $resource['id'] = $room->id;         
             $resource['title'] = $room->name;
-            $resource['eventColor'] = '#' . 'ff0000';
+            $resource['eventColor'] = $room->colour;
             $resources[] = $resource;
         }
 

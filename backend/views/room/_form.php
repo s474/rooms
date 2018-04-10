@@ -3,6 +3,7 @@
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Room */
@@ -21,7 +22,12 @@ use yii\widgets\ActiveForm;
         );
     ?>
     
-    <div class="form-group">
+    <?= $form->field($model, 'colour')->widget(ColorInput::classname(), [
+            'options' => ['placeholder' => 'Select colour ...'],
+        ]);
+    ?>
+    
+    <div class="form-group">        
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 

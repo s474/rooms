@@ -31,9 +31,10 @@ class Room extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['location_id', 'name'], 'required'],
+            [['location_id', 'name', 'colour'], 'required'],
             [['location_id'], 'integer'],
             [['name'], 'string', 'max' => 128],
+            [['colour'], 'string', 'max' => 7],
             [['name'], 'unique', 'targetAttribute' => ['name', 'location_id'], 'message' => 'Name must be unique for location.'],
             [['location_id'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['location_id' => 'id']],
         ];
@@ -48,6 +49,7 @@ class Room extends \yii\db\ActiveRecord
             'id' => 'ID',
             'location_id' => 'Location',
             'name' => 'Room',
+            'colour' => 'Colour',
         ];
     }
 
