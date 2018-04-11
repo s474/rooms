@@ -19,7 +19,6 @@ $this->title = 'Therapists';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'name',
                 'format' => 'raw',

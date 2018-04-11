@@ -24,7 +24,6 @@ $this->title = 'Update Therapist: ' . $model->name;
         'dataProvider' => $dataProviderTherapies,
         'filterModel' => $searchModelTherapies,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
             'therapy.name',     
             [                
                 'attribute'=>'therapy.needs_special_room',

@@ -20,7 +20,6 @@ $this->title = 'Rooms';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'name',
                 'format' => 'raw',
@@ -66,7 +65,6 @@ $this->title = 'Rooms';
         'dataProvider' => $dataProviderLocation,
         'filterModel' => $searchModelLocation,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => 'name',
                 'format' => 'raw',

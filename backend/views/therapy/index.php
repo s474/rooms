@@ -18,7 +18,6 @@ $this->title = 'Therapies';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
             'name',            
             [                
                 'attribute'=>'needs_special_room',
