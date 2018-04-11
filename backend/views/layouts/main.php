@@ -41,6 +41,7 @@ AppAsset::register($this);
         ['label' => 'Rooms', 'url' => ['/room/index']],
         ['label' => 'Therapists', 'url' => ['/therapist/index']],  
         ['label' => 'Therapies', 'url' => ['/therapy/index']],
+        ['label' => 'Prices', 'url' => ['/therapy-price/index']],        
         ['label' => 'Clients', 'url' => ['/client/index']],        
     ];
     if (Yii::$app->user->isGuest) {

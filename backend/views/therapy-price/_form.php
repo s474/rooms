@@ -12,7 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     
-    <?= $form->field($model, 'therapy_id')->hiddenInput()->label(false); ?>
+    <?php 
+    
+        if ($from_therapy == '1') {
+            echo '111' . $form->field($model, 'therapy_id')->hiddenInput()->label(false);
+        } else { 
+            echo '222' . $form->field($model, 'therapy_id')->dropdownList($ddTherapies,['prompt'=>'Select Therapy']);
+        }
+    ?>
 
     <?= $form->field($model, 'minutes_duration')->textInput() ?>    
     
@@ -27,3 +34,5 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?= "from_therapy = " . $from_therapy; ?>

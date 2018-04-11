@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\TherapyPrice;
 use common\models\TherapyPriceSearch;
+use common\models\Therapy;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -62,17 +63,28 @@ class TherapyPriceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($therapy_id)
+    public function actionCreate($therapy_id = null, $from_therapy = null)
     {
         $model = new TherapyPrice();
         $model->therapy_id = $therapy_id;                
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['therapy/update', 'id' => $model->therapy_id]);
-        }        
 
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($from_therapy)
+                return $this->redirect(['therapy/update', 'id' => $model->therapy_id]);
+            else
+                return $this->redirect(['index']);
+        }        
+        
+        $ddTherapies = Therapy::find()
+            ->select(['name'])
+            ->where(['needs_special_room' => '1'])
+            ->indexBy('id')
+            ->column();
+        
         return $this->render('create', [
             'model' => $model,
+            'from_therapy' => $from_therapy,
+            'ddTherapies' => $ddTherapies,            
         ]);
     }
 
@@ -83,16 +95,27 @@ class TherapyPriceController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $from_therapy = null)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['therapy/update', 'id' => $model->therapy_id]);
+            if ($from_therapy)
+                return $this->redirect(['therapy/update', 'id' => $model->therapy_id]);
+            else
+                return $this->redirect(['index']);
         }
 
+        $ddTherapies = Therapy::find()
+            ->select(['name'])
+            ->where(['needs_special_room' => '1'])
+            ->indexBy('id')
+            ->column();        
+        
         return $this->render('update', [
             'model' => $model,
+            'from_therapy' => $from_therapy,
+            'ddTherapies' => $ddTherapies,            
         ]);
     }
 

@@ -28,21 +28,21 @@ $this->title = 'Update Therapy: ' . $model->name;
                 'attribute' => 'minutes_duration',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->minutes_duration, ['therapy-price/update', 'id' => $data->id]);
+                    return Html::a($data->minutes_duration, ['therapy-price/update', 'id' => $data->id, 'from_therapy' => '1']);
                 },
             ],            
             [
                 'attribute' => 'description',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->description, ['therapy-price/update', 'id' => $data->id]);
+                    return Html::a($data->description, ['therapy-price/update', 'id' => $data->id, 'from_therapy' => '1']);
                 },
             ],
             [
                 'attribute' => 'price',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a(Yii::$app->formatter->asCurrency($data->price), ['therapy-price/update', 'id' => $data->id]);
+                    return Html::a(Yii::$app->formatter->asCurrency($data->price), ['therapy-price/update', 'id' => $data->id, 'from_therapy' => '1']);
                 },
             ],
             [
@@ -70,7 +70,7 @@ $this->title = 'Update Therapy: ' . $model->name;
     ]); ?>    
    
     <p>
-        <?= Html::a('Add', ['therapy-price/create', 'therapy_id' => $model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add', ['therapy-price/create', 'therapy_id' => $model->id, 'from_therapy' => '1'], ['class' => 'btn btn-success']) ?>
     </p>  
 
 </div>

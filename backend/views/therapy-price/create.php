@@ -14,6 +14,8 @@ $this->title = 'Create Price';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'from_therapy' => $from_therapy,
+        'ddTherapies' => $ddTherapies,
     ]) ?>
 
 </div>

@@ -13,6 +13,7 @@ $this->title = 'Update Price';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'from_therapy' => $from_therapy,
     ]) ?>
 
 </div>
