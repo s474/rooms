@@ -62,13 +62,14 @@ class TherapyPriceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($therapy_id)
     {
         $model = new TherapyPrice();
-
+        $model->therapy_id = $therapy_id;                
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+            return $this->redirect(['therapy/update', 'id' => $model->therapy_id]);
+        }        
 
         return $this->render('create', [
             'model' => $model,
@@ -87,7 +88,7 @@ class TherapyPriceController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['therapy/update', 'id' => $model->therapy_id]);
         }
 
         return $this->render('update', [

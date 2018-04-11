@@ -10,5 +10,8 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'formatter' => [
+            'currencyCode' => 'GBP',
+        ],
     ],    
 ];

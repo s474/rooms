@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'therapy_id',
             'minutes_duration',
             'description',
-            'price',
+            'price:currency',
         ],
     ]) ?>
 

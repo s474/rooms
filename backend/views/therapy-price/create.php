@@ -6,9 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\TherapyPrice */
 
-$this->title = 'Create Therapy Price';
-$this->params['breadcrumbs'][] = ['label' => 'Therapy Prices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Create Price';
 ?>
 <div class="therapy-price-create">
 

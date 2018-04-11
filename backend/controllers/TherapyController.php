@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Therapy;
 use common\models\TherapySearch;
+use common\models\TherapyPriceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -89,9 +90,15 @@ class TherapyController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
+        
+        $searchModelPrices = new TherapyPriceSearch();
+        $searchModelPrices->therapy_id = $model->id;
+        $dataProviderPrices = $searchModelPrices->search(Yii::$app->request->queryParams);         
 
         return $this->render('update', [
             'model' => $model,
+            'searchModelPrices' => $searchModelPrices,
+            'dataProviderPrices' => $dataProviderPrices,            
         ]);
     }
 

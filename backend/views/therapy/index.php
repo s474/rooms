@@ -18,7 +18,13 @@ $this->title = 'Therapies';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'name',            
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['therapy/update', 'id' => $data->id]);
+                },
+            ],            
             [                
                 'attribute'=>'needs_special_room',
                 'format' => 'boolean',                              

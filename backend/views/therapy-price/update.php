@@ -5,10 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\TherapyPrice */
 
-$this->title = 'Update Therapy Price: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Therapy Prices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Update Price';
 ?>
 <div class="therapy-price-update">
 

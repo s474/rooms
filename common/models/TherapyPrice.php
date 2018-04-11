@@ -32,8 +32,8 @@ class TherapyPrice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['therapy_id', 'minutes_duration', 'description', 'price'], 'required'],
-            [['therapy_id', 'minutes_duration'], 'integer'],
+            [['therapy_id', 'minutes_duration', 'price'], 'required'],
+            [['therapy_id', 'minutes_duration'], 'integer'],          
             [['price'], 'number'],
             [['description'], 'string', 'max' => 255],
             [['therapy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Therapy::className(), 'targetAttribute' => ['therapy_id' => 'id']],
