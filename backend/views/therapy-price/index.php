@@ -7,26 +7,24 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\TherapyPriceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Therapy Prices';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Prices';
 ?>
 <div class="therapy-price-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Therapy Price', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'therapy_id',
+            [
+                'attribute' => 'therapy.name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->therapy->name, ['therapy-price/update', 'id' => $data->id]);
+                },
+            ],
             'minutes_duration',
             'description',
             'price',
@@ -34,4 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+    <p>
+        <?= Html::a('Create Price', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    
 </div>

@@ -47,7 +47,7 @@ class AppointmentSearch extends Appointment
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['start'=>SORT_DESC]]
+            'sort' => ['defaultOrder' => ['start' => SORT_DESC]]
         ]);
 
         $this->load($params);

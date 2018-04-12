@@ -15,9 +15,9 @@ use yii\widgets\ActiveForm;
     <?php 
     
         if ($from_therapy == '1') {
-            echo '111' . $form->field($model, 'therapy_id')->hiddenInput()->label(false);
+            echo $form->field($model, 'therapy_id')->hiddenInput()->label(false);
         } else { 
-            echo '222' . $form->field($model, 'therapy_id')->dropdownList($ddTherapies,['prompt'=>'Select Therapy']);
+            echo $form->field($model, 'therapy_id')->dropdownList($ddTherapies,['prompt'=>'Select Therapy']);
         }
     ?>
 
@@ -34,5 +34,3 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-
-<?= "from_therapy = " . $from_therapy; ?>

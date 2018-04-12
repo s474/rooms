@@ -77,7 +77,7 @@ class TherapyPriceController extends Controller
         
         $ddTherapies = Therapy::find()
             ->select(['name'])
-            ->where(['needs_special_room' => '1'])
+            //->where(['needs_special_room' => '1'])
             ->indexBy('id')
             ->column();
         
@@ -108,7 +108,7 @@ class TherapyPriceController extends Controller
 
         $ddTherapies = Therapy::find()
             ->select(['name'])
-            ->where(['needs_special_room' => '1'])
+            //->where(['needs_special_room' => '1'])
             ->indexBy('id')
             ->column();        
         

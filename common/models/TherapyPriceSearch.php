@@ -42,14 +42,25 @@ class TherapyPriceSearch extends TherapyPrice
      */
     public function search($params)
     {
-        $query = TherapyPrice::find();
+        $query = TherapyPrice::find()->joinWith('therapy');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => [
+                    'price',
+                    'minutes_duration',
+                    'therapy.name' => [
+                        'asc' => ['therapy.name' => SORT_ASC],
+                        'desc' => ['therapy.name' => SORT_DESC],
+                    ],                    
+                ],
+                'defaultOrder' => ['therapy.name' => SORT_ASC],
+            ],
         ]);
-
+        
         $this->load($params);
 
         if (!$this->validate()) {

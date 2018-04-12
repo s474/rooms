@@ -69,4 +69,9 @@ class TherapyPrice extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Therapy::className(), ['id' => 'therapy_id']);
     }
+    
+    
+    public function getTherapyName() {
+        return $this->therapy->name;
+    }    
 }
