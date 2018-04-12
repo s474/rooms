@@ -28,21 +28,21 @@ $this->title = 'Update Therapy: ' . $model->name;
                 'attribute' => 'minutes_duration',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->minutes_duration, ['therapy-price/update', 'id' => $data->id, 'from_therapy' => '1']);
+                    return Html::a($data->minutes_duration, ['therapy-price/update', 'id' => $data->id, 'from_therapy' => $data->therapy_id]);
                 },
             ],            
             [
                 'attribute' => 'description',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->description, ['therapy-price/update', 'id' => $data->id, 'from_therapy' => '1']);
+                    return Html::a($data->description, ['therapy-price/update', 'id' => $data->id, 'from_therapy' => $data->therapy_id]);
                 },
             ],
             [
                 'attribute' => 'price',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a(Yii::$app->formatter->asCurrency($data->price), ['therapy-price/update', 'id' => $data->id, 'from_therapy' => '1']);
+                    return Html::a(Yii::$app->formatter->asCurrency($data->price), ['therapy-price/update', 'id' => $data->id, 'from_therapy' => $data->therapy_id]);
                 },
             ],
             [
@@ -61,7 +61,7 @@ $this->title = 'Update Therapy: ' . $model->name;
                 ],
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'delete') {
-                        $url = Url::to(['therapy-price/delete', 'id' => $model->id]);
+                        $url = Url::to(['therapy-price/delete', 'id' => $model->id, 'from_therapy' => $model->therapy_id]);
                         return $url;
                     }
                 }
@@ -70,7 +70,7 @@ $this->title = 'Update Therapy: ' . $model->name;
     ]); ?>    
    
     <p>
-        <?= Html::a('Add', ['therapy-price/create', 'therapy_id' => $model->id, 'from_therapy' => '1'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add', ['therapy-price/create', 'therapy_id' => $model->id, 'from_therapy' => $data->therapy_id], ['class' => 'btn btn-success']) ?>
     </p>  
 
 </div>

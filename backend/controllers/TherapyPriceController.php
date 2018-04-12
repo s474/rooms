@@ -126,11 +126,14 @@ class TherapyPriceController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $from_therapy = null)
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        if ($from_therapy)
+            return $this->redirect(['therapy/update', 'id' => $from_therapy]);
+        else
+            return $this->redirect(['index']);        
     }
 
     /**
