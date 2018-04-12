@@ -46,6 +46,24 @@ class AppointmentController extends Controller
     }
 
     /**
+     * Lists all Appointment models.
+     * @return mixed
+     */
+    public function actionCalendar()
+    {
+        /*
+        $searchModel = new AppointmentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = 8;
+        */
+        
+        return $this->render('calendar', [
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider,
+        ]);
+    }    
+    
+    /**
      * Displays a single Appointment model.
      * @param integer $id
      * @return mixed

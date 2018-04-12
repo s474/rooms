@@ -37,7 +37,10 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Appointments', 'url' => ['/appointment/index']],        
+        ['label' => 'Appointments', 'url' => ['/appointment/calendar'], 'items' => [
+            ['label' => 'Calendar', 'url' => ['/appointment/calendar']],
+            ['label' => 'Grid', 'url' => ['/appointment/index']],
+        ]],        
         ['label' => 'Rooms', 'url' => ['/room/index']],
         ['label' => 'Therapists', 'url' => ['/therapist/index']],  
         ['label' => 'Therapies', 'url' => ['/therapy/index']],
