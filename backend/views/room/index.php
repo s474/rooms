@@ -48,6 +48,13 @@ $this->title = 'Rooms';
                     return Html::a($data->location->name, ['location/update', 'id' => $data->location_id]);
                 },                
             ],            
+            [
+                'attribute' => 'colour',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->colour . '"></span>';
+                },
+            ],                        
             ['class' => 'yii\grid\ActionColumn'],                       
         ],
     ]); ?>    

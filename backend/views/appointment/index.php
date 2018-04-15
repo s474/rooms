@@ -18,7 +18,7 @@ $schedulerJS = <<<EOF
   $(function() { // document ready
 
     $('#calendar').fullCalendar({
-      defaultView: 'agendaDay',
+      defaultView: 'month',
       businessHours: true,  
       editable: true,
       selectable: true,
@@ -96,8 +96,16 @@ $this->title = 'Appointments';
             'therapist.name',
             'client.name',
             'therapyPrice.therapy.name',
-            'therapyPrice.description',                        
-            'room.name',   
+            //'therapyPrice.description',                        
+            'room.name',
+            [
+                'label' => '',
+                'attribute' => 'room.colour',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->room->colour . '"></span>';
+                },
+            ],
             'room.location.name',            
             'therapyPrice.minutes_duration',
 
