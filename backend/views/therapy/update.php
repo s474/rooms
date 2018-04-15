@@ -70,7 +70,7 @@ $this->title = 'Update Therapy: ' . $model->name;
     ]); ?>    
    
     <p>
-        <?= Html::a('Add', ['therapy-price/create', 'therapy_id' => $model->id, 'from_therapy' => $data->therapy_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add', ['therapy-price/create', 'therapy_id' => $model->id, 'from_therapy' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>  
 
 </div>

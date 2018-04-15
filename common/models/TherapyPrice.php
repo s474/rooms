@@ -47,7 +47,7 @@ class TherapyPrice extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'therapy_id' => 'Therapy ID',
+            'therapy_id' => 'Therapy',
             'minutes_duration' => 'Minutes Duration',
             'description' => 'Description',
             'price' => 'Price',

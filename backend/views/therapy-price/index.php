@@ -19,15 +19,21 @@ $this->title = 'Prices';
         'filterModel' => $searchModel,
         'columns' => [
             [
+                'attribute' => 'minutes_duration',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->minutes_duration, ['therapy-price/update', 'id' => $data->id]);
+                },
+            ],            
+            [
                 'attribute' => 'therapy.name',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->therapy->name, ['therapy-price/update', 'id' => $data->id]);
+                    return Html::a($data->therapy->name, ['therapy/update', 'id' => $data->therapy_id]);
                 },
             ],
-            'minutes_duration',
             'description',
-            'price',
+            'price:currency',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

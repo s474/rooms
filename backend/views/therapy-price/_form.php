@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
     
     <?php 
     
-        if ($from_therapy == '1') {
+        if ($from_therapy) {
             echo $form->field($model, 'therapy_id')->hiddenInput()->label(false);
         } else { 
             echo $form->field($model, 'therapy_id')->dropdownList($ddTherapies,['prompt'=>'Select Therapy']);
