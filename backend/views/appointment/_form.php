@@ -22,7 +22,7 @@ use kartik\datetime\DateTimePicker;
     
     <?= $form->field($model, 'therapist_id')->dropdownList(ArrayHelper::map(Therapist::find()->all(), 'id', 'name'),['prompt'=>'Select Therapist']); ?>
 
-    <?= $form->field($model, 'therapy_price_id')->dropdownList(ArrayHelper::map(TherapyPrice::find()->all(), 'id', 'therapy.name'),['prompt'=>'Select Therapy']); ?>
+    <?= $form->field($model, 'therapy_price_id')->dropdownList(ArrayHelper::map(TherapyPrice::find()->all(), 'id', 'therapyDurationPrice'),['prompt'=>'Select Therapy']); ?>
     
     <?= $form->field($model, 'client_id')->dropdownList(ArrayHelper::map(Client::find()->all(), 'id', 'name'),['prompt'=>'Select Client']); ?>   
     

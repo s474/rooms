@@ -73,5 +73,9 @@ class TherapyPrice extends \yii\db\ActiveRecord
     
     public function getTherapyName() {
         return $this->therapy->name;
-    }    
+    }
+
+    public function getTherapyDurationPrice() {
+        return $this->therapy->name . ', ' . $this->minutes_duration . ' mins, £' . $this->price;
+    }
 }
