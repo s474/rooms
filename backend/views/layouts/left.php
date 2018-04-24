@@ -31,8 +31,28 @@
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
+
                 'items' => [
-                    //['label' => 'Menu Yii2', 'options' => ['class' => 'header']],                    
+                    
+                    
+                    ['label' => 'Home', 'url' => ['/site/index']],
+                    
+                    ['label' => 'Appointments', 'url' => ['/appointment/calendar'], 'items' => [
+                        ['label' => 'Calendar', 'url' => ['/appointment/calendar']],
+                        ['label' => 'Grid', 'url' => ['/appointment/index']],
+                    ]],
+                     
+                    ['label' => 'Appointments2', 'url' => ['/appointment/index']],
+                    ['label' => 'Rooms', 'url' => ['/room/index']],
+                    ['label' => 'Therapists', 'url' => ['/therapist/index']],  
+                    ['label' => 'Therapies', 'url' => ['/therapy/index']],
+                    ['label' => 'Prices', 'url' => ['/therapy-price/index']],        
+                    ['label' => 'Clients', 'url' => ['/client/index']],                    
+                    
+                    
+                    
+                    
+                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],                    
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
@@ -62,7 +82,9 @@
                             ],
                         ],
                     ],
+
                 ],
+
             ]
         ) ?>
 
