@@ -1,6 +1,7 @@
 <?php
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
+use yii\helpers\Html;
 
 ?>
 <div class="content-wrapper">
@@ -37,10 +38,9 @@ use dmstr\widgets\Alert;
 
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
-        <b>Version</b> 2.0
+        <b>version</b> pre-alpha
     </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></strong> xxx@xxx.xx
 </footer>
 
 <!-- Control Sidebar -->
@@ -56,6 +56,7 @@ use dmstr\widgets\Alert;
         <div class="tab-pane" id="control-sidebar-home-tab">
             <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class='control-sidebar-menu'>
+                <!--
                 <li>
                     <a href='javascript::;'>
                         <i class="menu-icon fa fa-birthday-cake bg-red"></i>
@@ -100,6 +101,7 @@ use dmstr\widgets\Alert;
                         </div>
                     </a>
                 </li>
+                -->
             </ul>
             <!-- /.control-sidebar-menu -->
 
