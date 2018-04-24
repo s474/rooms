@@ -35,23 +35,23 @@
                 'items' => [
                     
                     
-                    ['label' => 'Home', 'url' => ['/site/index']],
+                    //['label' => 'Home', 'url' => ['/site/index']],
                     
+                    /*
                     ['label' => 'Appointments', 'url' => ['/appointment/calendar'], 'items' => [
                         ['label' => 'Calendar', 'url' => ['/appointment/calendar']],
                         ['label' => 'Grid', 'url' => ['/appointment/index']],
                     ]],
-                     
-                    ['label' => 'Appointments2', 'url' => ['/appointment/index']],
-                    ['label' => 'Rooms', 'url' => ['/room/index']],
-                    ['label' => 'Therapists', 'url' => ['/therapist/index']],  
-                    ['label' => 'Therapies', 'url' => ['/therapy/index']],
-                    ['label' => 'Prices', 'url' => ['/therapy-price/index']],        
-                    ['label' => 'Clients', 'url' => ['/client/index']],                    
+                    */
                     
+                    ['label' => 'Appointments', 'icon' => 'calendar', 'url' => ['/appointment/index']],
+                    ['label' => 'Rooms', 'icon' => 'building-o', 'url' => ['/room/index']],
+                    ['label' => 'Therapists', 'icon' => 'address-card-o', 'url' => ['/therapist/index']],  
+                    ['label' => 'Therapies', 'icon' => 'plus-square', 'url' => ['/therapy/index']],
+                    ['label' => 'Prices', 'icon' => 'gbp', 'url' => ['/therapy-price/index']],        
+                    ['label' => 'Clients', 'icon' => 'address-book-o', 'url' => ['/client/index']],                    
                     
-                    
-                    
+                    /*                                        
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],                    
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
@@ -82,6 +82,8 @@
                             ],
                         ],
                     ],
+                     * 
+                     */
 
                 ],
 
