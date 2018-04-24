@@ -1,6 +1,8 @@
 <aside class="main-sidebar">
 
     <section class="sidebar">
+        
+
 
         <!-- Sidebar user panel -->
         <!--
@@ -27,7 +29,23 @@
             </div>
         </form>
         <!-- /.search form -->
-
+        
+        <section class="sidebar">
+        <?php
+            echo \kartik\datetime\DateTimePicker::widget([
+                'type' => 4,
+                'name' => 'datetime_10',
+                'options' => ['placeholder' => 'Select operating time ...'],
+                'convertFormat' => true,
+                'pluginOptions' => [
+                    'format' => 'd-M-Y g:i A',
+                    'startDate' => '01-Mar-2014 12:00 AM',
+                    'todayHighlight' => true
+                ]
+            ]);
+        ?>
+        </section>
+        
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
