@@ -30,18 +30,28 @@
         </form>
         <!-- /.search form -->
         
-        <section class="sidebar">
+        <section class="sidebar">            
         <?php
             echo \kartik\datetime\DateTimePicker::widget([
                 'type' => 4,
+                //'readonly' => true,                
                 'name' => 'datetime_10',
                 'options' => ['placeholder' => 'Select operating time ...'],
                 'convertFormat' => true,
                 'pluginOptions' => [
                     'format' => 'd-M-Y g:i A',
                     'startDate' => '01-Mar-2014 12:00 AM',
-                    'todayHighlight' => true
-                ]
+                    'todayHighlight' => true,
+                    'minView' => '2',
+                ],
+                'pluginEvents' => [
+                    'show' => 'function(e) {  console.log(e); }',
+                    'hide' => 'function(e) {  console.log(e); }',
+                    'clearDate' => 'function(e) {  console.log(e); }',
+                    'changeDate' => 'function(e) {  console.log(e); }',
+                    'changeYear' => 'function(e) {  console.log(e); }',
+                    'changeMonth' => 'function(e) {  console.log(e); }',
+                ],                
             ]);
         ?>
         </section>
