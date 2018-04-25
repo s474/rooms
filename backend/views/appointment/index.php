@@ -80,45 +80,75 @@ $this->title = 'Appointments';
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
-    <div id='calendar'></div>    
-    
+    <div class="box">
+                
+        <div class="box-header with-border">
+            <h3 class="box-title">Collapsible Box Example</h3>
+            <div class="box-tools pull-right">
+                <!-- Collapse Button -->
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>        
+        
+        <div class="box-body">
+            <div id='calendar'></div>         
+        </div>        
+        <div class="box-footer">
+        The footer of the box
+        </div>
+    </div>    
+               
     <br />
     <br />
     
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            //'start:datetime',
-            [
-                'attribute' => 'start',
-                'format' => 'raw',
-                'value' => function ($data) {
-                    //return Html::a(Yii::$app->formatter->asDatetime($data->start), ['appointment/update', 'id' => $data->id]);
-                    return Html::a(date('D jS M g:i A',strtotime($data->start)), ['appointment/update', 'id' => $data->id]);
-                },
-            ],            
-            'therapist.name',
-            'client.name',
-            'therapyPrice.therapy.name',
-            //'therapyPrice.description',                        
-            'room.name',
-            [
-                'label' => '',
-                'attribute' => 'room.colour',
-                'format' => 'raw',
-                'value' => function ($data) {
-                    return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->room->colour . '"></span>';
-                },
-            ],
-            'room.location.name',            
-            'therapyPrice.minutes_duration',
+    
+    <div class="box">
+        <div class="box-body">
+             
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    //'start:datetime',
+                    [
+                        'attribute' => 'start',
+                        'format' => 'raw',
+                        'value' => function ($data) {
+                            //return Html::a(Yii::$app->formatter->asDatetime($data->start), ['appointment/update', 'id' => $data->id]);
+                            return Html::a(date('D jS M g:i A',strtotime($data->start)), ['appointment/update', 'id' => $data->id]);
+                        },
+                    ],            
+                    'therapist.name',
+                    'client.name',
+                    'therapyPrice.therapy.name',
+                    //'therapyPrice.description',                        
+                    'room.name',
+                    [
+                        'label' => '',
+                        'attribute' => 'room.colour',
+                        'format' => 'raw',
+                        'value' => function ($data) {
+                            return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->room->colour . '"></span>';
+                        },
+                    ],
+                    'room.location.name',            
+                    'therapyPrice.minutes_duration',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+
+            <p>
+                <?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>    
     
-    <p>
-        <?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>    
+        </div>        
+        <div class="box-footer">
+        The footer of the box
+        </div>
+    </div>
+
 </div>
