@@ -18,7 +18,7 @@ $schedulerJS = <<<EOF
   $(function() { // document ready
 
     $('#calendar').fullCalendar({
-      defaultView: 'month',
+      defaultView: 'agendaDay',
       businessHours: true,  
       editable: true,
       selectable: true,
@@ -80,6 +80,11 @@ $this->title = 'Appointments';
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
+    <div id='calendar'></div>    
+    
+    <br />
+    <br />
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -117,8 +122,3 @@ $this->title = 'Appointments';
         <?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?>
     </p>    
 </div>
-
-<br />
-<br />
-
-<div id='calendar'></div>

@@ -48,8 +48,8 @@
                     'show' => 'function(e) {  console.log(e); }',
                     'hide' => 'function(e) {  console.log(e); }',
                     'clearDate' => 'function(e) {  console.log(e); }',
-                    'changeDate' => 'function(e) {  console.log(e); }',
-                    'changeYear' => 'function(e) {  console.log(e); }',
+                    'changeDate' => 'function(e) { $("#calendar").fullCalendar("gotoDate", e.date); }',
+                    'changeYear' => 'function(e) {  console.log($("#calendar")); }',
                     'changeMonth' => 'function(e) {  console.log(e); }',
                 ],                
             ]);
