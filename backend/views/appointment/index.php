@@ -19,7 +19,11 @@ $schedulerJS = <<<EOF
 
     $('#calendar').fullCalendar({
       defaultView: 'agendaDay',
-      businessHours: true,  
+      businessHours: true,
+      minTime: '08:00:00',
+      maxTime: '18:00:00',
+      slotDuration: '00:30:00',
+      contentHeight: 'auto',
       editable: true,
       selectable: true,
       eventLimit: true, // allow "more" link when too many events
