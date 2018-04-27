@@ -34,7 +34,11 @@
         
         <?php
                     
-            if (in_array($this->context->module->requestedRoute,['appointment/index'])) {
+            if (in_array($this->context->module->requestedRoute,[
+                'appointment/index',
+                'room/index',
+                'therapist/index',
+                ])) {
         
                 echo '<div class="sidebar-calendar">';
                 echo \kartik\datetime\DateTimePicker::widget([
