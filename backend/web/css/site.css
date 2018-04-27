@@ -118,3 +118,17 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+/* rooms specific */
+
+.sidebar-calendar {
+    overflow: hidden;
+    padding: 10px;
+    background-color: #ecf0f5;
+}
+
+.sidebar-calendar .input-sm{
+    /*visibility: hidden;*/
+    display: none;
+}

@@ -19,6 +19,7 @@
         -->
         
         <!-- search form -->
+        <!--
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search..."/>
@@ -28,33 +29,40 @@
               </span>
             </div>
         </form>
+        -->
         <!-- /.search form -->
         
-        <section class="sidebar">            
         <?php
-            echo \kartik\datetime\DateTimePicker::widget([
-                'type' => 4,
-                //'readonly' => true,                
-                'name' => 'datetime_10',
-                'options' => ['placeholder' => 'Select operating time ...'],
-                'convertFormat' => true,
-                'pluginOptions' => [
-                    'format' => 'd-M-Y g:i A',
-                    'startDate' => '01-Mar-2014 12:00 AM',
-                    'todayHighlight' => true,
-                    'minView' => '2',
-                ],
-                'pluginEvents' => [
-                    'show' => 'function(e) {  console.log(e); }',
-                    'hide' => 'function(e) {  console.log(e); }',
-                    'clearDate' => 'function(e) {  console.log(e); }',
-                    'changeDate' => 'function(e) { $("#calendar").fullCalendar("gotoDate", e.date); }',
-                    'changeYear' => 'function(e) {  console.log($("#calendar")); }',
-                    'changeMonth' => 'function(e) {  console.log(e); }',
-                ],                
-            ]);
+        
+            //if (in_array($this->context->id,['appointment'])) {
+        
+                echo '<div class="sidebar-calendar">';
+                echo \kartik\datetime\DateTimePicker::widget([
+                    'type' => 4,                                    
+                    'name' => 'datetime_sidebar',
+                    'options' => ['placeholder' => 'Select operating time ...'],
+                    'convertFormat' => true,
+                    //'readonly' => true,                    
+                    'pluginOptions' => [
+                        'format' => 'd-M-Y g:i A',
+                        'startDate' => '01-Mar-2014 12:00 AM',
+                        'todayHighlight' => true,
+                        'minView' => '2',                                                
+                    ],
+                    'pluginEvents' => [
+                        'show' => 'function(e) {  console.log(e); }',
+                        'hide' => 'function(e) {  console.log(e); }',
+                        'clearDate' => 'function(e) {  console.log(e); }',
+                        'changeDate' => 'function(e) { $("#calendar").fullCalendar("gotoDate", e.date); }',
+                        'changeYear' => 'function(e) {  console.log($("#calendar")); }',
+                        'changeMonth' => 'function(e) {  console.log(e); }',
+                    ],                
+                ]); 
+                echo '</div>';
+
+            //}
         ?>
-        </section>
+
         
         <?= dmstr\widgets\Menu::widget(
             [

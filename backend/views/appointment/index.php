@@ -25,9 +25,11 @@ $schedulerJS = <<<EOF
       eventLimit: true, // allow "more" link when too many events
       schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',           
       header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'agendaDay,agendaTwoDay,agendaWeek,month'
+        //left: 'prev,next today',
+        //center: 'title',
+        left: 'title',
+        //right: 'agendaDay,agendaTwoDay,agendaWeek,month'
+        right: 'agendaDay,agendaTwoDay'
       },            
       views: {
         agendaTwoDay: {
