@@ -56,12 +56,17 @@ $schedulerJS = <<<EOF
       events: '$eventsJsonUrl',  
 
       select: function(start, end, jsEvent, view, resource) {
+        
+        /*
         console.log(
           'select',
           start.format(),
           end.format(),
           resource ? resource.id : '(no resource)'
         );
+        */
+        
+        window.location.href = "index.php?r=appointment%2Fcreate";
       },
         
       dayClick: function(date, jsEvent, view, resource) {
@@ -100,11 +105,7 @@ $this->title = 'Appointments';
 <div class="appointment-index">
         
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>    
-    
-    <p>
-	<?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>        
    
     <div class="box">
                 
@@ -126,59 +127,67 @@ $this->title = 'Appointments';
         <!--The footer of the box-->
         </div>
     </div>    
-                     
+     
+    <!--
     <div class="box">
         
         <div class="box-header with-border">
             <h3 class="box-title">Appointment Grid</h3>
             <div class="box-tools pull-right">                
-                <!-- Collapse Button -->
                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
                 </button>
             </div>
-            <!-- /.box-tools -->
         </div>         
+        
         
         <div class="box-body">
              
-            <?= GridView::widget([
-                'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
-                'columns' => [
-                    //'start:datetime',
-                    [
-                        'attribute' => 'start',
-                        'format' => 'raw',
-                        'value' => function ($data) {
-                            //return Html::a(Yii::$app->formatter->asDatetime($data->start), ['appointment/update', 'id' => $data->id]);
-                            return Html::a(date('D jS M g:i A',strtotime($data->start)), ['appointment/update', 'id' => $data->id]);
-                        },
-                    ],            
-                    'therapist.name',
-                    'client.name',
-                    'therapyPrice.therapy.name',
-                    //'therapyPrice.description',                        
-                    'room.name',
-                    [
-                        'label' => '',
-                        'attribute' => 'room.colour',
-                        'format' => 'raw',
-                        'value' => function ($data) {
-                            return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->room->colour . '"></span>';
-                        },
-                    ],
-                    'room.location.name',            
-                    'therapyPrice.minutes_duration',
+            <?php 
+                /*
+                echo GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        //'start:datetime',
+                        [
+                            'attribute' => 'start',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                //return Html::a(Yii::$app->formatter->asDatetime($data->start), ['appointment/update', 'id' => $data->id]);
+                                return Html::a(date('D jS M g:i A',strtotime($data->start)), ['appointment/update', 'id' => $data->id]);
+                            },
+                        ],            
+                        'therapist.name',
+                        'client.name',
+                        'therapyPrice.therapy.name',
+                        //'therapyPrice.description',                        
+                        'room.name',
+                        [
+                            'label' => '',
+                            'attribute' => 'room.colour',
+                            'format' => 'raw',
+                            'value' => function ($data) {
+                                return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->room->colour . '"></span>';
+                            },
+                        ],
+                        'room.location.name',            
+                        'therapyPrice.minutes_duration',
 
-                    ['class' => 'yii\grid\ActionColumn'],
-                ],
-            ]); ?>
+                        ['class' => 'yii\grid\ActionColumn'],
+                    ],
+                ]);
+                 * 
+                 */
+                        
+            ?>
        
         </div>        
         <div class="box-footer">
-        <!--The footer of the box-->
         </div>
     </div>
-
+    -->
+    
+    <p><?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?></p>
+    
 </div>

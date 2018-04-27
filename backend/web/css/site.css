@@ -132,8 +132,12 @@ h2 {
     background-color: #ecf0f5;
 }
 
-.sidebar-calendar .input-sm{
+.sidebar-calendar .input-sm {
     /*visibility: hidden;*/
     display: none;
 }
 
+/* fullcalendar column headings */
+.fc th {
+    font-weight: normal;
+}
