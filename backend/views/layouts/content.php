@@ -5,6 +5,8 @@ use yii\helpers\Html;
 
 ?>
 <div class="content-wrapper">
+    
+<!--    
     <section class="content-header">
         <?php if (isset($this->blocks['content-header'])) { ?>
             <h1><?= $this->blocks['content-header'] ?></h1>
@@ -29,7 +31,7 @@ use yii\helpers\Html;
             ]
         ) ?>
     </section>
-
+-->
     <section class="content">
         <?= Alert::widget() ?>
         <?= $content ?>

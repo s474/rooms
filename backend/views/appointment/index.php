@@ -28,8 +28,8 @@ $schedulerJS = <<<EOF
         //left: 'prev,next today',
         //center: 'title',
         left: 'title',
-        //right: 'agendaDay,agendaTwoDay,agendaWeek,month'
-        right: 'agendaDay,agendaTwoDay'
+        right: 'agendaDay,agendaTwoDay,agendaWeek,month'
+        //right: 'agendaDay,agendaTwoDay'
       },            
       views: {
         agendaTwoDay: {
@@ -78,14 +78,18 @@ $this->title = 'Appointments';
 ?>
 
 <div class="appointment-index">
-
+        
     <!--<h1><?= Html::encode($this->title) ?></h1>-->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>    
     
+    <p>
+	<?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+   
     <div class="box">
                 
         <div class="box-header with-border">
-            <h3 class="box-title">Collapsible Box Example</h3>
+            <h3 class="box-title">Appointment Calendar</h3>            
             <div class="box-tools pull-right">
                 <!-- Collapse Button -->
                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -99,15 +103,23 @@ $this->title = 'Appointments';
             <div id='calendar'></div>         
         </div>        
         <div class="box-footer">
-        The footer of the box
+        <!--The footer of the box-->
         </div>
     </div>    
-               
-    <br />
-    <br />
-    
-    
+                     
     <div class="box">
+        
+        <div class="box-header with-border">
+            <h3 class="box-title">Appointment Grid</h3>
+            <div class="box-tools pull-right">                
+                <!-- Collapse Button -->
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>         
+        
         <div class="box-body">
              
             <?= GridView::widget([
@@ -142,14 +154,10 @@ $this->title = 'Appointments';
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
-
-            <p>
-                <?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?>
-            </p>    
-    
+       
         </div>        
         <div class="box-footer">
-        The footer of the box
+        <!--The footer of the box-->
         </div>
     </div>
 

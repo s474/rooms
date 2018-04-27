@@ -122,6 +122,10 @@ a.desc:after {
 
 /* rooms specific */
 
+h2 {
+    font-size: 20px;
+}
+
 .sidebar-calendar {
     overflow: hidden;
     padding: 10px;
