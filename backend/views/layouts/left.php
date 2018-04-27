@@ -33,8 +33,8 @@
         <!-- /.search form -->
         
         <?php
-        
-            //if (in_array($this->context->id,['appointment'])) {
+                    
+            if (in_array($this->context->module->requestedRoute,['appointment/index'])) {
         
                 echo '<div class="sidebar-calendar">';
                 echo \kartik\datetime\DateTimePicker::widget([
@@ -60,7 +60,7 @@
                 ]); 
                 echo '</div>';
 
-            //}
+            }
         ?>
 
         

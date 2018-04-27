@@ -24,7 +24,7 @@ $schedulerJS = <<<EOF
       maxTime: '18:00:00',
       slotDuration: '00:30:00',
       contentHeight: 'auto',
-      editable: true,
+      editable: false,
       selectable: true,
       eventLimit: true, // allow "more" link when too many events
       schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',           
@@ -50,7 +50,7 @@ $schedulerJS = <<<EOF
       },
         
       //// uncomment this line to hide the all-day slot
-      //allDaySlot: false,                
+      allDaySlot: false,                
              
       resources: '$resourcesJsonUrl',        
       events: '$eventsJsonUrl',  
@@ -70,7 +70,23 @@ $schedulerJS = <<<EOF
           date.format(),
           resource ? resource.id : '(no resource)'
         );
-      }
+      },
+        
+      eventClick: function(calEvent, jsEvent, view) {
+
+        //alert('Event: ' + calEvent.title);
+        //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        //alert('View: ' + view.name);
+
+        // change the border color just for fun
+        //$(this).css('border-color', 'red');
+        
+        //console.log(calEvent);
+        //console.log(jsEvent);
+        //console.log(view);
+        
+        window.location.href = "index.php?r=appointment%2Fupdate&id=" + calEvent.id;
+      },        
         
     });
   
