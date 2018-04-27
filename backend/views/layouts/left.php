@@ -2,8 +2,6 @@
 
     <section class="sidebar">
         
-
-
         <!-- Sidebar user panel -->
         <!--
         <div class="user-panel">

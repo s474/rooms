@@ -188,6 +188,6 @@ $this->title = 'Appointments';
     </div>
     -->
     
-    <p><?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?></p>
+    <p><?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?></p>        
     
 </div>

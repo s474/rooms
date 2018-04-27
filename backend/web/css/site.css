@@ -141,7 +141,11 @@ h1, .h1 {
     display: none;
 }
 
-/* fullcalendar column headings */
+/* fullcalendar */
+.fc {
+    font-size: 12px !important;
+}
+
 .fc th {
     font-weight: normal;
 }
