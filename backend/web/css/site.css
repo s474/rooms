@@ -122,8 +122,12 @@ a.desc:after {
 
 /* rooms specific */
 
-h2 {
+h2, .h2 {
     font-size: 20px;
+}
+
+h1, .h1 {
+    font-size: 28px;
 }
 
 .sidebar-calendar {
