@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: db729435483.db.1and1.com
--- Generation Time: Apr 28, 2018 at 05:30 PM
+-- Generation Time: Apr 28, 2018 at 06:33 PM
 -- Server version: 5.5.59-0+deb7u1-log
 -- PHP Version: 5.4.45-0+deb7u13
 
@@ -60,26 +60,6 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   KEY `therapy_price_id` (`therapy_price_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=73 ;
 
---
--- Dumping data for table `appointment`
---
-
-INSERT INTO `appointment` (`id`, `room_id`, `therapist_id`, `client_id`, `therapy_price_id`, `start`, `end`, `created_at`, `updated_at`) VALUES
-(59, 2, 3, 2, 40, '2018-04-18 18:35:00', '2018-04-18 19:05:00', 0, 0),
-(60, 1, 1, 2, 36, '2018-04-06 06:30:00', '2018-04-06 07:40:00', 0, 0),
-(61, 3, 3, 2, 40, '2018-04-04 13:45:00', '2018-04-04 14:15:00', 0, 0),
-(62, 1, 1, 1, 36, '2018-04-17 14:15:00', '2018-04-17 15:25:00', 0, 0),
-(63, 1, 1, 1, 42, '2018-04-26 13:25:00', '2018-04-26 14:25:00', 0, 0),
-(64, 1, 1, 4, 36, '2018-04-26 16:00:00', '2018-04-26 17:10:00', 0, 0),
-(65, 2, 1, 1, 42, '2018-04-26 15:00:00', '2018-04-26 16:00:00', 0, 0),
-(66, 2, 1, 1, 42, '2018-04-27 10:30:00', '2018-04-27 11:30:00', 0, 0),
-(67, 1, 1, 1, 42, '2018-04-28 11:55:00', '2018-04-28 12:55:00', 0, 0),
-(68, 4, 1, 1, 42, '2018-04-27 15:00:00', '2018-04-27 16:00:00', 0, 0),
-(69, 1, 2, 3, 41, '2018-04-27 12:30:00', '2018-04-27 13:30:00', 0, 0),
-(70, 3, 3, 2, 39, '2018-04-28 09:45:00', '2018-04-28 10:30:00', 0, 0),
-(71, 1, 1, 1, 36, '2018-04-29 09:00:00', '2018-04-29 10:10:00', 0, 0),
-(72, 1, 1, 2, 37, '2018-04-29 11:00:00', '2018-04-29 12:00:00', 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -92,21 +72,10 @@ CREATE TABLE IF NOT EXISTS `client` (
   `user_id` int(11) NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `client`
---
-
-INSERT INTO `client` (`id`, `company_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 0, 0, 0, 0),
-(2, 0, 0, 0, 0),
-(3, 0, 0, 0, 0),
-(4, 0, 0, 0, 0),
-(5, 0, 0, 0, 0),
-(6, 0, 0, 0, 0),
-(7, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -138,17 +107,9 @@ CREATE TABLE IF NOT EXISTS `location` (
   `postcode` varchar(20) COLLATE latin1_general_ci NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `location`
---
-
-INSERT INTO `location` (`id`, `company_id`, `name`, `address_line_1`, `postcode`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Somewhere', '111 A Road', '90210', 0, 0),
-(2, 0, 'Somewhere Else', '101', '90210', 0, 0),
-(4, 0, 'A Third Location', '102', '90210', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -187,16 +148,6 @@ CREATE TABLE IF NOT EXISTS `room` (
   KEY `location_id` (`location_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
 
---
--- Dumping data for table `room`
---
-
-INSERT INTO `room` (`id`, `location_id`, `name`, `colour`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Main Room', '#e69138', 0, 0),
-(2, 1, 'Specialist Room One', '#6aa84f', 0, 0),
-(3, 1, 'Specialist Room Two', '#a64d79', 0, 0),
-(4, 2, 'Room Loc. 2', '#3d85c6', 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -212,16 +163,6 @@ CREATE TABLE IF NOT EXISTS `room_supports_therapy` (
   KEY `therapy_id` (`therapy_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=15 ;
 
---
--- Dumping data for table `room_supports_therapy`
---
-
-INSERT INTO `room_supports_therapy` (`id`, `room_id`, `therapy_id`) VALUES
-(9, 2, 4),
-(10, 1, 4),
-(11, 3, 4),
-(14, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -234,17 +175,10 @@ CREATE TABLE IF NOT EXISTS `therapist` (
   `user_id` int(11) NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `therapist`
---
-
-INSERT INTO `therapist` (`id`, `company_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 0, 0, 0, 0),
-(2, 0, 0, 0, 0),
-(3, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -261,18 +195,6 @@ CREATE TABLE IF NOT EXISTS `therapist_does_therapy` (
   KEY `therapy_id` (`therapy_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=26 ;
 
---
--- Dumping data for table `therapist_does_therapy`
---
-
-INSERT INTO `therapist_does_therapy` (`id`, `therapist_id`, `therapy_id`) VALUES
-(16, 1, 1),
-(17, 3, 4),
-(21, 1, 5),
-(23, 3, 2),
-(24, 1, 2),
-(25, 2, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -283,7 +205,9 @@ CREATE TABLE IF NOT EXISTS `therapist_therapy_price` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `therapist_id` int(11) NOT NULL,
   `therapy_price_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `therapist_id` (`therapist_id`),
+  KEY `therapy_price_id` (`therapy_price_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -299,19 +223,9 @@ CREATE TABLE IF NOT EXISTS `therapy` (
   `needs_special_room` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `company_id` (`company_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `therapy`
---
-
-INSERT INTO `therapy` (`id`, `company_id`, `name`, `needs_special_room`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Acupuncture', 1, 0, 0),
-(2, 0, 'Ayurveda', 0, 0, 0),
-(3, 0, 'Ayurvedic Hot Oil', 0, 0, 0),
-(4, 0, 'Bowen Technique', 1, 0, 0),
-(5, 0, 'Coaching', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -330,19 +244,6 @@ CREATE TABLE IF NOT EXISTS `therapy_price` (
   PRIMARY KEY (`id`),
   KEY `therapy_id` (`therapy_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=43 ;
-
---
--- Dumping data for table `therapy_price`
---
-
-INSERT INTO `therapy_price` (`id`, `therapy_id`, `minutes_duration`, `description`, `price`, `created_at`, `updated_at`) VALUES
-(36, 1, 70, 'Initial session', '70.00', 0, 0),
-(37, 1, 60, '', '60.00', 0, 0),
-(38, 2, 30, 'Initial session', '45.00', 0, 0),
-(39, 2, 45, '', '45.00', 0, 0),
-(40, 4, 30, '', '50.00', 0, 0),
-(41, 3, 60, '', '60.00', 0, 0),
-(42, 5, 60, '', '65.00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -380,6 +281,13 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_res
 --
 
 --
+-- Constraints for table `administrator`
+--
+ALTER TABLE `administrator`
+  ADD CONSTRAINT `administrator_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `appointment`
 --
 ALTER TABLE `appointment`
@@ -387,6 +295,19 @@ ALTER TABLE `appointment`
   ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`therapist_id`) REFERENCES `therapist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `appointment_ibfk_3` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `appointment_ibfk_4` FOREIGN KEY (`therapy_price_id`) REFERENCES `therapy_price` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `client`
+--
+ALTER TABLE `client`
+  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `location`
+--
+ALTER TABLE `location`
+  ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `room`
@@ -402,11 +323,31 @@ ALTER TABLE `room_supports_therapy`
   ADD CONSTRAINT `room_supports_therapy_ibfk_2` FOREIGN KEY (`therapy_id`) REFERENCES `therapy` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `therapist`
+--
+ALTER TABLE `therapist`
+  ADD CONSTRAINT `therapist_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `therapist_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `therapist_does_therapy`
 --
 ALTER TABLE `therapist_does_therapy`
   ADD CONSTRAINT `therapist_does_therapy_ibfk_1` FOREIGN KEY (`therapist_id`) REFERENCES `therapist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `therapist_does_therapy_ibfk_2` FOREIGN KEY (`therapy_id`) REFERENCES `therapy` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `therapist_therapy_price`
+--
+ALTER TABLE `therapist_therapy_price`
+  ADD CONSTRAINT `therapist_therapy_price_ibfk_2` FOREIGN KEY (`therapy_price_id`) REFERENCES `therapy_price` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `therapist_therapy_price_ibfk_1` FOREIGN KEY (`therapist_id`) REFERENCES `therapist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `therapy`
+--
+ALTER TABLE `therapy`
+  ADD CONSTRAINT `therapy_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `therapy_price`
