@@ -18,8 +18,7 @@ class TherapistSearch extends Therapist
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
         ];
     }
 
@@ -60,9 +59,11 @@ class TherapistSearch extends Therapist
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'company_id' => $this->company_id,
+            'user_id' => $this->user_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

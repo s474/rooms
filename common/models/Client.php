@@ -8,9 +8,14 @@ use Yii;
  * This is the model class for table "client".
  *
  * @property int $id
- * @property string $name
+ * @property int $company_id
+ * @property int $user_id
+ * @property int $created_at
+ * @property int $updated_at
  *
  * @property Appointment[] $appointments
+ * @property User $user
+ * @property Company $company
  */
 class Client extends \yii\db\ActiveRecord
 {
@@ -28,8 +33,10 @@ class Client extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 128],
+            [['company_id', 'user_id', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
         ];
     }
 
@@ -40,7 +47,10 @@ class Client extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Client',
+            'company_id' => 'Company ID',
+            'user_id' => 'User ID',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 
@@ -50,5 +60,21 @@ class Client extends \yii\db\ActiveRecord
     public function getAppointments()
     {
         return $this->hasMany(Appointment::className(), ['client_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(), ['id' => 'company_id']);
     }
 }

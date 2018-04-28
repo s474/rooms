@@ -20,10 +20,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'therapy_id')->textInput() ?>
 
-    <?= $form->field($model, 'timestamp')->textInput() ?>
-
-    <?= $form->field($model, 'minutes_duration')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

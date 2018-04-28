@@ -4,17 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Therapist */
+/* @var $model common\models\Company */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="therapist-form">
+<div class="company-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'company_id')->textInput() ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'address_line_1')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'postcode')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

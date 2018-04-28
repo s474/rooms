@@ -104,8 +104,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'therapist_id',
             'client_id',
             'therapy_id',
-            //'timestamp:datetime',
-            //'minutes_duration',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

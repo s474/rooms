@@ -16,9 +16,12 @@ $this->title = $model->name;
         'model' => $model,
         'attributes' => [
             'id',
+            'company_id',
             'name',
             'address_line_1',
             'postcode',
+            'created_at',
+            'updated_at',
         ],
     ]) ?>
 

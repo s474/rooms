@@ -18,7 +18,7 @@ class AppointmentSearch extends Appointment
     public function rules()
     {
         return [
-            [['id', 'room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'timestamp'], 'integer'],
+            [['id', 'room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'integer'],
             [['minutes_duration'], 'safe'],
         ];
     }
@@ -65,7 +65,6 @@ class AppointmentSearch extends Appointment
             'therapist_id' => $this->therapist_id,
             'client_id' => $this->client_id,
             'therapy_price_id' => $this->therapy_price_id,
-            'timestamp' => $this->timestamp,
         ]);
 
         //$query->andFilterWhere(['like', 'minutes_duration', $this->minutes_duration]);

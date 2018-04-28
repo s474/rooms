@@ -5,7 +5,7 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "therapist".
+ * This is the model class for table "administrator".
  *
  * @property int $id
  * @property int $company_id
@@ -13,20 +13,17 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  *
- * @property Appointment[] $appointments
  * @property User $user
  * @property Company $company
- * @property TherapistDoesTherapy[] $therapistDoesTherapies
- * @property TherapistTherapyPrice[] $therapistTherapyPrices
  */
-class Therapist extends \yii\db\ActiveRecord
+class Administrator extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'therapist';
+        return 'administrator';
     }
 
     /**
@@ -59,14 +56,6 @@ class Therapist extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAppointments()
-    {
-        return $this->hasMany(Appointment::className(), ['therapist_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -79,26 +68,4 @@ class Therapist extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Company::className(), ['id' => 'company_id']);
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTherapistDoesTherapies()
-    {
-        return $this->hasMany(TherapistDoesTherapy::className(), ['therapist_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTherapistTherapyPrices()
-    {
-        return $this->hasMany(TherapistTherapyPrice::className(), ['therapist_id' => 'id']);
-    }
-    
-    public function getName()
-    {
-        return $this->user->firstname . ' ' . $this->user->last_name;
-    }
-    
 }

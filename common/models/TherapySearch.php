@@ -18,7 +18,7 @@ class TherapySearch extends Therapy
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'company_id', 'created_at', 'updated_at'], 'integer'],
             [['name', 'needs_special_room'], 'safe'],
         ];
     }
@@ -60,6 +60,9 @@ class TherapySearch extends Therapy
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'company_id' => $this->company_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

@@ -8,12 +8,16 @@ use Yii;
  * This is the model class for table "therapy".
  *
  * @property int $id
+ * @property int $company_id
  * @property string $name
  * @property int $needs_special_room
+ * @property int $created_at
+ * @property int $updated_at
  *
  * @property RoomSupportsTherapy[] $roomSupportsTherapies
- * @property Appointment[] $appointments
  * @property TherapistDoesTherapy[] $therapistDoesTherapies
+ * @property Company $company
+ * @property TherapyPrice[] $therapyPrices
  */
 class Therapy extends \yii\db\ActiveRecord
 {
@@ -31,10 +35,11 @@ class Therapy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['name', 'unique'],
-            [['name'], 'required'],            
+            [['company_id', 'name', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['needs_special_room'], 'string', 'max' => 1],
+            [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
         ];
     }
 
@@ -45,8 +50,11 @@ class Therapy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Therapy',
+            'company_id' => 'Company ID',
+            'name' => 'Name',
             'needs_special_room' => 'Needs Special Room',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 
@@ -61,16 +69,24 @@ class Therapy extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAppointments()
+    public function getTherapistDoesTherapies()
     {
-        return $this->hasMany(Appointment::className(), ['therapy_id' => 'id']);
+        return $this->hasMany(TherapistDoesTherapy::className(), ['therapy_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTherapistDoesTherapies()
+    public function getCompany()
     {
-        return $this->hasMany(TherapistDoesTherapy::className(), ['therapy_id' => 'id']);
+        return $this->hasOne(Company::className(), ['id' => 'company_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTherapyPrices()
+    {
+        return $this->hasMany(TherapyPrice::className(), ['therapy_id' => 'id']);
     }
 }

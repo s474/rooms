@@ -8,10 +8,14 @@ use Yii;
  * This is the model class for table "location".
  *
  * @property int $id
+ * @property int $company_id
  * @property string $name
  * @property string $address_line_1
  * @property string $postcode
+ * @property int $created_at
+ * @property int $updated_at
  *
+ * @property Company $company
  * @property Room[] $rooms
  */
 class Location extends \yii\db\ActiveRecord
@@ -30,10 +34,11 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['address_line_1', 'postcode'], 'required'],
-            [['name'], 'string', 'max' => 64],
-            [['address_line_1'], 'string', 'max' => 256],
+            [['company_id', 'address_line_1', 'postcode', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'created_at', 'updated_at'], 'integer'],
+            [['name', 'address_line_1'], 'string', 'max' => 255],
             [['postcode'], 'string', 'max' => 20],
+            [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
         ];
     }
 
@@ -44,10 +49,21 @@ class Location extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'company_id' => 'Company',
             'name' => 'Location',
             'address_line_1' => 'Address Line 1',
             'postcode' => 'Postcode',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(), ['id' => 'company_id']);
     }
 
     /**

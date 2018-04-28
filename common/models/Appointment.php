@@ -14,12 +14,15 @@ use Yii;
  * @property int $therapist_id
  * @property int $client_id
  * @property int $therapy_price_id
- * @property int $timestamp
+ * @property string $start
+ * @property string $end
+ * @property int $created_at
+ * @property int $updated_at
  *
- * @property TherapyPrice $therapyPrice
  * @property Room $room
  * @property Therapist $therapist
  * @property Client $client
+ * @property TherapyPrice $therapyPrice
  */
 class Appointment extends \yii\db\ActiveRecord
 {
@@ -35,9 +38,9 @@ class Appointment extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function rules()
-    {
+    {        
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start', 'end', 'created_at', 'updated_at'], 'required'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'integer'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'filter', 'filter' => 'intval'],
             [['start'], 'validateApptDate'],
@@ -121,7 +124,6 @@ class Appointment extends \yii\db\ActiveRecord
             'therapist_id' => 'Therapist',
             'client_id' => 'Client',
             'therapy_price_id' => 'Therapy',
-            'timestamp' => 'Timestamp',
             'start' => 'Date',
         ];
     }

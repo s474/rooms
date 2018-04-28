@@ -1,3 +1,4 @@
+
 <?php
 
 namespace common\models;
@@ -18,7 +19,7 @@ class LocationSearch extends Location
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'company_id', 'created_at', 'updated_at'], 'integer'],
             [['name', 'address_line_1', 'postcode'], 'safe'],
         ];
     }
@@ -60,6 +61,9 @@ class LocationSearch extends Location
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'company_id' => $this->company_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

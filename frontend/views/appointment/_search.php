@@ -25,10 +25,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'therapy_id') ?>
 
-    <?php // echo $form->field($model, 'timestamp') ?>
-
-    <?php // echo $form->field($model, 'minutes_duration') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

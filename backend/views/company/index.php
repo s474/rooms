@@ -4,31 +4,35 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\ClientSearch */
+/* @var $searchModel common\models\CompanySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Clients';
+$this->title = 'Companies';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="client-index">
+<div class="company-index">
 
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
+    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Company', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //'name',
+            ['class' => 'yii\grid\SerialColumn'],
+
             'id',
-            'company_id',
-            'user_id',
+            'name',
+            'address_line_1',
+            'postcode',
             'created_at',
-            'updated_at',            
+            //'updated_at',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
-    <p>
-        <?= Html::a('Create Client', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>    
 </div>

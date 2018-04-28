@@ -17,9 +17,15 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
+ * @property string $first_name
+ * @property string $last_name
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ *
+ * @property Administrator[] $administrators
+ * @property Client[] $clients
+ * @property Therapist[] $therapists
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -186,4 +192,28 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdministrators()
+    {
+        return $this->hasMany(Administrator::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClients()
+    {
+        return $this->hasMany(Client::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTherapists()
+    {
+        return $this->hasMany(Therapist::className(), ['user_id' => 'id']);
+    }    
 }
