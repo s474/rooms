@@ -18,7 +18,8 @@
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-colorinput": "@dev",
         "dmstr/yii2-adminlte-asset": "^2.1",
-        "dektrium/yii2-user" : "*"
+        "dektrium/yii2-user": "*",
+        "dektrium/yii2-rbac": "1.0.0-alpha@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
