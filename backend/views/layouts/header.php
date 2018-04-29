@@ -22,10 +22,10 @@ use yii\helpers\Html;
                 <?php
 
                     if (Yii::$app->user->isGuest) {
-                        echo '<li>' . Html::a('Sign up', ['/site/signup']) . '</li>';
-                        echo '<li>' . Html::a('Log in ', ['/site/login']) . '</li>';
+                        echo '<li>' . Html::a('Sign up', ['/user/registration/register']) . '</li>';
+                        echo '<li>' . Html::a('Log in ', ['/user/security/login']) . '</li>';
                     } else {
-                        echo '<li>' . Html::a('Logout (' . Yii::$app->user->identity->username . ')', ['/site/logout']) . '</li>'; 
+                        echo '<li>' . Html::a('Logout (' . Yii::$app->user->identity->username . ')', ['/user/security/logout'], ['data-method' => 'POST']) . '</li>'; 
                     }                                
 
                 ?>                
