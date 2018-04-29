@@ -31,13 +31,16 @@
         <!-- /.search form -->
         
         <?php
-                    
+            
+            /*
             if (in_array($this->context->module->requestedRoute,[
                 'appointment/index',
                 'room/index',
                 'therapist/index',
                 ])) {
-        
+            
+             * 
+             */ 
                 echo '<div class="sidebar-calendar">';
                 echo \kartik\datetime\DateTimePicker::widget([
                     'type' => 4,                                    
@@ -62,16 +65,19 @@
                 ]); 
                 echo '</div>';
 
-            }
+            //}
         ?>
         
         <?php
             // yeah, very temporary
+            /*
             if (Yii::$app->user->identity->username == 'simon') {
                 echo '!*!*!*!*!*!*!*!';
                 echo \yii\helpers\Html::a($data->name, ['company/index']);                
                 echo \yii\helpers\Html::a($data->name, ['user/index']);                        
             }
+             * 
+             */
         ?>
        
         <?= dmstr\widgets\Menu::widget(
