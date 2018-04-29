@@ -17,7 +17,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-colorinput": "@dev",
-        "dmstr/yii2-adminlte-asset": "^2.1"
+        "dmstr/yii2-adminlte-asset": "^2.1",
+        "dektrium/yii2-user" : "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

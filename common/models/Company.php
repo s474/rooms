@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "company".
@@ -36,7 +37,7 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'created_at', 'updated_at'], 'required'],
+            [['name'], 'required'],
             [['created_at', 'updated_at'], 'integer'],
             [['name', 'address_line_1', 'postcode'], 'string', 'max' => 255],
         ];
@@ -96,4 +97,11 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Therapy::className(), ['company_id' => 'id']);
     }
+    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }    
 }
