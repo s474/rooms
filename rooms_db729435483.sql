@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: db729435483.db.1and1.com
--- Generation Time: Apr 29, 2018 at 06:10 PM
--- Server version: 5.5.59-0+deb7u1-log
+-- Generation Time: May 07, 2018 at 11:45 PM
+-- Server version: 5.5.60-0+deb7u1-log
 -- PHP Version: 5.4.45-0+deb7u13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   KEY `therapist_id` (`therapist_id`),
   KEY `client_id` (`client_id`),
   KEY `therapy_price_id` (`therapy_price_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -73,6 +73,14 @@ CREATE TABLE IF NOT EXISTS `auth_assignment` (
   PRIMARY KEY (`item_name`,`user_id`),
   KEY `auth_assignment_user_id_idx` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `auth_assignment`
+--
+
+INSERT INTO `auth_assignment` (`item_name`, `user_id`, `created_at`) VALUES
+('administrator', '2', 1525542115),
+('super', '1', 1525206388);
 
 -- --------------------------------------------------------
 
@@ -93,6 +101,67 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
   KEY `idx-auth_item-type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `auth_item`
+--
+
+INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
+('administrator', 1, '', NULL, NULL, 1525120712, 1525729237),
+('adminViewAppointments', 2, '', NULL, NULL, 1525206322, 1525206322),
+('client', 1, '', NULL, NULL, 1525120740, 1525206481),
+('createAppointment', 2, '', NULL, NULL, 1525727079, 1525727079),
+('createClient', 2, '', NULL, NULL, 1525727264, 1525727264),
+('createCompany', 2, '', NULL, NULL, 1525727327, 1525727327),
+('createLocation', 2, '', NULL, NULL, 1525727377, 1525727377),
+('createRoom', 2, '', NULL, NULL, 1525727413, 1525727413),
+('createRoomSupportsTherapy', 2, '', NULL, NULL, 1525727481, 1525727481),
+('createTherapist', 2, '', NULL, NULL, 1525728910, 1525728910),
+('createTherapistDoesTherapy', 2, '', NULL, NULL, 1525727675, 1525727675),
+('createTherapy', 2, '', NULL, NULL, 1525727539, 1525727539),
+('createTherapyPrice', 2, '', NULL, NULL, 1525727847, 1525727847),
+('deleteAppointment', 2, '', NULL, NULL, 1525727127, 1525727127),
+('deleteClient', 2, '', NULL, NULL, 1525727298, 1525727298),
+('deleteCompany', 2, '', NULL, NULL, 1525727369, 1525727369),
+('deleteLocation', 2, '', NULL, NULL, 1525727641, 1525727641),
+('deleteRoom', 2, '', NULL, NULL, 1525727435, 1525727435),
+('deleteRoomSupportsTherapy', 2, '', NULL, NULL, 1525727516, 1525727516),
+('deleteTherapist', 2, '', NULL, NULL, 1525728932, 1525728932),
+('deleteTherapistDoesTherapy', 2, '', NULL, NULL, 1525727705, 1525727705),
+('deleteTherapy', 2, '', NULL, NULL, 1525727568, 1525727568),
+('deleteTherapyPrice', 2, '', NULL, NULL, 1525727865, 1525727865),
+('editAppointments', 2, '', NULL, NULL, 1525728516, 1525728683),
+('editClient', 2, '', NULL, NULL, 1525728533, 1525728719),
+('editCompany', 2, '', NULL, NULL, 1525728540, 1525728763),
+('editLocation', 2, '', NULL, NULL, 1525728549, 1525728794),
+('editRoom', 2, '', NULL, NULL, 1525728558, 1525728826),
+('editRoomSupportsTherapy', 2, '', NULL, NULL, 1525728570, 1525728854),
+('editTherapist', 2, '', NULL, NULL, 1525728581, 1525728971),
+('editTherapistDoesTherapy', 2, '', NULL, NULL, 1525728598, 1525728999),
+('editTherapy', 2, '', NULL, NULL, 1525728608, 1525729049),
+('editTherapyPrice', 2, '', NULL, NULL, 1525728623, 1525729082),
+('super', 1, '', NULL, NULL, 1525120471, 1525729108),
+('therapist', 1, '', NULL, NULL, 1525120727, 1525120727),
+('updateAppointment', 2, '', NULL, NULL, 1525727117, 1525727117),
+('updateClient', 2, '', NULL, NULL, 1525727285, 1525727285),
+('updateCompany', 2, '', NULL, NULL, 1525727360, 1525727360),
+('updateLocation', 2, '', NULL, NULL, 1525727632, 1525727632),
+('updateRoom', 2, '', NULL, NULL, 1525727427, 1525727427),
+('updateRoomSupportsTherapy', 2, '', NULL, NULL, 1525727507, 1525727507),
+('updateTherapist', 2, '', NULL, NULL, 1525728924, 1525728924),
+('updateTherapistDoesTherapy', 2, '', NULL, NULL, 1525727693, 1525727693),
+('updateTherapy', 2, '', NULL, NULL, 1525727560, 1525727560),
+('updateTherapyPrice', 2, '', NULL, NULL, 1525727859, 1525727859),
+('viewAppointment', 2, '', NULL, NULL, 1525727039, 1525727097),
+('viewClient', 2, '', NULL, NULL, 1525727274, 1525727274),
+('viewCompany', 2, '', NULL, NULL, 1525727335, 1525727335),
+('viewLocation', 2, '', NULL, NULL, 1525727384, 1525727384),
+('viewRoom', 2, '', NULL, NULL, 1525727420, 1525727420),
+('viewRoomSupportsTherapy', 2, '', NULL, NULL, 1525727492, 1525727492),
+('viewTherapist', 2, '', NULL, NULL, 1525728916, 1525728916),
+('viewTherapistDoesTherapy', 2, '', NULL, NULL, 1525727685, 1525727685),
+('viewTherapy', 2, '', NULL, NULL, 1525727551, 1525727551),
+('viewTherapyPrice', 2, '', NULL, NULL, 1525727853, 1525727853);
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +174,63 @@ CREATE TABLE IF NOT EXISTS `auth_item_child` (
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `auth_item_child`
+--
+
+INSERT INTO `auth_item_child` (`parent`, `child`) VALUES
+('super', 'administrator'),
+('editAppointments', 'createAppointment'),
+('editClient', 'createClient'),
+('editCompany', 'createCompany'),
+('editLocation', 'createLocation'),
+('editRoom', 'createRoom'),
+('editRoomSupportsTherapy', 'createRoomSupportsTherapy'),
+('editTherapist', 'createTherapist'),
+('editTherapistDoesTherapy', 'createTherapistDoesTherapy'),
+('editTherapy', 'createTherapy'),
+('editTherapyPrice', 'createTherapyPrice'),
+('editAppointments', 'deleteAppointment'),
+('editClient', 'deleteClient'),
+('editCompany', 'deleteCompany'),
+('editLocation', 'deleteLocation'),
+('editRoom', 'deleteRoom'),
+('editRoomSupportsTherapy', 'deleteRoomSupportsTherapy'),
+('editTherapist', 'deleteTherapist'),
+('editTherapistDoesTherapy', 'deleteTherapistDoesTherapy'),
+('editTherapy', 'deleteTherapy'),
+('editTherapyPrice', 'deleteTherapyPrice'),
+('administrator', 'editAppointments'),
+('administrator', 'editClient'),
+('super', 'editCompany'),
+('administrator', 'editLocation'),
+('administrator', 'editRoom'),
+('administrator', 'editRoomSupportsTherapy'),
+('administrator', 'editTherapist'),
+('administrator', 'editTherapistDoesTherapy'),
+('administrator', 'editTherapy'),
+('administrator', 'editTherapyPrice'),
+('editAppointments', 'updateAppointment'),
+('editClient', 'updateClient'),
+('editCompany', 'updateCompany'),
+('editLocation', 'updateLocation'),
+('editRoom', 'updateRoom'),
+('editRoomSupportsTherapy', 'updateRoomSupportsTherapy'),
+('editTherapist', 'updateTherapist'),
+('editTherapistDoesTherapy', 'updateTherapistDoesTherapy'),
+('editTherapy', 'updateTherapy'),
+('editTherapyPrice', 'updateTherapyPrice'),
+('editAppointments', 'viewAppointment'),
+('editClient', 'viewClient'),
+('editCompany', 'viewCompany'),
+('editLocation', 'viewLocation'),
+('editRoom', 'viewRoom'),
+('editRoomSupportsTherapy', 'viewRoomSupportsTherapy'),
+('editTherapist', 'viewTherapist'),
+('editTherapistDoesTherapy', 'viewTherapistDoesTherapy'),
+('editTherapy', 'viewTherapy'),
+('editTherapyPrice', 'viewTherapyPrice');
 
 -- --------------------------------------------------------
 
@@ -135,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -176,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `location` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -237,7 +363,9 @@ CREATE TABLE IF NOT EXISTS `profile` (
 
 INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`, `timezone`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -254,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `location_id` (`location_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -269,7 +397,7 @@ CREATE TABLE IF NOT EXISTS `room_supports_therapy` (
   PRIMARY KEY (`id`),
   KEY `room_id` (`room_id`),
   KEY `therapy_id` (`therapy_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -308,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `therapist` (
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -323,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `therapist_does_therapy` (
   PRIMARY KEY (`id`),
   KEY `therapist_id` (`therapist_id`),
   KEY `therapy_id` (`therapy_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -355,7 +483,7 @@ CREATE TABLE IF NOT EXISTS `therapy` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -373,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `therapy_price` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `therapy_id` (`therapy_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -419,15 +547,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_username` (`username`),
   UNIQUE KEY `user_unique_email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`) VALUES
-(1, 'simon', 'chrts.offire@gmail.com', '$2y$10$afu05QQqu8.e3p30oXsIKOnl8jcv1zAG9WzaMN8GXsB.Mty6uzn2S', '6dCXLjMZxgNFezxsI3zCF2-UKFHqrYHs', NULL, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525001655, 1525001655, 0, 1525016623),
-(2, 'simon2', 'chrts.offire+2@gmail.com', '$2y$10$q4uFZroTpuJOjblVKwZn/uAsbp.y0ZEjAOYQvXb5aO2gzbuxNKC9.', 'ifBSJhMLbIMguaAlIsEB4TzzFTs1l9fK', 1525002221, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525002221, 1525002221, 0, NULL);
+(1, 'simon', 'chrts.offire@gmail.com', '$2y$10$afu05QQqu8.e3p30oXsIKOnl8jcv1zAG9WzaMN8GXsB.Mty6uzn2S', '6dCXLjMZxgNFezxsI3zCF2-UKFHqrYHs', 1525206516, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525001655, 1525001655, 0, 1525724808),
+(2, 'simon2', 'chrts.offire+2@gmail.com', '$2y$10$q4uFZroTpuJOjblVKwZn/uAsbp.y0ZEjAOYQvXb5aO2gzbuxNKC9.', 'ifBSJhMLbIMguaAlIsEB4TzzFTs1l9fK', 1525002221, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525002221, 1525002221, 0, 1525546071),
+(3, 'simon3', 'chrts.offire+3@gmail.com', '$2y$10$10rKfAPElBYmeEI9PDSOh.1AZTawkn5jJDDYywE9p0VIAq9mysf9a', 'e19z1KCCRX4s3H--SqFdAhj94Qkx1UbS', 1525034518, NULL, NULL, '2001:8b0:fb81:9331:d982:c779:c132:b188', 1525034518, 1525034518, 0, NULL),
+(4, 'simon4', 'chrts.offire+4@gmail.com', '$2y$10$Ply0NMocdpO5TMSYT8qZ6eWimFl2vttUNItssRXwQZkd9x4wGeJlm', 'SfCjEsVDt1syOKBjUbIw7YWIZkwsObG3', 1525120627, NULL, NULL, '2001:8b0:fb81:9331:1c2c:6756:be70:8e45', 1525120627, 1525120627, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -468,8 +598,8 @@ INSERT INTO `user_bak` (`id`, `username`, `auth_key`, `password_hash`, `password
 -- Constraints for table `administrator`
 --
 ALTER TABLE `administrator`
-  ADD CONSTRAINT `administrator_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_bak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `administrator_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `administrator_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_bak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `appointment`
@@ -503,8 +633,8 @@ ALTER TABLE `auth_item_child`
 -- Constraints for table `client`
 --
 ALTER TABLE `client`
-  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_bak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `client_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `client_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_bak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `location`
@@ -541,8 +671,8 @@ ALTER TABLE `social_account`
 -- Constraints for table `therapist`
 --
 ALTER TABLE `therapist`
-  ADD CONSTRAINT `therapist_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_bak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `therapist_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `therapist_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `therapist_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_bak` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `therapist_does_therapy`
@@ -555,8 +685,8 @@ ALTER TABLE `therapist_does_therapy`
 -- Constraints for table `therapist_therapy_price`
 --
 ALTER TABLE `therapist_therapy_price`
-  ADD CONSTRAINT `therapist_therapy_price_ibfk_2` FOREIGN KEY (`therapy_price_id`) REFERENCES `therapy_price` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `therapist_therapy_price_ibfk_1` FOREIGN KEY (`therapist_id`) REFERENCES `therapist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `therapist_therapy_price_ibfk_1` FOREIGN KEY (`therapist_id`) REFERENCES `therapist` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `therapist_therapy_price_ibfk_2` FOREIGN KEY (`therapy_price_id`) REFERENCES `therapy_price` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `therapy`
