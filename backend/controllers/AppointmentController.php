@@ -33,8 +33,8 @@ class AppointmentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => 'index',
-                        'roles' => ['super'],
+                        'actions' => ['index'],
+                        'roles' => ['adminViewAppointments'],
                     ],
                 ],
             ],
