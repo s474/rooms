@@ -80,6 +80,22 @@
              */
         ?>
        
+        <?php
+        
+            
+            if (\Yii::$app->user->can('adminViewAppointments')) {
+               echo '<br ><span style="background-color:white;">!*!*!*!*!*! adminViewAppointmen</span>';
+            } else {
+               echo '<br ><span style="background-color:white;">!*!*!*!*!*! NO adminViewAppointmen</span>';                
+            }
+        
+            //if(Yii::app()->authManager->isAssigned("admin", $userid);                                   
+        ?>
+        
+        
+        <span style="background-color:white;"><?php //var_dump(\Yii::$app->user)?></span>
+        
+        
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],

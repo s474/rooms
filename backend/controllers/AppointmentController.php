@@ -8,6 +8,8 @@ use common\models\AppointmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 /**
  * AppointmentController implements the CRUD actions for Appointment model.
@@ -26,6 +28,17 @@ class AppointmentController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => 'index',
+                        'roles' => ['super'],
+                    ],
+                ],
+            ],
+            
         ];
     }        
 
@@ -37,7 +50,7 @@ class AppointmentController extends Controller
     {
         $searchModel = new AppointmentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination->pageSize = 8;
+        $dataProvider->pagination->pageSize = 8;        
         
         return $this->render('index', [
             'searchModel' => $searchModel,
