@@ -193,19 +193,7 @@ $this->title = 'Appointments';
 </div>
 
 <?php
-/*
-        if (\Yii::$app->user->can('adminViewAppointment')) {
-           echo '<br ><span style="background-color:white;">!*!*!*!*!*! adminViewAppointmen</span>';
-        } else {
-           echo '<br ><span style="background-color:white;">!*!*!*!*!*! NO adminViewAppointmen</span>';                
-        }
- * 
- */
 
-var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'adminViewAppointment'));
-var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'administrator'));
 var_dump(\Yii::$app->user->can('adminViewAppointment'));
-var_dump(\Yii::$app->user->can('administrator'));
-var_dump(\Yii::$app->user->can('super'));
 
 ?>

@@ -42,8 +42,7 @@ class AppointmentController extends Controller
                         'roles' => ['editAppointment'],
                     ],                    
                 ],                
-            ],
-            
+            ],            
         ];
     }        
 

@@ -9,6 +9,7 @@ use common\models\Therapy;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * TherapyPriceController implements the CRUD actions for TherapyPrice model.
@@ -27,6 +28,21 @@ class TherapyPriceController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['viewTherapyPrice'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','delete'],
+                        'roles' => ['editTherapyPrice'],
+                    ],                    
+                ],                
+            ],            
         ];
     }
 

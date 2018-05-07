@@ -9,6 +9,7 @@ use common\models\Therapy;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * RoomSupportsTherapyController implements the CRUD actions for RoomSupportsTherapy model.
@@ -27,6 +28,21 @@ class RoomSupportsTherapyController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['viewRoomSupportsTherapy'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','delete'],
+                        'roles' => ['editRoomSupportsTherapy'],
+                    ],                    
+                ],                
+            ],            
         ];
     }
 

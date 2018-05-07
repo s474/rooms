@@ -102,10 +102,16 @@
                 'items' => [                    
                     [
                         'label' => 'Companies', 
-                        'icon' => 'calendar', 
+                        'icon' => 'server', 
                         'url' => ['/company/index'], 
                         'visible' => \Yii::$app->user->can('editCompany')
-                    ],                    
+                    ],
+                    [
+                        'label' => 'Users', 
+                        'icon' => 'users', 
+                        'url' => ['/user/admin/index'], 
+                        'visible' => \Yii::$app->user->can('super')
+                    ],
                     [
                         'label' => 'Appointments', 
                         'icon' => 'calendar', 

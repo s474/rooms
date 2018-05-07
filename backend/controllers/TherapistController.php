@@ -9,6 +9,7 @@ use common\models\TherapistDoesTherapySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * TherapistController implements the CRUD actions for Therapist model.
@@ -27,6 +28,21 @@ class TherapistController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index'],
+                        'roles' => ['viewTherapist'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','delete'],
+                        'roles' => ['editTherapist'],
+                    ],                    
+                ],                
+            ],            
         ];
     }
 
