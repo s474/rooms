@@ -84,9 +84,9 @@
         
             
             if (\Yii::$app->user->can('adminViewAppointments')) {
-               echo '<br ><span style="background-color:white;">!*!*!*!*!*! adminViewAppointmen</span>';
+               //echo '<br ><span style="background-color:white;">!*!*!*!*!*! adminViewAppointmen</span>';
             } else {
-               echo '<br ><span style="background-color:white;">!*!*!*!*!*! NO adminViewAppointmen</span>';                
+               //echo '<br ><span style="background-color:white;">!*!*!*!*!*! NO adminViewAppointmen</span>';                
             }
         
             //if(Yii::app()->authManager->isAssigned("admin", $userid);                                   
@@ -99,25 +99,49 @@
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-
-                'items' => [
-                    
-                    
-                    //['label' => 'Home', 'url' => ['/site/index']],
-                    
-                    /*
-                    ['label' => 'Appointments', 'url' => ['/appointment/calendar'], 'items' => [
-                        ['label' => 'Calendar', 'url' => ['/appointment/calendar']],
-                        ['label' => 'Grid', 'url' => ['/appointment/index']],
-                    ]],
-                    */
-                    
-                    ['label' => 'Appointments', 'icon' => 'calendar', 'url' => ['/appointment/index']],
-                    ['label' => 'Rooms', 'icon' => 'building-o', 'url' => ['/room/index']],
-                    ['label' => 'Therapists', 'icon' => 'address-card-o', 'url' => ['/therapist/index']],  
-                    ['label' => 'Therapies', 'icon' => 'plus-square', 'url' => ['/therapy/index']],
-                    ['label' => 'Prices', 'icon' => 'gbp', 'url' => ['/therapy-price/index']],        
-                    ['label' => 'Clients', 'icon' => 'address-book-o', 'url' => ['/client/index']],                    
+                'items' => [                    
+                    [
+                        'label' => 'Companies', 
+                        'icon' => 'calendar', 
+                        'url' => ['/company/index'], 
+                        'visible' => \Yii::$app->user->can('editCompany')
+                    ],                    
+                    [
+                        'label' => 'Appointments', 
+                        'icon' => 'calendar', 
+                        'url' => ['/appointment/index'], 
+                        'visible' => \Yii::$app->user->can('viewAppointment')
+                    ],
+                    [
+                        'label' => 'Rooms', 
+                        'icon' => 'building-o', 
+                        'url' => ['/room/index'], 
+                        'visible' => \Yii::$app->user->can('viewRoom')
+                    ],
+                    [
+                        'label' => 'Therapists', 
+                        'icon' => 'address-card-o', 
+                        'url' => ['/therapist/index'], 
+                        'visible' => \Yii::$app->user->can('viewTherapist')
+                    ],  
+                    [
+                        'label' => 'Therapies', 
+                        'icon' => 'plus-square', 
+                        'url' => ['/therapy/index'], 
+                        'visible' => \Yii::$app->user->can('viewTherapy')
+                    ],
+                    [
+                        'label' => 'Prices', 
+                        'icon' => 'gbp', 
+                        'url' => ['/therapy-price/index'], 
+                        'visible' => \Yii::$app->user->can('viewTherapyPrice')
+                    ],        
+                    [
+                        'label' => 'Clients', 
+                        'icon' => 'address-book-o', 
+                        'url' => ['/client/index'], 
+                        'visible' => \Yii::$app->user->can('viewClient')
+                    ],                    
                     
                     /*                                        
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],                    
@@ -154,7 +178,6 @@
                      */
 
                 ],
-
             ]
         ) ?>
 

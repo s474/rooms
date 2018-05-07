@@ -34,9 +34,14 @@ class AppointmentController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index'],
-                        'roles' => ['adminViewAppointments'],
+                        'roles' => ['viewAppointment'],
                     ],
-                ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','delete'],
+                        'roles' => ['editAppointment'],
+                    ],                    
+                ],                
             ],
             
         ];
