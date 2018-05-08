@@ -101,6 +101,18 @@
                         'visible' => \Yii::$app->user->can('viewRoom')
                     ],
                     [
+                        'label' => 'Administrators', 
+                        'icon' => 'address-card-o', 
+                        'url' => ['/administrator/index'], 
+                        'visible' => \Yii::$app->user->can('viewAdministrator')
+                    ],                    
+                    [
+                        'label' => 'Clients', 
+                        'icon' => 'address-card-o', 
+                        'url' => ['/client/index'], 
+                        'visible' => \Yii::$app->user->can('viewClient')
+                    ],                    
+                    [
                         'label' => 'Therapists', 
                         'icon' => 'address-card-o', 
                         'url' => ['/therapist/index'], 
@@ -117,13 +129,7 @@
                         'icon' => 'gbp', 
                         'url' => ['/therapy-price/index'], 
                         'visible' => \Yii::$app->user->can('viewTherapyPrice')
-                    ],        
-                    [
-                        'label' => 'Clients', 
-                        'icon' => 'address-book-o', 
-                        'url' => ['/client/index'], 
-                        'visible' => \Yii::$app->user->can('viewClient')
-                    ],                    
+                    ],                            
                     
                     /*                                        
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],                    
