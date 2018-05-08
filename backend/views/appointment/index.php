@@ -191,9 +191,3 @@ $this->title = 'Appointments';
     <p><?= Html::a('Create Appointment', ['create'], ['class' => 'btn btn-success']) ?></p>        
     
 </div>
-
-<?php
-
-var_dump(\Yii::$app->user->can('adminViewAppointment'));
-
-?>

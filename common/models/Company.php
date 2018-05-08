@@ -50,7 +50,7 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Company',
             'address_line_1' => 'Address Line 1',
             'postcode' => 'Postcode',
             'created_at' => 'Created At',
