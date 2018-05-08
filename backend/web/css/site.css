@@ -149,3 +149,21 @@ h1, .h1 {
 .fc th {
     font-weight: normal;
 }
+
+.sidebar-toggle {
+    visibility: hidden;
+}
+
+/* show sidebar toggle on smaller screens */
+@media(max-width:767px) {
+    .sidebar-toggle {
+        visibility: visible;
+    }
+}
+
+/* hide calendar if height very small */
+@media(max-height:500px) {
+    .sidebar-calendar {
+        display: none;
+    }
+}
