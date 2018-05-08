@@ -33,7 +33,7 @@ class TherapistController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','view'],
                         'roles' => ['viewTherapist'],
                     ],
                     [

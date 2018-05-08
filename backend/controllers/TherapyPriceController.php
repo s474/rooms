@@ -33,7 +33,7 @@ class TherapyPriceController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','view'],
                         'roles' => ['viewTherapyPrice'],
                     ],
                     [
