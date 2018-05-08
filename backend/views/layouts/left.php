@@ -67,32 +67,8 @@
 
             //}
         ?>
-        
-        <?php
-            // yeah, very temporary
-            /*
-            if (Yii::$app->user->identity->username == 'simon') {
-                echo '!*!*!*!*!*!*!*!';
-                echo \yii\helpers\Html::a($data->name, ['company/index']);                
-                echo \yii\helpers\Html::a($data->name, ['user/index']);                        
-            }
-             * 
-             */
-        ?>
-       
-        <?php
-        
-            
-            if (\Yii::$app->user->can('adminViewAppointments')) {
-               //echo '<br ><span style="background-color:white;">!*!*!*!*!*! adminViewAppointmen</span>';
-            } else {
-               //echo '<br ><span style="background-color:white;">!*!*!*!*!*! NO adminViewAppointmen</span>';                
-            }
-        
-            //if(Yii::app()->authManager->isAssigned("admin", $userid);                                   
-        ?>
-        
-        
+
+               
         <span style="background-color:white;"><?php //var_dump(\Yii::$app->user)?></span>
         
         
