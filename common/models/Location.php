@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "location".
@@ -19,7 +20,14 @@ use Yii;
  * @property Room[] $rooms
  */
 class Location extends \yii\db\ActiveRecord
-{
+{    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -34,7 +42,7 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_id', 'address_line_1', 'postcode', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'address_line_1', 'postcode', 'name'], 'required'],
             [['company_id', 'created_at', 'updated_at'], 'integer'],
             [['name', 'address_line_1'], 'string', 'max' => 255],
             [['postcode'], 'string', 'max' => 20],

@@ -22,7 +22,14 @@ use yii\behaviors\TimestampBehavior;
  * @property Therapy[] $therapies
  */
 class Company extends \yii\db\ActiveRecord
-{
+{    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -96,12 +103,5 @@ class Company extends \yii\db\ActiveRecord
     public function getTherapies()
     {
         return $this->hasMany(Therapy::className(), ['company_id' => 'id']);
-    }
-    
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
-    }    
+    }       
 }
