@@ -21,6 +21,7 @@ $this->title = 'Locations';
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'company_id',
             'name',
             'address_line_1',
             'postcode',

@@ -19,7 +19,7 @@ use Yii;
  * @property Company $company
  * @property TherapyPrice[] $therapyPrices
  */
-class Therapy extends \yii\db\ActiveRecord
+class Therapy extends \common\components\RoomsAR
 {
     /**
      * @inheritdoc

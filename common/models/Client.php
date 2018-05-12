@@ -17,7 +17,7 @@ use Yii;
  * @property User $user
  * @property Company $company
  */
-class Client extends \yii\db\ActiveRecord
+class Client extends \common\components\RoomsAR
 {
     /**
      * @inheritdoc
