@@ -19,7 +19,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Company $company
  * @property Room[] $rooms
  */
-class Location extends \yii\db\ActiveRecord
+class Location extends \common\components\RoomsAR
 {    
     public function behaviors()
     {
