@@ -38,5 +38,6 @@ var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'administrator
 var_dump(\Yii::$app->user->can('adminViewAppointments'));
 var_dump(\Yii::$app->user->can('administrator'));
 var_dump(\Yii::$app->user->can('super'));
+var_dump(Yii::$app->user);
 
 ?>
