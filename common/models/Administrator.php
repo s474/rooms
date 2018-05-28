@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "administrator".
@@ -18,6 +19,13 @@ use Yii;
  */
 class Administrator extends \common\components\RoomsAR
 {
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -68,4 +76,10 @@ class Administrator extends \common\components\RoomsAR
     {
         return $this->hasOne(Company::className(), ['id' => 'company_id']);
     }
+    
+    public function getName()
+    {
+        //return $this->user->firstname . ' ' . $this->user->last_name;
+        return $this->user->username;
+    }    
 }

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "therapist".
@@ -21,6 +22,13 @@ use Yii;
  */
 class Therapist extends \common\components\RoomsAR
 {
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -35,7 +43,7 @@ class Therapist extends \common\components\RoomsAR
     public function rules()
     {
         return [
-            [['company_id', 'user_id', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'user_id'], 'required'],
             [['company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
@@ -98,7 +106,8 @@ class Therapist extends \common\components\RoomsAR
     
     public function getName()
     {
-        return $this->user->firstname . ' ' . $this->user->last_name;
+        //return $this->user->firstname . ' ' . $this->user->last_name;
+        return $this->user->username;
     }
     
 }

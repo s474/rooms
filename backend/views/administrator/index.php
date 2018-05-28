@@ -17,14 +17,40 @@ $this->title = 'Administrators';
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'company_id',
-            'user_id',
-            'created_at',
-            'updated_at',
+        'columns' => [            
+            [
+                'attribute' => 'company',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->company->name, ['company/update', 'id' => $data->company_id]);
+                },
+            ],            
+            [
+                'attribute' => 'user',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['user/admin/update', 'id' => $data->user_id]);
+                },
+            ],                        
+            [
+                'attribute' => 'name',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->user->email, ['administrator/update', 'id' => $data->id]);
+                },
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->created_at);
+                },
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->updated_at);
+                },
+            ],                        
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

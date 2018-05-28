@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Administrator */
 
-$this->title = $model->username;
+$this->title = $model->name;
 ?>
 <div class="administrator-view">
 
