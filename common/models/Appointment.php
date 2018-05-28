@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use yii\behaviors\TimestampBehavior;
 
 use Yii;
 //use yii\behaviors\AttributeBehavior;
@@ -26,6 +27,13 @@ use Yii;
  */
 class Appointment extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -40,8 +48,8 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {        
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start', 'end', 'created_at', 'updated_at'], 'required'],
-            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'integer'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start', 'end'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'created_at', 'updated_at'], 'integer'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'filter', 'filter' => 'intval'],
             [['start'], 'validateApptDate'],
             [['therapy_price_id'], 'validateRoomTherapy'],

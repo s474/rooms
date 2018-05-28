@@ -19,6 +19,14 @@ $this->title = 'Therapies';
         'filterModel' => $searchModel,
         'columns' => [
             [
+                'attribute' => 'company',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->company->name, ['company/update', 'id' => $data->id]);
+                },
+                'visible' => \Yii::$app->user->can('super'),                        
+            ],            
+            [
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function ($data) {
@@ -28,7 +36,19 @@ $this->title = 'Therapies';
             [                
                 'attribute'=>'needs_special_room',
                 'format' => 'boolean',                              
-            ],             
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->created_at);
+                },
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->updated_at);
+                },
+            ],                        
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

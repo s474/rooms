@@ -22,8 +22,7 @@ use kartik\color\ColorInput;
             echo $form->field($model, 'user_id')->dropdownList(ArrayHelper::map(User::find()->all(), 'id', 'username'),['prompt'=>'Select User']);
         } else {
             echo $form->field($model, 'company_id')->hiddenInput()->label(false);
-            echo $form->field($model, 'user_id')->hiddenInput()->label(false);
-            
+            echo $form->field($model, 'user_id')->hiddenInput()->label(false);            
         }        
     ?>
 

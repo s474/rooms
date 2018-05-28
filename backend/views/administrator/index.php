@@ -24,6 +24,7 @@ $this->title = 'Administrators';
                 'value' => function ($data) {
                     return Html::a($data->company->name, ['company/update', 'id' => $data->company_id]);
                 },
+                'visible' => \Yii::$app->user->can('super'),
             ],            
             [
                 'attribute' => 'user',

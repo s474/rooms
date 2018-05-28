@@ -47,7 +47,19 @@ $this->title = 'Rooms';
                 'value' => function ($data) {
                     return Html::a($data->location->name, ['location/update', 'id' => $data->location_id]);
                 },                
-            ],            
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->created_at);
+                },
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->updated_at);
+                },
+            ],                        
             [
                 'attribute' => 'colour',
                 'format' => 'raw',
@@ -80,7 +92,19 @@ $this->title = 'Rooms';
                 },
             ],
             'address_line_1',            
-            'postcode',                        
+            'postcode',
+            [
+                'attribute' => 'created_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->created_at);
+                },
+            ],
+            [
+                'attribute' => 'updated_at',
+                'value' => function ($data) {
+                    return Yii::$app->formatter->asDatetime($data->updated_at);
+                },
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',

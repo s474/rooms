@@ -16,9 +16,15 @@ use kartik\color\ColorInput;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'company_id')->dropdownList(ArrayHelper::map(Company::find()->all(), 'id', 'name'),['prompt'=>'Select Company']); ?>
-    
-    <?= $form->field($model, 'user_id')->dropdownList(ArrayHelper::map(User::find()->all(), 'id', 'username'),['prompt'=>'Select User']); ?>
+    <?php      
+        if (\Yii::$app->user->can('super')) {
+            echo $form->field($model, 'company_id')->dropdownList(ArrayHelper::map(Company::find()->all(), 'id', 'name'),['prompt'=>'Select Company']); 
+            echo $form->field($model, 'user_id')->dropdownList(ArrayHelper::map(User::find()->all(), 'id', 'username'),['prompt'=>'Select User']);
+        } else {
+            echo $form->field($model, 'company_id')->hiddenInput()->label(false);
+            echo $form->field($model, 'user_id')->hiddenInput()->label(false);            
+        }        
+    ?>
    
     <?= $form->field($model, 'colour')->widget(ColorInput::classname(), [
             'options' => ['placeholder' => 'Select colour ...'],

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "therapy".
@@ -21,6 +22,13 @@ use Yii;
  */
 class Therapy extends \common\components\RoomsAR
 {
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -35,7 +43,7 @@ class Therapy extends \common\components\RoomsAR
     public function rules()
     {
         return [
-            [['company_id', 'name', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'name'], 'required'],
             [['company_id', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['needs_special_room'], 'string', 'max' => 1],

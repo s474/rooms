@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use yii\behaviors\TimestampBehavior;
 
 use Yii;
 
@@ -17,6 +18,13 @@ use Yii;
  */
 class Room extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
@@ -32,7 +40,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             [['location_id', 'name', 'colour'], 'required'],
-            [['location_id'], 'integer'],
+            [['location_id', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 128],
             [['colour'], 'string', 'max' => 7],
             [['name'], 'unique', 'targetAttribute' => ['name', 'location_id'], 'message' => 'Name must be unique for location.'],

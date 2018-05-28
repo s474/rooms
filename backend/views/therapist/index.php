@@ -25,6 +25,7 @@ $this->title = 'Therapists';
                 'value' => function ($data) {
                     return Html::a($data->company->name, ['company/update', 'id' => $data->id]);
                 },
+                'visible' => \Yii::$app->user->can('super'),                        
             ],
             [
                 'attribute' => 'user',
