@@ -32,12 +32,18 @@ The footer of the box
 <!-- /.box -->
 
 <?php
-
+/*
 var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'adminViewAppointment'));
 var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'administrator'));
 var_dump(\Yii::$app->user->can('adminViewAppointments'));
 var_dump(\Yii::$app->user->can('administrator'));
 var_dump(\Yii::$app->user->can('super'));
 var_dump(Yii::$app->user);
+ * 
+ */
+var_dump($adminAccs);
+var_dump($therapistAccs);
+var_dump($clientAccs);
 
 ?>
+

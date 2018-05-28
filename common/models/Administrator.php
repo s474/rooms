@@ -32,7 +32,7 @@ class Administrator extends \common\components\RoomsAR
     public function rules()
     {
         return [
-            [['company_id', 'user_id', 'created_at', 'updated_at'], 'required'],
+            [['company_id', 'user_id'], 'required'],
             [['company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],

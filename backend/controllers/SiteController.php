@@ -60,7 +60,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $adminAccs = \common\models\Administrator::find()->where(['user_id' => \Yii::$app->user->id])->all();
+        $therapistAccs = \common\models\Therapist::find()->where(['user_id' => \Yii::$app->user->id])->all();
+        $clientAccs = \common\models\Client::find()->where(['user_id' => \Yii::$app->user->id])->all();
+        
+        return $this->render('index', [
+            'adminAccs' => $adminAccs,
+            'therapistAccs' => $therapistAccs,
+            'clientAccs' => $clientAccs,            
+        ]);        
     }
 
     /**
@@ -68,6 +76,7 @@ class SiteController extends Controller
      *
      * @return string
      */
+    /*
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -85,16 +94,21 @@ class SiteController extends Controller
             ]);
         }
     }
+     * 
+     */
 
     /**
      * Logout action.
      *
      * @return string
      */
+    /*
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
+     * 
+     */
 }
