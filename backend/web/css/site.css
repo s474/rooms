@@ -171,3 +171,7 @@ h1, .h1 {
 #calendar {
     background-color: #ffffff;
 }
+
+.content-wrapper {
+    background-color: #ffffff !important;
+}
