@@ -170,27 +170,7 @@ class Appointment extends \yii\db\ActiveRecord
     public function getClient()
     {
         return $this->hasOne(Client::className(), ['id' => 'client_id']);
-    }
-    
-    /*
-    public function beforeSave()
-    {
-        echo '<br /><br />before this->getDirtyAttributes:';
-        var_dump($this->getDirtyAttributes());               
-    }  
-    */
-    
-    /* Already call calcCate once in validation so this seem v wrong
-    public function afterSave($insert, $changedAttributes)
-    {
-        if($insert || (isset($changedAttributes['therapy_price_id']) || isset($changedAttributes['start']))) {                            
-            $this->end = $this->calcEnd(); 
-            $this->save();            
-        }
-        
-        parent::afterSave($insert, $changedAttributes);
     }    
-    */
     
     public function calcEnd()
     {
@@ -201,7 +181,7 @@ class Appointment extends \yii\db\ActiveRecord
     
     /*
      * 
-     * Setting end date with behaviour rather than afterSave
+     * Setting end date with behaviour (this gets done in validation now)
      * 
      * 
     public function behaviors()
