@@ -25,12 +25,19 @@ $this->title = 'Therapists';
                 'value' => function ($data) {
                     return Html::a($data->company->name, ['company/update', 'id' => $data->id]);
                 },
-            ],            
+            ],
+            [
+                'attribute' => 'user',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['user/admin/update', 'id' => $data->user_id]);
+                },
+            ],                        
             [
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->name, ['therapist/update', 'id' => $data->id]);
+                    return Html::a($data->user->email, ['therapist/update', 'id' => $data->id]);
                 },
             ],
             [
@@ -54,7 +61,15 @@ $this->title = 'Therapists';
                 'value' => function ($data) {
                     return Yii::$app->formatter->asDatetime($data->updated_at);
                 },
+            ], 
+            [
+                'attribute' => 'colour',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->colour . '"></span>';
+                },
             ],                        
+                        
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

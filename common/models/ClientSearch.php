@@ -13,17 +13,18 @@ use common\models\Client;
 class ClientSearch extends Client
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['id', 'company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['notes'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -64,6 +65,8 @@ class ClientSearch extends Client
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', 'notes', $this->notes]);
 
         return $dataProvider;
     }

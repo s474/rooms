@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use common\models\Company;
 use common\models\User;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Administrator */
@@ -19,6 +20,11 @@ use common\models\User;
     
     <?= $form->field($model, 'user_id')->dropdownList(ArrayHelper::map(User::find()->all(), 'id', 'username'),['prompt'=>'Select User']); ?>
 
+    <?= $form->field($model, 'colour')->widget(ColorInput::classname(), [
+            'options' => ['placeholder' => 'Select colour ...'],
+        ]);
+    ?>
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

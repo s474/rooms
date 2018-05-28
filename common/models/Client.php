@@ -11,6 +11,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property int $company_id
  * @property int $user_id
+ * @property string $notes
  * @property int $created_at
  * @property int $updated_at
  *
@@ -43,6 +44,7 @@ class Client extends \common\components\RoomsAR
         return [
             [['company_id', 'user_id'], 'required'],
             [['company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['notes'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['company_id'], 'exist', 'skipOnError' => true, 'targetClass' => Company::className(), 'targetAttribute' => ['company_id' => 'id']],
         ];
@@ -57,6 +59,7 @@ class Client extends \common\components\RoomsAR
             'id' => 'ID',
             'company_id' => 'Company ID',
             'user_id' => 'User ID',
+            'notes' => 'Notes',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

@@ -13,17 +13,18 @@ use common\models\Therapist;
 class TherapistSearch extends Therapist
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['id', 'company_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['colour'], 'safe'],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios()
     {
@@ -64,6 +65,8 @@ class TherapistSearch extends Therapist
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', 'colour', $this->colour]);
 
         return $dataProvider;
     }

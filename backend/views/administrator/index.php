@@ -51,7 +51,14 @@ $this->title = 'Administrators';
                     return Yii::$app->formatter->asDatetime($data->updated_at);
                 },
             ],                        
-
+            [
+                'attribute' => 'colour',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return '<div style="width: 25px; height: 20px; border: solid 1px #222; background-color:' . $data->colour . '"></span>';
+                },
+            ],
+                        
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -24,14 +24,22 @@ $this->title = 'Clients';
                 'value' => function ($data) {
                     return Html::a($data->company->name, ['company/update', 'id' => $data->id]);
                 },
-            ],            
+            ],
+            [
+                'attribute' => 'user',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return Html::a($data->name, ['user/admin/update', 'id' => $data->user_id]);
+                },
+            ],                        
             [
                 'attribute' => 'name',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    return Html::a($data->name, ['client/update', 'id' => $data->id]);
+                    return Html::a($data->user->email, ['client/update', 'id' => $data->id]);
                 },
             ],
+            'notes',
             [
                 'attribute' => 'created_at',
                 'value' => function ($data) {
