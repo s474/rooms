@@ -8,6 +8,7 @@ use common\models\AdministratorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * AdministratorController implements the CRUD actions for Administrator model.
@@ -26,6 +27,21 @@ class AdministratorController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index','view'],
+                        'roles' => ['viewAdministrator'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','delete'],
+                        'roles' => ['editAdministrator'],
+                    ],                    
+                ],                
+            ],            
         ];
     }
 

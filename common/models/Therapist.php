@@ -59,8 +59,8 @@ class Therapist extends \common\components\RoomsAR
     {
         return [
             'id' => 'ID',
-            'company_id' => 'Company ID',
-            'user_id' => 'User ID',
+            'company_id' => 'Company',
+            'user_id' => 'User',
             'colour' => 'Colour',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
