@@ -9,8 +9,8 @@ SchedulerAsset::register($this);
 /* @var $searchModel common\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$resourcesJsonUrl = Url::to(['room/fullcaldendar-resources']);
-$eventsJsonUrl = Url::to(['appointment/fullcaldendar-events']);
+$resourcesJsonUrl = Url::to(['room/fullcalendar-resources']);
+$eventsJsonUrl = Url::to(['appointment/fullcalendar-events']);
 
 $schedulerJS = <<<EOF
   $(function() { // document ready

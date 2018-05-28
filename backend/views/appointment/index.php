@@ -11,8 +11,8 @@ SchedulerAsset::register($this);
 /* @var $searchModel common\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$resourcesJsonUrl = Url::to(['room/fullcaldendar-resources']);
-$eventsJsonUrl = Url::to(['appointment/fullcaldendar-events']);
+$resourcesJsonUrl = Url::to(['room/fullcalendar-resources']);
+$eventsJsonUrl = Url::to(['appointment/fullcalendar-events']);
 
 $schedulerJS = <<<EOF
   $(function() { // document ready
@@ -104,11 +104,27 @@ $this->title = 'Appointments';
 
 <div class="appointment-index">
         
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>        
-   
-    
-    <div id='calendar'></div>
+       
+    <div class="box">                
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>            
+            <div class="box-tools pull-right">
+                <!-- Collapse Button -->
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>                
+        <div class="box-body">
+            <div id='calendar'></div>         
+        </div>        
+        <div class="box-footer">
+        <!--The footer of the box-->
+        </div>        
+    </div>
      
     <br />
     

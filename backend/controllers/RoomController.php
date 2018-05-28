@@ -35,7 +35,7 @@ class RoomController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','view'],
+                        'actions' => ['index','view','fullcalendar-resources'],
                         'roles' => ['viewRoom'],
                     ],
                     [
@@ -139,7 +139,7 @@ class RoomController extends Controller
         return $this->redirect(['index']);
     }
 
-    public function actionFullcaldendarResources()
+    public function actionFullcalendarResources()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $rooms = Room::find()->all();

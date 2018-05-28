@@ -33,7 +33,7 @@ class AppointmentController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','view'],
+                        'actions' => ['index','view','fullcalendar-events'],
                         'roles' => ['viewAppointment'],
                     ],
                     [
@@ -145,7 +145,7 @@ class AppointmentController extends Controller
         return $this->redirect(['index']);
     } 
     
-    public function actionFullcaldendarEvents($start = NULL, $end = NULL, $_ = NULL)
+    public function actionFullcalendarEvents($start = NULL, $end = NULL, $_ = NULL)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $appointments = Appointment::find()->all();

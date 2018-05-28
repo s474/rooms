@@ -27,12 +27,14 @@ use Yii;
  */
 class Appointment extends \yii\db\ActiveRecord
 {
+    
     public function behaviors()
     {
         return [
             TimestampBehavior::className(),
         ];
     }
+    
     
     /**
      * @inheritdoc
@@ -48,7 +50,7 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {        
         return [
-            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start', 'end'], 'required'],
+            [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'start'], 'required'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_price_id', 'created_at', 'updated_at'], 'integer'],
             [['room_id', 'therapist_id', 'client_id', 'therapy_price_id'], 'filter', 'filter' => 'intval'],
             [['start'], 'validateApptDate'],
@@ -98,9 +100,11 @@ class Appointment extends \yii\db\ActiveRecord
            $out .= ', [b]ID:' . $appt->id; 
         }
         
-        if ($out != '')
+        if ($out != '') {
             $this->addError($attribute, $out);
-                                                                        
+        } else {
+            $this->end = $end;
+        }
         // Check opening hours
         
     }
@@ -176,6 +180,7 @@ class Appointment extends \yii\db\ActiveRecord
     }  
     */
     
+    /* Already call calcCate once in validation so this seem v wrong
     public function afterSave($insert, $changedAttributes)
     {
         if($insert || (isset($changedAttributes['therapy_price_id']) || isset($changedAttributes['start']))) {                            
@@ -185,6 +190,7 @@ class Appointment extends \yii\db\ActiveRecord
         
         parent::afterSave($insert, $changedAttributes);
     }    
+    */
     
     public function calcEnd()
     {
