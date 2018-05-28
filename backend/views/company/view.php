@@ -10,7 +10,7 @@ $this->title = 'Company Details';
 ?>
 <div class="company-view">
 
-    <!--<h1><?= Html::encode($this->title) ?></h1>-->
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= DetailView::widget([
         'model' => $model,

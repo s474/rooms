@@ -127,7 +127,7 @@ h2, .h2 {
 }
 
 h1, .h1 {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .sidebar-calendar {
@@ -166,4 +166,8 @@ h1, .h1 {
     .sidebar-calendar {
         display: none;
     }
+}
+
+#calendar {
+    background-color: #ffffff;
 }
