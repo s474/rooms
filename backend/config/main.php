@@ -62,7 +62,14 @@ return [
             //'decimalSeparator' => ',',
             //'thousandSeparator' => ' ',
             //'currencyCode' => 'EUR',
-       ],        
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],        
     ],   
     'params' => $params,
 ];
