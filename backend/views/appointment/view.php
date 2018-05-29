@@ -53,7 +53,5 @@ $this->title = 'Appointment Details';
         <!--The footer of the box-->
         </div>        
     </div>
-
-    
-    
+        
 </div>
