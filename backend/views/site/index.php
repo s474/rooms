@@ -25,15 +25,15 @@ $this->title = 'Admin area';
             <?php
             foreach($adminAccs as $adminAcc) {
                 echo '<div class="switchSessionBtn">' . 
-                    Html::a($adminAcc->company->name . ' Administrator', ['switch-session', 'id' => $adminAcc->id, 'type'=>'A'], ['class' => 'btn btn-success']) . '</div>';
+                    Html::a($adminAcc->company->name . ' Administrator', ['switch-session', 'id' => $adminAcc->id, 'type'=>'Administrator'], ['class' => 'btn btn-success']) . '</div>';
             }
             foreach($therapistAccs as $therapistAcc) {
                 echo '<div class="switchSessionBtn">' . 
-                    Html::a($therapistAcc->company->name . ' Therapist', ['switch-session', 'id' => $therapistAcc->id, 'type'=>'T'], ['class' => 'btn btn-success']) . '</div>';
+                    Html::a($therapistAcc->company->name . ' Therapist', ['switch-session', 'id' => $therapistAcc->id, 'type'=>'Therapist'], ['class' => 'btn btn-success']) . '</div>';
             }
             foreach($clientAccs as $clientAcc) {
                 echo '<div class="switchSessionBtn">' . 
-                    Html::a($clientAcc->company->name . ' Client', ['switch-session', 'id' => $clientAcc->id, 'type'=>'C'], ['class' => 'btn btn-success']) . '</div>';
+                    Html::a($clientAcc->company->name . ' Client', ['switch-session', 'id' => $clientAcc->id, 'type'=>'Client'], ['class' => 'btn btn-success']) . '</div>';
             }
             ?>            
         </div>        

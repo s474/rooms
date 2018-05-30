@@ -181,3 +181,7 @@ h1, .h1 {
 .switchSessionBtn {
     padding-bottom: 10px;
 }
+
+.sessionHeader {
+    color: #b8c7ce !important;
+}

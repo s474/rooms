@@ -74,20 +74,16 @@ class SiteController extends Controller
     
     public function actionSwitchSession($id, $type)
     {                
-        $class = '';
-        if ($type == 'A') 
-            $class = 'common\models\Administrator';
-        if ($type == 'C') 
-            $class = 'common\models\Client';
-        if ($type == 'T') 
-            $class = 'common\models\Therapist';               
-        
-        if ($class != '') {
+        $class = 'common\models\\' . $type;
+
+        if ($class != 'common\models\\') {
             $model = $class::findOne($id);
             if (isset($model->id)) {
                 $session = Yii::$app->session;
                 $session->set('company_id', $model->company_id);
+                $session->set('company_name', $model->company->name);                
                 $session->set('rms_id', $id);
+                $session->set('rms_class', $class);
                 $session->set('rms_type', $type);
             }
         }

@@ -26,10 +26,11 @@ use yii\helpers\Html;
                         echo '<li>' . Html::a('Log in ', ['/user/security/login']) . '</li>';
                     } else {
                         if (Yii::$app->session->get('rms_id'))
-                            echo '<li>' . Html::a('RMSID (' . Yii::$app->session->get('rms_id') . ')', ['site/index']) . '</li>';
+                            echo '<li>' . Html::a(Yii::$app->session->get('rms_type') . ' ' . Yii::$app->session->get('company_name'), ['site/index'], ['class' => 'sessionHeader']) . '</li>';
                         echo '<li>' . Html::a('Logout (' . Yii::$app->user->identity->username . ')', ['/user/security/logout'], ['data-method' => 'POST']) . '</li>'; 
                     }                                
-
+                    
+                    //print_r($_SESSION);
                 ?>                
                                 
                 <li>
