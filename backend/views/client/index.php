@@ -34,7 +34,7 @@ $this->title = 'Clients';
                         'attribute' => 'company',
                         'format' => 'raw',
                         'value' => function ($data) {
-                            return Html::a($data->company->name, ['company/update', 'id' => $data->id]);
+                            return Html::a($data->company->name, ['company/update', 'id' => $data->company_id]);
                         },
                         'visible' => \Yii::$app->user->can('super'),
                     ],

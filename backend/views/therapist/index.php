@@ -35,7 +35,7 @@ $this->title = 'Therapists';
                         'attribute' => 'company',
                         'format' => 'raw',
                         'value' => function ($data) {
-                            return Html::a($data->company->name, ['company/update', 'id' => $data->id]);
+                            return Html::a($data->company->name, ['company/update', 'id' => $data->company_id]);
                         },
                         'visible' => \Yii::$app->user->can('super'),                        
                     ],
@@ -43,14 +43,27 @@ $this->title = 'Therapists';
                         'attribute' => 'user',
                         'format' => 'raw',
                         'value' => function ($data) {
-                            return Html::a($data->name, ['user/admin/update', 'id' => $data->user_id]);
+                            return (\Yii::$app->user->can('super')) ? 
+                                Html::a($data->name, ['user/admin/update', 'id' => $data->user_id]) : 
+                                $data->name;
                         },
-                    ],                        
+                    ],
                     [
-                        'attribute' => 'name',
+                        'attribute' => 'first_name',
                         'format' => 'raw',
                         'value' => function ($data) {
-                            return Html::a($data->user->email, ['therapist/update', 'id' => $data->id]);
+                            return (\Yii::$app->user->can('super')) ? 
+                                Html::a($data->user->first_name, ['user/admin/update', 'id' => $data->user_id]) : 
+                                Html::a($data->user->first_name, ['therapist/update', 'id' => $data->id]);                                
+                        },
+                    ],
+                    [
+                        'attribute' => 'last_name',
+                        'format' => 'raw',
+                        'value' => function ($data) {
+                            return (\Yii::$app->user->can('super')) ? 
+                                Html::a($data->user->last_name, ['user/admin/update', 'id' => $data->user_id]) : 
+                                Html::a($data->user->last_name, ['therapist/update', 'id' => $data->id]);
                         },
                     ],
                     [
