@@ -44,7 +44,21 @@ $this->title = 'Clients';
                         'value' => function ($data) {
                             return Html::a($data->name, ['user/admin/update', 'id' => $data->user_id]);
                         },
-                    ],                        
+                    ],
+                    [
+                        'attribute' => 'first_name',
+                        'format' => 'raw',
+                        'value' => function ($data) {
+                            return Html::a($data->user->first_name, ['user/admin/update', 'id' => $data->user_id]);
+                        },
+                    ],
+                    [
+                        'attribute' => 'last_name',
+                        'format' => 'raw',
+                        'value' => function ($data) {
+                            return Html::a($data->user->last_name, ['user/admin/update', 'id' => $data->user_id]);
+                        },
+                    ],                                
                     [
                         'attribute' => 'name',
                         'format' => 'raw',

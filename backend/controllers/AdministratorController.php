@@ -101,13 +101,21 @@ class AdministratorController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $user = \common\models\User::findOne($model->user_id);                
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
+            $isValid = $model->validate();
+            $isValid = $user->validate() && $isValid;
+            if ($isValid) {
+                $model->save(false);
+                $user->save(false);                               
+                return $this->redirect(['index']);
+            }
         }
-
+                                
         return $this->render('update', [
             'model' => $model,
+            'user' => $user,            
         ]);
     }
 

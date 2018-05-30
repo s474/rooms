@@ -21,7 +21,10 @@ use common\models\User;
             echo $form->field($model, 'user_id')->dropdownList(ArrayHelper::map(User::find()->all(), 'id', 'username'),['prompt'=>'Select User']);
         } else {
             echo $form->field($model, 'company_id')->hiddenInput()->label(false);
-            echo $form->field($model, 'user_id')->hiddenInput()->label(false);            
+            echo $form->field($model, 'user_id')->hiddenInput()->label(false);
+
+            echo $form->field($user, 'first_name')->textInput(['maxlength' => true]);
+            echo $form->field($user, 'last_name')->textInput(['maxlength' => true]);            
         }        
     ?>
     

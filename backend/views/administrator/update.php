@@ -9,10 +9,28 @@ $this->title = 'Update Administrator';
 ?>
 <div class="administrator-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="box">                
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>            
+            <div class="box-tools pull-right">
+                <!-- Collapse Button -->
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>                
+        <div class="box-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+                'user' => $user,        
+            ]) ?>
+        </div>        
+        <div class="box-footer">
+        <!--The footer of the box-->
+        </div>        
+    </div>
 
 </div>

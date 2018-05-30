@@ -25,6 +25,7 @@ $this->title = 'Update Client';
         <div class="box-body">
             <?= $this->render('_form', [
                 'model' => $model,
+                'user' => $user,        
             ]) ?>
         </div>        
         <div class="box-footer">
