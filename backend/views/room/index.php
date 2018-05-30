@@ -108,6 +108,18 @@ $this->title = 'Rooms';
                 'dataProvider' => $dataProviderLocation,
                 'filterModel' => $searchModelLocation,
                 'columns' => [
+                    [                
+                        'attribute'=>'company_id',
+                        'format' => 'raw',                
+                        'value' => 'company.name',
+                        'filter' => ArrayHelper::map(
+                            common\models\Company::find()->asArray()->all(), 'id', 'name'                        
+                        ),
+                        'value' => function ($data) {
+                            return Html::a($data->company->name, ['company/update', 'id' => $data->company_id]);
+                        },
+                        'visible' => \Yii::$app->user->can('super'),
+                    ],                    
                     [
                         'attribute' => 'name',
                         'format' => 'raw',
