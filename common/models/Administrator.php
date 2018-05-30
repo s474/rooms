@@ -27,6 +27,19 @@ class Administrator extends \common\components\RoomsAR
         ];
     }
     
+    public function afterSave($insert, $changedAttributes)
+    {
+        if($insert && !isset($this->user_id)) { 
+            
+            //No user ID set - create a user
+            //echo '!*!*!*!*!*! !create user here';
+            //$this->end = $this->calcEnd(); 
+            //$this->save();            
+        }
+
+        parent::afterSave($insert, $changedAttributes);
+    }    
+    
     /**
      * @inheritdoc
      */

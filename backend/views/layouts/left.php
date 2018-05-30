@@ -31,16 +31,14 @@
         <!-- /.search form -->
         
         <?php
-            
-            /*
-            if (in_array($this->context->module->requestedRoute,[
+                        
+            if (isset($this->context->module->requestedRoute) && in_array($this->context->module->requestedRoute,[
                 'appointment/index',
-                'room/index',
-                'therapist/index',
+                //'room/index',
+                //'therapist/index',
                 ])) {
             
-             * 
-             */ 
+
                 echo '<div class="sidebar-calendar">';
                 echo \kartik\datetime\DateTimePicker::widget([
                     'type' => 4,                                    
@@ -65,7 +63,7 @@
                 ]); 
                 echo '</div>';
 
-            //}
+            }
         ?>
 
                
