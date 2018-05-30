@@ -16,11 +16,18 @@ return [
         'user' => [
             // following line will restrict access to profile, recovery, registration and settings controllers from backend
             'as backend' => 'dektrium\user\filters\BackendFilter',
+            'modelMap' => [
+                'User' => 'common\models\User',
+            ],            
+            /*
+            'controllerMap' => [
+                'admin' => 'app\controllers\user\AdminController'
+            ],
+             * 
+             */            
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
-    ],
-     
-     
+    ],          
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
