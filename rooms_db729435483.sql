@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: db729435483.db.1and1.com
--- Generation Time: May 28, 2018 at 02:06 PM
+-- Generation Time: May 30, 2018 at 07:17 PM
 -- Server version: 5.5.60-0+deb7u1-log
 -- PHP Version: 5.4.45-0+deb7u14
 
@@ -36,17 +36,16 @@ CREATE TABLE IF NOT EXISTS `administrator` (
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `administrator`
 --
 
 INSERT INTO `administrator` (`id`, `company_id`, `user_id`, `colour`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, '#ff0000', 1527496539, 1527507681),
-(3, 1, 1, '', 1527496785, 1527496785),
-(4, 1, 1, '', 1527496877, 1527496877),
-(5, 4, 3, '', 1527497884, 1527498525);
+(7, 1, 2, '#ff9900', 1527697985, 1527697985),
+(8, 1, 6, '#0000ff', 1527698001, 1527698001),
+(9, 6, 8, '#3d85c6', 1527698019, 1527698019);
 
 -- --------------------------------------------------------
 
@@ -62,14 +61,14 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `therapy_price_id` int(11) NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_at` int(11) NOT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `room_id` (`room_id`),
   KEY `therapist_id` (`therapist_id`),
   KEY `client_id` (`client_id`),
   KEY `therapy_price_id` (`therapy_price_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -118,10 +117,9 @@ CREATE TABLE IF NOT EXISTS `auth_item` (
 --
 
 INSERT INTO `auth_item` (`name`, `type`, `description`, `rule_name`, `data`, `created_at`, `updated_at`) VALUES
-('administrator', 1, '', NULL, NULL, 1525120712, 1525807845),
-('adminViewAppointments', 2, '', NULL, NULL, 1525206322, 1525206322),
+('administrator', 1, 'test', NULL, NULL, 1525120712, 1527695712),
 ('client', 1, '', NULL, NULL, 1525120740, 1525206481),
-('createAdministrator', 2, '', NULL, NULL, 1525807675, 1525807675),
+('createAdministrator', 2, '', NULL, NULL, 1525807675, 1527695991),
 ('createAppointment', 2, '', NULL, NULL, 1525727079, 1525727079),
 ('createClient', 2, '', NULL, NULL, 1525727264, 1525727264),
 ('createCompany', 2, '', NULL, NULL, 1525727327, 1525727327),
@@ -284,14 +282,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `client`
---
-
-INSERT INTO `client` (`id`, `company_id`, `user_id`, `notes`, `created_at`, `updated_at`) VALUES
-(3, 1, 4, 'i am some notes - oooooooooooo', 1527498504, 1527509027);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -307,15 +298,16 @@ CREATE TABLE IF NOT EXISTS `company` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `company`
 --
 
 INSERT INTO `company` (`id`, `name`, `address_line_1`, `postcode`, `created_at`, `updated_at`) VALUES
-(1, 'BTC2', '', '', 1524949499, 1525790748),
-(4, 'newco', '', '', 1526133669, 1526133669);
+(1, 'BTC', '101 Test Road', 'SW90210', 1524949499, 1527695411),
+(4, 'Testco', '202 Avenue Lane Road', 'E90210', 1526133669, 1527695444),
+(6, 'Newco', '303 The Street', 'N90210', 1527695464, 1527695464);
 
 -- --------------------------------------------------------
 
@@ -333,16 +325,17 @@ CREATE TABLE IF NOT EXISTS `location` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `location`
 --
 
 INSERT INTO `location` (`id`, `company_id`, `name`, `address_line_1`, `postcode`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Therapy Centre', '101 A Road', '90210', 1525797213, 1525798979),
-(2, 4, 'newco head office', '123 Road Street', '90210', 1526133720, 1526133720),
-(3, 4, 'newco alt location', '9178 the avenue', '90210', 1526135714, 1526135714);
+(1, 1, 'BTC Therapy Centre', '101 A Road', '90210', 1525797213, 1527698094),
+(2, 6, 'Newco Head Office', '123 Road Street', '90210', 1526133720, 1527698129),
+(3, 6, 'Newco Alt Location', '9178 The Avenue', '90210', 1526135714, 1527698342),
+(4, 4, 'Healing Centre', '1203981203 Road Lane', '90210', 1527698289, 1527698327);
 
 -- --------------------------------------------------------
 
@@ -405,7 +398,12 @@ INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gra
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 'client_name', '', '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', NULL),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -429,8 +427,8 @@ CREATE TABLE IF NOT EXISTS `room` (
 --
 
 INSERT INTO `room` (`id`, `location_id`, `name`, `colour`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Main Room', '#e06666', 0, 0),
-(2, 1, 'Specialist Room A', '#f1c232', 0, 0),
+(1, 1, 'Main Room', '#e06666', 0, 1527697386),
+(2, 1, 'Specialist Room A', '#f1c232', 0, 1527540420),
 (3, 1, 'Specialist Room B', '#6aa84f', 0, 0),
 (4, 2, 'Room A', '#ff0000', 0, 0);
 
@@ -447,7 +445,14 @@ CREATE TABLE IF NOT EXISTS `room_supports_therapy` (
   PRIMARY KEY (`id`),
   KEY `room_id` (`room_id`),
   KEY `therapy_id` (`therapy_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `room_supports_therapy`
+--
+
+INSERT INTO `room_supports_therapy` (`id`, `room_id`, `therapy_id`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -489,13 +494,6 @@ CREATE TABLE IF NOT EXISTS `therapist` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `therapist`
---
-
-INSERT INTO `therapist` (`id`, `company_id`, `user_id`, `colour`, `created_at`, `updated_at`) VALUES
-(2, 1, 3, '#980000', 1527496522, 1527507934);
-
 -- --------------------------------------------------------
 
 --
@@ -509,7 +507,7 @@ CREATE TABLE IF NOT EXISTS `therapist_does_therapy` (
   PRIMARY KEY (`id`),
   KEY `therapist_id` (`therapist_id`),
   KEY `therapy_id` (`therapy_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -541,7 +539,15 @@ CREATE TABLE IF NOT EXISTS `therapy` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `company_id` (`company_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `therapy`
+--
+
+INSERT INTO `therapy` (`id`, `company_id`, `name`, `needs_special_room`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Osteopathy', 1, 1527516208, 1527579656),
+(2, 1, 'Life Coaching', 0, 1527687849, 1527695388);
 
 -- --------------------------------------------------------
 
@@ -559,7 +565,15 @@ CREATE TABLE IF NOT EXISTS `therapy_price` (
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `therapy_id` (`therapy_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `therapy_price`
+--
+
+INSERT INTO `therapy_price` (`id`, `therapy_id`, `minutes_duration`, `description`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 30, '', '30.00', 0, 0),
+(2, 1, 60, '', '61.00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -595,20 +609,27 @@ CREATE TABLE IF NOT EXISTS `user` (
   `updated_at` int(11) NOT NULL,
   `flags` int(11) NOT NULL DEFAULT '0',
   `last_login_at` int(11) DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_unique_username` (`username`),
   UNIQUE KEY `user_unique_email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`) VALUES
-(1, 'simon', 'chrts.offire+rooms_simon@gmail.com', '$2y$10$afu05QQqu8.e3p30oXsIKOnl8jcv1zAG9WzaMN8GXsB.Mty6uzn2S', '6dCXLjMZxgNFezxsI3zCF2-UKFHqrYHs', 1525206516, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525001655, 1525790868, 0, 1527490212),
-(2, 'mardi', 'chrts.offire+rooms_mardi@gmail.com', '$2y$10$q4uFZroTpuJOjblVKwZn/uAsbp.y0ZEjAOYQvXb5aO2gzbuxNKC9.', 'ifBSJhMLbIMguaAlIsEB4TzzFTs1l9fK', 1525002221, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525002221, 1525790853, 0, 1526234816),
-(3, 'therapist', 'chrts.offire+rooms_therapist@gmail.com', '$2y$10$10rKfAPElBYmeEI9PDSOh.1AZTawkn5jJDDYywE9p0VIAq9mysf9a', 'e19z1KCCRX4s3H--SqFdAhj94Qkx1UbS', 1525034518, NULL, NULL, '2001:8b0:fb81:9331:d982:c779:c132:b188', 1525034518, 1525790950, 0, NULL),
-(4, 'client', 'chrts.offire+rooms_client@gmail.com', '$2y$10$Ply0NMocdpO5TMSYT8qZ6eWimFl2vttUNItssRXwQZkd9x4wGeJlm', 'SfCjEsVDt1syOKBjUbIw7YWIZkwsObG3', 1525120627, NULL, NULL, '2001:8b0:fb81:9331:1c2c:6756:be70:8e45', 1525120627, 1525790967, 0, NULL);
+INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `auth_key`, `confirmed_at`, `unconfirmed_email`, `blocked_at`, `registration_ip`, `created_at`, `updated_at`, `flags`, `last_login_at`, `first_name`, `last_name`) VALUES
+(1, 'simon', 'chrts.offire+rooms_simon@gmail.com', '$2y$10$afu05QQqu8.e3p30oXsIKOnl8jcv1zAG9WzaMN8GXsB.Mty6uzn2S', '6dCXLjMZxgNFezxsI3zCF2-UKFHqrYHs', 1525206516, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525001655, 1527696266, 0, 1527690437, 'Simon', 'Superuser'),
+(2, 'mardi', 'chrts.offire+rooms_mardi@gmail.com', '$2y$10$q4uFZroTpuJOjblVKwZn/uAsbp.y0ZEjAOYQvXb5aO2gzbuxNKC9.', 'ifBSJhMLbIMguaAlIsEB4TzzFTs1l9fK', 1525002221, NULL, NULL, '2001:8b0:fb81:9331:4568:8298:d585:cc07', 1525002221, 1527696252, 0, 1527697378, 'Mardi', 'Adminuser'),
+(3, 'therapistuser', 'chrts.offire+rooms_therapist@gmail.com', '$2y$10$10rKfAPElBYmeEI9PDSOh.1AZTawkn5jJDDYywE9p0VIAq9mysf9a', 'e19z1KCCRX4s3H--SqFdAhj94Qkx1UbS', 1525034518, NULL, NULL, '2001:8b0:fb81:9331:d982:c779:c132:b188', 1525034518, 1527696221, 0, 1527534700, 'Jane', 'Doe'),
+(4, 'clientuser', 'chrts.offire+rooms_client@gmail.com', '$2y$10$Ply0NMocdpO5TMSYT8qZ6eWimFl2vttUNItssRXwQZkd9x4wGeJlm', 'SfCjEsVDt1syOKBjUbIw7YWIZkwsObG3', 1525120627, NULL, NULL, '2001:8b0:fb81:9331:1c2c:6756:be70:8e45', 1525120627, 1527695501, 0, 1527534714, 'Joe', 'Bloggs'),
+(6, 'adminuser', 'chrts.offire+rooms_admin@gmail.com', '$2y$10$IByRuOTb2tuoOzNE20MHj.B98FaG2wgYR2vXlLmO7.iH6bwEBOtuG', 'wahKkbcCabzIALK4l67c-RSoix6wC2RI', 1527696362, NULL, NULL, '2001:8b0:fb81:9331:ad9c:eba2:65d9:7206', 1527696362, 1527696362, 0, NULL, 'John', 'Smith'),
+(7, 'kieran', 'chrts.offire+rooms_kieran@gmail.com', '$2y$10$W2kyMV.l3INLasJFXZc31ewVUQR2N7A5g9AKzj6NuKcrbSiKSFcD6', 'AZK1TqMxqMouSzDiw1FCNJbQN7RpYPwn', 1527696582, NULL, NULL, '2001:8b0:fb81:9331:ad9c:eba2:65d9:7206', 1527696582, 1527696582, 0, NULL, 'Kieran', 'Superuser'),
+(8, 'admin_newco', 'chrts.offire+rooms_admin_newco@gmail.com', '$2y$10$fRp.RpTx6X/9BTTEDN.84eyMpUBZteFruUNm7uCqNZ6PSrRobDFEG', 'dCNQVOl-7gWaehB6tdLM417_BfMsFVFY', 1527696745, NULL, NULL, '2001:8b0:fb81:9331:ad9c:eba2:65d9:7206', 1527696745, 1527696833, 0, NULL, 'Chadmin', 'Valley'),
+(9, 'client_newco', 'chrts.offire+rooms_client_newco@gmail.com', '$2y$10$1BAL8/S0kFUHoFt6I1n85.CIV6zFhdAKfNS4d2nh9iarq2lSKXdli', '6qg5mkaLB-jme-67Iqx5HKDfLZd-IQ1H', 1527696908, NULL, NULL, '2001:8b0:fb81:9331:ad9c:eba2:65d9:7206', 1527696908, 1527696908, 0, NULL, 'Clint', 'Clienté'),
+(10, 'therapist_newco', 'chrts.offire+rooms_therapist_newco@gmail.com', '$2y$10$RykCGTeY3RNd5d00cLOlCu1MAEQ9PmJBYwNSvCAftk7D63Fz58V76', 'hpxAEMK8uuWtM5MtIp1avMQK12oT__gV', 1527696964, NULL, NULL, '2001:8b0:fb81:9331:ad9c:eba2:65d9:7206', 1527696964, 1527697142, 0, NULL, 'Thierry', 'Piste');
 
 -- --------------------------------------------------------
 
