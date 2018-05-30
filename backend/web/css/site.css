@@ -177,3 +177,7 @@ h1, .h1 {
     background-color: #ffffff !important;
 }
 */
+
+.switchSessionBtn {
+    padding-bottom: 10px;
+}

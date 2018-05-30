@@ -20,19 +20,19 @@ use yii\helpers\Html;
             <ul class="nav navbar-nav">
 
                 <?php
-
+                
                     if (Yii::$app->user->isGuest) {
                         echo '<li>' . Html::a('Sign up', ['/user/registration/register']) . '</li>';
                         echo '<li>' . Html::a('Log in ', ['/user/security/login']) . '</li>';
                     } else {
+                        if (Yii::$app->session->get('rms_id'))
+                            echo '<li>' . Html::a('RMSID (' . Yii::$app->session->get('rms_id') . ')', ['site/index']) . '</li>';
                         echo '<li>' . Html::a('Logout (' . Yii::$app->user->identity->username . ')', ['/user/security/logout'], ['data-method' => 'POST']) . '</li>'; 
                     }                                
 
                 ?>                
-                
-                
+                                
                 <li>
-
                 </li>
 
                 <!-- User Account: style can be found in dropdown.less -->

@@ -22,7 +22,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error','switch-session'],
                         'allow' => true,
                     ],
                     [
@@ -70,45 +70,28 @@ class SiteController extends Controller
             'clientAccs' => $clientAccs,            
         ]);        
     }
-
-    /**
-     * Login action.
-     *
-     * @return string
-     */
-    /*
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+    
+    
+    public function actionSwitchSession($id, $type)
+    {                
+        $class = '';
+        if ($type == 'A') 
+            $class = 'common\models\Administrator';
+        if ($type == 'C') 
+            $class = 'common\models\Client';
+        if ($type == 'T') 
+            $class = 'common\models\Therapist';               
+        
+        if ($class != '') {
+            $model = $class::findOne($id);
+            if (isset($model->id)) {
+                $session = Yii::$app->session;
+                $session->set('company_id', $model->company_id);
+                $session->set('rms_id', $id);
+                $session->set('rms_type', $type);
+            }
         }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            $model->password = '';
-
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-     * 
-     */
-
-    /**
-     * Logout action.
-     *
-     * @return string
-     */
-    /*
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-     * 
-     */
+        
+        return $this->redirect(['index']);
+    }       
 }

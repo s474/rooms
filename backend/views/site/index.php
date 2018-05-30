@@ -1,49 +1,44 @@
 <?php
 
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 
-$this->title = '';
+$this->title = 'Admin area';
 ?>      
+    <!--<h1><?= Html::encode($this->title) ?></h1>-->
 
-<h2>Admin area</h2>
-
-<p>Hello <?= Yii::$app->user->identity->username; ?></p>
-
-<div class="box">
-<div class="box-header with-border">
-<h3 class="box-title">Default Box Example</h3>
-<div class="box-tools pull-right">
-<!-- Buttons, labels, and many other things can be placed here! -->
-<!-- Here is a label for example -->
-<span class="label label-primary">Label</span>
-</div>
-<!-- /.box-tools -->
-</div>
-<!-- /.box-header -->
-<div class="box-body">
-The body of the box
-</div>
-<!-- /.box-body -->
-<div class="box-footer">
-The footer of the box
-</div>
-<!-- box-footer -->
-</div>
-<!-- /.box -->
-
-<?php
-/*
-var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'adminViewAppointment'));
-var_dump(\Yii::$app->authManager->checkAccess(Yii::$app->user->id,'administrator'));
-var_dump(\Yii::$app->user->can('adminViewAppointments'));
-var_dump(\Yii::$app->user->can('administrator'));
-var_dump(\Yii::$app->user->can('super'));
-var_dump(Yii::$app->user);
- * 
- */
-var_dump($adminAccs);
-var_dump($therapistAccs);
-var_dump($clientAccs);
-
-?>
+    <div class="box">                
+        <div class="box-header with-border">
+            <h3 class="box-title"><?= Html::encode($this->title) ?></h3>            
+            <div class="box-tools pull-right">
+                <!-- Collapse Button -->
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>                
+        <div class="box-body">
+            <p>Hello <b><?= Yii::$app->user->identity->username; ?></b>, you have the following access ...</p>
+            <br />
+            <?php
+            foreach($adminAccs as $adminAcc) {
+                echo '<div class="switchSessionBtn">' . 
+                    Html::a($adminAcc->company->name . ' Administrator', ['switch-session', 'id' => $adminAcc->id, 'type'=>'A'], ['class' => 'btn btn-success']) . '</div>';
+            }
+            foreach($therapistAccs as $therapistAcc) {
+                echo '<div class="switchSessionBtn">' . 
+                    Html::a($therapistAcc->company->name . ' Therapist', ['switch-session', 'id' => $therapistAcc->id, 'type'=>'T'], ['class' => 'btn btn-success']) . '</div>';
+            }
+            foreach($clientAccs as $clientAcc) {
+                echo '<div class="switchSessionBtn">' . 
+                    Html::a($clientAcc->company->name . ' Client', ['switch-session', 'id' => $clientAcc->id, 'type'=>'C'], ['class' => 'btn btn-success']) . '</div>';
+            }
+            ?>            
+        </div>        
+        <div class="box-footer">
+        <!--The footer of the box-->
+        </div>        
+    </div>
 
