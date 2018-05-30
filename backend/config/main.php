@@ -15,6 +15,8 @@ return [
     'modules' => [
         'user' => [
             // following line will restrict access to profile, recovery, registration and settings controllers from backend
+            'enableConfirmation' => false,
+            'enableRegistration' => false,
             'as backend' => 'dektrium\user\filters\BackendFilter',
             'modelMap' => [
                 'User' => 'common\models\User',
