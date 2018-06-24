@@ -142,7 +142,7 @@ class RoomController extends \common\components\RoomsCont
     public function actionFullcalendarResources()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $rooms = Room::find()->all();
+        $rooms = Room::find(false,'location')->all();
         $resources = array();
         
         foreach ($rooms AS $room) {            
