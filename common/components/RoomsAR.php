@@ -10,8 +10,7 @@ class RoomsAR extends \yii\db\ActiveRecord
     {
         if ($skipCompany) {
             return parent::find();
-        } else {
-            $session = Yii::$app->session;                
+        } else {            
             return parent::find()->andFilterWhere(['company_id' => Yii::$app->session->get('company_id')]);
         }
     }         

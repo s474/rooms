@@ -30,7 +30,6 @@ use yii\helpers\Html;
                         echo '<li>' . Html::a('Logout (' . Yii::$app->user->identity->username . ')', ['/user/security/logout'], ['data-method' => 'POST']) . '</li>'; 
                     }                                
                     
-                    //print_r($_SESSION);
                 ?>                
                                 
                 <li>
