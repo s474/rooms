@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 /**
  * ClientController implements the CRUD actions for Client model.
  */
-class ClientController extends Controller
+class ClientController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc

@@ -14,7 +14,7 @@ use yii\filters\AccessControl;
 /**
  * TherapyPriceController implements the CRUD actions for TherapyPrice model.
  */
-class TherapyPriceController extends Controller
+class TherapyPriceController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc

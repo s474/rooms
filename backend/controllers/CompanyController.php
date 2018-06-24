@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 /**
  * CompanyController implements the CRUD actions for Company model.
  */
-class CompanyController extends Controller
+class CompanyController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc

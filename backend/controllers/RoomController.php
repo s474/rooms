@@ -16,7 +16,7 @@ use yii\filters\AccessControl;
 /**
  * RoomController implements the CRUD actions for Room model.
  */
-class RoomController extends Controller
+class RoomController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc

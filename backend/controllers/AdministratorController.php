@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 /**
  * AdministratorController implements the CRUD actions for Administrator model.
  */
-class AdministratorController extends Controller
+class AdministratorController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc

@@ -14,7 +14,7 @@ use yii\filters\AccessControl;
 /**
  * AppointmentController implements the CRUD actions for Appointment model.
  */
-class AppointmentController extends Controller
+class AppointmentController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc

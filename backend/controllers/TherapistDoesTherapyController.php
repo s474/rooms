@@ -14,7 +14,7 @@ use yii\filters\AccessControl;
 /**
  * TherapistDoesTherapyController implements the CRUD actions for TherapistDoesTherapy model.
  */
-class TherapistDoesTherapyController extends Controller
+class TherapistDoesTherapyController extends \common\components\RoomsCont
 {
     /**
      * @inheritdoc
