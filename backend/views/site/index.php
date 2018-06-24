@@ -35,7 +35,7 @@ $this->title = 'Admin area';
                 echo '<div class="switchSessionBtn">' . 
                     Html::a($clientAcc->company->name . ' Client', ['switch-session', 'id' => $clientAcc->id, 'type'=>'Client'], ['class' => 'btn btn-success']) . '</div>';
             }
-            ?>            
+            ?>                  
         </div>        
         <div class="box-footer">
         <!--The footer of the box-->
