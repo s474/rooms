@@ -18,7 +18,7 @@ use kartik\datetime\DateTimePicker;
 
     <?php $form = ActiveForm::begin(); ?>
             
-    <?= $form->field($model, 'room_id')->dropdownList(ArrayHelper::map(Room::find()->joinWith(['location'])->all(), 'id', 'name'),['prompt'=>'Select Room']); ?>
+    <?= $form->field($model, 'room_id')->dropdownList(ArrayHelper::map(Room::find(false,'location')->all(), 'id', 'name'),['prompt'=>'Select Room']); ?>
     
     <?= $form->field($model, 'therapist_id')->dropdownList(ArrayHelper::map(Therapist::find()->all(), 'id', 'name'),['prompt'=>'Select Therapist']); ?>
 

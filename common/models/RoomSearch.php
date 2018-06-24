@@ -41,7 +41,7 @@ class RoomSearch extends Room
      */
     public function search($params)
     {
-        $query = Room::find();
+        $query = Room::find(false,'location');
 
         // add conditions that should always apply here
 

@@ -16,7 +16,7 @@ use Yii;
  * @property RoomSupportsTherapy[] $roomSupportsTherapies
  * @property Appointment[] $appointments
  */
-class Room extends \yii\db\ActiveRecord
+class Room extends \common\components\RoomsAR
 {
     public function behaviors()
     {
