@@ -19,8 +19,8 @@ $this->title = 'Admin area';
             </div>
             <!-- /.box-tools -->
         </div>                
-        <div class="box-body">
-            <p>Hello <b><?= Yii::$app->user->identity->username; ?></b>, you have the following access ...</p>
+        <div class="box-body">                       
+            <p>Hello <b><?= Yii::$app->user->identity->username; ?></b>, you have the following accounts...</p>
             <br />
             <?php
             foreach($adminAccs as $adminAcc) {
@@ -35,10 +35,9 @@ $this->title = 'Admin area';
                 echo '<div class="switchSessionBtn">' . 
                     Html::a($clientAcc->company->name . ' Client', ['switch-session', 'id' => $clientAcc->id, 'type'=>'Client'], ['class' => 'btn btn-success']) . '</div>';
             }
-            ?>                  
+            ?>                          
         </div>        
         <div class="box-footer">
         <!--The footer of the box-->
         </div>        
     </div>
-

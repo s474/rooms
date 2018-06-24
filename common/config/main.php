@@ -32,5 +32,13 @@ return [
             // configure in needed configs
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
-    ],    
+    ],
+    /*
+    'on beforeAction' => function($event) {
+        //Yii::$app->language='en-EN';           
+        $msg = 'oooh!';
+        mail("chrts.offire@gmail.com","Debugulon 3 RoomsAR " . time(),$msg);
+    }
+     * 
+     */    
 ];
